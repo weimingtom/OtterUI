@@ -9,10 +9,6 @@ Global
 		D3D Debug|x64 = D3D Debug|x64
 		D3D Release|Win32 = D3D Release|Win32
 		D3D Release|x64 = D3D Release|x64
-		PS3 SNC Debug|Win32 = PS3 SNC Debug|Win32
-		PS3 SNC Debug|x64 = PS3 SNC Debug|x64
-		PS3 SNC Release|Win32 = PS3 SNC Release|Win32
-		PS3 SNC Release|x64 = PS3 SNC Release|x64
 		Win32 Debug MDd|Win32 = Win32 Debug MDd|Win32
 		Win32 Debug MDd|x64 = Win32 Debug MDd|x64
 		Win32 Debug MTd|Win32 = Win32 Debug MTd|Win32
@@ -31,12 +27,6 @@ Global
 		{B06BD261-419E-498A-ABD1-776FE8459210}.D3D Release|Win32.Build.0 = D3D Release|Win32
 		{B06BD261-419E-498A-ABD1-776FE8459210}.D3D Release|x64.ActiveCfg = D3D Release|x64
 		{B06BD261-419E-498A-ABD1-776FE8459210}.D3D Release|x64.Build.0 = D3D Release|x64
-		{B06BD261-419E-498A-ABD1-776FE8459210}.PS3 SNC Debug|Win32.ActiveCfg = D3D Release|x64
-		{B06BD261-419E-498A-ABD1-776FE8459210}.PS3 SNC Debug|x64.ActiveCfg = D3D Release|x64
-		{B06BD261-419E-498A-ABD1-776FE8459210}.PS3 SNC Debug|x64.Build.0 = D3D Release|x64
-		{B06BD261-419E-498A-ABD1-776FE8459210}.PS3 SNC Release|Win32.ActiveCfg = D3D Release|x64
-		{B06BD261-419E-498A-ABD1-776FE8459210}.PS3 SNC Release|x64.ActiveCfg = D3D Release|x64
-		{B06BD261-419E-498A-ABD1-776FE8459210}.PS3 SNC Release|x64.Build.0 = D3D Release|x64
 		{B06BD261-419E-498A-ABD1-776FE8459210}.Win32 Debug MDd|Win32.ActiveCfg = D3D Release|x64
 		{B06BD261-419E-498A-ABD1-776FE8459210}.Win32 Debug MDd|x64.ActiveCfg = D3D Release|x64
 		{B06BD261-419E-498A-ABD1-776FE8459210}.Win32 Debug MDd|x64.Build.0 = D3D Release|x64

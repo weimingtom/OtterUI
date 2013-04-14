@@ -1,0 +1,101 @@
+﻿<html>
+	
+<head>
+	<title>Sounds</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="generator" content="HelpNDoc Personal Edition 3.9.0.595">
+	<link type="text/css" rel="stylesheet" media="all" href="css/reset.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/base.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/hnd.css" />
+	<!--[if lte IE 8]>
+		<link type="text/css" rel="stylesheet" media="all" href="css/ielte8.css" />
+	<![endif]-->
+	<style type="text/css">
+		#topic_header
+		{
+			background-color: #EFEFEF;
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/hnd.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function()
+		{
+			if (top.frames.length == 0)
+			{
+				var sTopicUrl = top.location.href.substring(top.location.href.lastIndexOf("/") + 1, top.location.href.length);
+				top.location.href = "index.html?" + sTopicUrl;
+			}
+			else if (top && top.FrameTOC && top.FrameTOC.SelectTocItem)
+			{
+				top.FrameTOC.SelectTocItem("Sounds");
+			}
+		});
+	</script>
+</head>
+
+<body>
+
+	<div id="topic_header">
+			<div id="topic_header_content">
+				<h1>Sounds</h1>
+				
+				<div id="topic_breadcrumb">
+					<a href="Editor.html">Editor</a> &rsaquo;&rsaquo; <a href="Tutorials.html">Tutorials</a> &rsaquo;&rsaquo; <a href="Actions.html">Actions</a> &rsaquo;&rsaquo; </div>
+				</div>
+			<div id="topic_header_nav">
+				<a href="Actions.html"><img src="img/arrow_up.png" alt="Parent"/></a>
+				
+				<a href="Messages.html"><img src="img/arrow_left.png" alt="Previous"/></a>
+				
+				<a href="API.html"><img src="img/arrow_right.png" alt="Next"/></a>
+				
+				</div>
+			<div class="clear"></div>
+		</div>
+	<div id="topic_content">
+		
+<p></p>
+<p>Sound Playback in OtterUI is accomplished by creating a Sound Action on an animation frame, much the same as you would create a Message Action. &nbsp;Unlike Message Actions, however, Sound Actions use only the ISoundSystem interface to load, unload and play sounds.</p>
+<p><br/></p>
+<p>To add and play sounds in OtterUI you must create one our more sounds, &nbsp;add one or more Sound Actions to an animation, and finally implement the ISoundSystem interface.</p>
+<p><br/></p>
+<p><span class="rvts11">Create Sounds in the OtterUI Editor</span></p>
+<p><span class="rvts11"><br/></span></p>
+<ol style="text-indent: 0px; margin-left: 24px; list-style-position: outside;"><ol style="text-indent: 0px; margin-left: 48px; list-style-position: outside;">
+<li class="rvps3" style="margin-left: 0">From the <span class="rvts20">Scene</span> menu click <span class="rvts20">Sounds...</span></li>
+<li class="rvps3" style="margin-left: 0">Click <span class="rvts20">Add</span>. &nbsp;A new sound will be created and added to the list of sounds</li>
+<li class="rvps3" style="margin-left: 0">Select the new sound and hit F2 to edit the name. &nbsp;The sound's name must be unique</li>
+<li class="rvps3" style="margin-left: 0">(Optional) Select the sound, and in Details pane and browse to a sound file.<br/><br/><span class="rvts16">Note:</span> &nbsp;If a sound file is not specified, the sound's name will be used in identifying the sound at runtime.<br/><br/></li>
+<li class="rvps3" style="margin-left: 0">Repeat steps 2 through 4 as needed</li>
+<li class="rvps3" style="margin-left: 0">Hit <span class="rvts20">OK</span></li>
+</ol></ol>
+<p class="rvps3"><br/></p>
+<p class="rvps3"><img alt="" style="padding : 1px;" src="lib/NewItem2.png"/></p>
+<p><span class="rvts11"><br/></span></p>
+<p><span class="rvts11">Create a Sound Action</span></p>
+<p><span class="rvts11"><br/></span></p>
+<ol style="text-indent: 0px; margin-left: 24px; list-style-position: outside;"><ol style="text-indent: 0px; margin-left: 48px; list-style-position: outside;">
+<li class="rvps3" style="margin-left: 0">Right click on the main channel of an animation and select <span class="rvts20">Actions...</span><br/><span class="rvts20"></span><br/><img alt="" style="padding : 1px;" src="lib/NewItem1.png"/><br/><span class="rvts20"><br/></span></li>
+<li class="rvps3" style="margin-left: 0">In the <span class="rvts20">Actions Editor</span> select <span class="rvts20">Play Sound</span> from the <span class="rvts20">Add Actions</span> dropdown</li>
+<li class="rvps3" style="margin-left: 0">Select the newly created sound action and in the properties window select <span class="rvts20">Sound</span> and expand the dropdown box in its value field.</li>
+<li class="rvps3" style="margin-left: 0">Select the appropriate sound to play</li>
+<li class="rvps3" style="margin-left: 0">Edit the <span class="rvts20">Volume</span> field to set the playback volume</li>
+</ol></ol>
+<p class="rvps3"><br/></p>
+<p><span class="rvts11">Implement the ISoundSystem Interface</span></p>
+<p><span class="rvts11"><br/></span></p>
+<p>See the <a class="rvts12" href="Renderer22.html">Sound System</a> tutorial for information on how to implement the ISoundSystem interface</p>
+<p></p>
+<p class="rvps2"><span class="rvts13">Created with the Personal Edition of HelpNDoc: </span><a class="rvts14" href="http://www.helpndoc.com/help-authoring-tool">Full-featured multi-format Help generator</a></p>
+</div>
+	
+	<div id="topic_footer">
+
+			<div id="topic_footer_content">
+				Copyright &copy; 2011, Lloyd Tullues</div>
+		</div>
+	</body>
+	
+</html>
+

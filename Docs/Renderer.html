@@ -1,0 +1,151 @@
+﻿<html>
+	
+<head>
+	<title>Renderer</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="generator" content="HelpNDoc Personal Edition 3.9.0.595">
+	<link type="text/css" rel="stylesheet" media="all" href="css/reset.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/base.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/hnd.css" />
+	<!--[if lte IE 8]>
+		<link type="text/css" rel="stylesheet" media="all" href="css/ielte8.css" />
+	<![endif]-->
+	<style type="text/css">
+		#topic_header
+		{
+			background-color: #EFEFEF;
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/hnd.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function()
+		{
+			if (top.frames.length == 0)
+			{
+				var sTopicUrl = top.location.href.substring(top.location.href.lastIndexOf("/") + 1, top.location.href.length);
+				top.location.href = "index.html?" + sTopicUrl;
+			}
+			else if (top && top.FrameTOC && top.FrameTOC.SelectTocItem)
+			{
+				top.FrameTOC.SelectTocItem("Renderer");
+			}
+		});
+	</script>
+</head>
+
+<body>
+
+	<div id="topic_header">
+			<div id="topic_header_content">
+				<h1>Renderer</h1>
+				
+				<div id="topic_breadcrumb">
+					<a href="API.html">API</a> &rsaquo;&rsaquo; <a href="Integration.html">Tutorials</a> &rsaquo;&rsaquo; </div>
+				</div>
+			<div id="topic_header_nav">
+				<a href="Integration.html"><img src="img/arrow_up.png" alt="Parent"/></a>
+				
+				<a href="FileIO.html"><img src="img/arrow_left.png" alt="Previous"/></a>
+				
+				<a href="Renderer22.html"><img src="img/arrow_right.png" alt="Next"/></a>
+				
+				</div>
+			<div class="clear"></div>
+		</div>
+	<div id="topic_content">
+		
+<p></p>
+<p>To render the UI, you must provide a renderer that will receive data from the Otter API and present it on screen. &nbsp;The Otter API, at render-time, collects the drawing information of all the on-screen elements and organizes them into batches. &nbsp;These batches are then sent the user-provided renderer to be drawn.</p>
+<p><br/></p>
+<p>In addition to sending vertices and draw batches, the renderer is also responsible for loading and unloading textures.</p>
+<p><br/></p>
+<p><span class="rvts11">Creating a Renderer</span></p>
+<p> </p>
+<p>In order to implement your own renderer, create a new class that inherits from Otter::IRenderer and implements the following methods:</p>
+<p><br/></p>
+<p><span class="rvts11"><br/></span></p>
+<div class="rvps12"><table width="800" border="1" cellpadding="10" cellspacing="2" style="border-width: 0px; background-color: #ccffcc;">
+<tr valign="top">
+<td style="border-width : 1px; border-color: #000000; border-style: solid; width: 42%;"><p><span class="rvts31">class</span><span class="rvts30"> SampleRenderer : </span><span class="rvts31">public</span><span class="rvts30"> Otter::IRenderer</span></p>
+<p><span class="rvts30">{</span></p>
+<p><span class="rvts30"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">/* Loads a texture with the specified id and path</span></p>
+<p><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34"> */</span></p>
+<p><span class="rvts30"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts31">virtual</span><span class="rvts30"> </span><span class="rvts31">void</span><span class="rvts30"> OnLoadTexture(</span><span class="rvts31">int</span><span class="rvts30"> textureID, </span><span class="rvts31">const</span><span class="rvts30"> </span><span class="rvts31">char</span><span class="rvts30">* szPath);</span></p>
+<p><span class="rvts30"><br/></span></p>
+<p><span class="rvts30"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">/* Unloads a texture with the specified id</span></p>
+<p><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34"> */</span></p>
+<p><span class="rvts30"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts31">virtual</span><span class="rvts30"> </span><span class="rvts31">void</span><span class="rvts30"> OnUnloadTexture(</span><span class="rvts31">int</span><span class="rvts30"> textureID);</span></p>
+<p><span class="rvts30"><br/></span></p>
+<p><span class="rvts30"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">/* Called when a drawing pass has begun</span></p>
+<p><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34"> */</span></p>
+<p><span class="rvts30"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts31">virtual</span><span class="rvts30"> </span><span class="rvts31">void</span><span class="rvts30"> OnDrawBegin();</span></p>
+<p><span class="rvts30"><br/></span></p>
+<p><span class="rvts30"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">/* Called when a drawing pass has ended</span></p>
+<p><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34"> */</span></p>
+<p><span class="rvts30"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts31">virtual</span><span class="rvts30"> </span><span class="rvts31">void</span><span class="rvts30"> OnDrawEnd();</span></p>
+<p><span class="rvts30"><br/></span></p>
+<p><span class="rvts30"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">/* Commits a vertex buffer for rendering</span></p>
+<p><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34"> */</span></p>
+<p><span class="rvts30"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts31">virtual</span><span class="rvts30"> </span><span class="rvts31">void</span><span class="rvts30"> OnCommitVertexBuffer(</span><span class="rvts31">const</span><span class="rvts30"> Otter::GUIVertex* pVertices, uint32 numVertices);</span></p>
+<p><span class="rvts30"><br/></span></p>
+<p><span class="rvts30"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">/* Draws primitives on screen</span></p>
+<p><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34"> */</span></p>
+<p><span class="rvts30"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts31">virtual</span><span class="rvts30"> </span><span class="rvts31">void</span><span class="rvts30"> OnDrawBatch(</span><span class="rvts31">const</span><span class="rvts30"> Otter::DrawBatch&amp; batch);</span></p>
+<p><span class="rvts30">};</span></p>
+<p><span class="rvts30"><br/></span></p>
+</td>
+</tr>
+</table>
+</div>
+<p class="rvps12"><br/></p>
+<p>These methods will be called by the Otter API during render-time, and it is up to you to ensure they are implemented correctly in your application. &nbsp;A quick overview of the methods are as follows:</p>
+<p><br/></p>
+<p><span class="rvts15">OnLoadTexture</span></p>
+<p><span class="rvts15"><br/></span></p>
+<p>This method is called when the Otter API requires a texture to be loaded. &nbsp;The path of the texture is provided as well as its internal ID. &nbsp;After this function completes, the texture will always be referenced by its ID. &nbsp;It is recommended to create a fast mapping between the internal texture ID and the actual texture reference.</p>
+<p><br/></p>
+<p><span class="rvts15">OnUnloadTexture</span></p>
+<p><span class="rvts15"><br/></span></p>
+<p>This method is called when the Otter API no longer requires the texture, as specified by the provided texture ID.</p>
+<p><br/></p>
+<p><span class="rvts15">OnDrawBegin</span></p>
+<p><span class="rvts15"><br/></span></p>
+<p>This method is called once per frame, and indicates that the Otter API is about to send render information. &nbsp;In this function you would set up the appropriate render states, projection matrices, and so on.</p>
+<p><br/></p>
+<p><span class="rvts15">OnDrawEnd</span></p>
+<p><span class="rvts15"><br/></span></p>
+<p>This method is called once all the render information has been sent, and thus concludes rendering for the current frame.</p>
+<p><br/></p>
+<p><span class="rvts15">OnCommitVertexBuffer</span></p>
+<p><span class="rvts15"><br/></span></p>
+<p>This method provides a linear vertex buffer that will be used for incoming draw batches. &nbsp;In this function you would update your internal vertex buffers appropriately.</p>
+<p><br/></p>
+<p><span class="rvts15">OnDrawBatch</span></p>
+<p><span class="rvts15"><br/></span></p>
+<p>This method may be called multiple times a frame. &nbsp;It draws elements in batches, sorted by texture, transform, and render flags.</p>
+<p><br/></p>
+<p><span class="rvts11">Using the new Renderer</span></p>
+<p><br/></p>
+<p>Once the new renderer has been implemented, instantiate it and assign it to the Otter System<br/><span class="rvts11"><br/></span></p>
+<div class="rvps12"><table width="500" border="1" cellpadding="10" cellspacing="2" style="border-width: 0px; background-color: #ccffcc;">
+<tr valign="top">
+<td style="border-width : 1px; border-color: #000000; border-style: solid; width: 42%;"><p><span class="rvts30">gRenderer = </span><span class="rvts31">new</span><span class="rvts30"> D3DRenderer();</span></p>
+<p><span class="rvts30">gSystem-&gt;SetRenderer(gRenderer);</span></p>
+</td>
+</tr>
+</table>
+</div>
+<p></p>
+<p class="rvps2"><span class="rvts13">Created with the Personal Edition of HelpNDoc: </span><a class="rvts14" href="http://www.helpndoc.com/help-authoring-tool">Single source CHM, PDF, DOC and HTML Help creation</a></p>
+</div>
+	
+	<div id="topic_footer">
+
+			<div id="topic_footer_content">
+				Copyright &copy; 2011, Lloyd Tullues</div>
+		</div>
+	</body>
+	
+</html>
+

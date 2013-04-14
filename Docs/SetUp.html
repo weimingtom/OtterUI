@@ -1,0 +1,145 @@
+﻿<html>
+	
+<head>
+	<title>Setup</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="generator" content="HelpNDoc Personal Edition 3.9.0.595">
+	<link type="text/css" rel="stylesheet" media="all" href="css/reset.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/base.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/hnd.css" />
+	<!--[if lte IE 8]>
+		<link type="text/css" rel="stylesheet" media="all" href="css/ielte8.css" />
+	<![endif]-->
+	<style type="text/css">
+		#topic_header
+		{
+			background-color: #EFEFEF;
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/hnd.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function()
+		{
+			if (top.frames.length == 0)
+			{
+				var sTopicUrl = top.location.href.substring(top.location.href.lastIndexOf("/") + 1, top.location.href.length);
+				top.location.href = "index.html?" + sTopicUrl;
+			}
+			else if (top && top.FrameTOC && top.FrameTOC.SelectTocItem)
+			{
+				top.FrameTOC.SelectTocItem("SetUp");
+			}
+		});
+	</script>
+</head>
+
+<body>
+
+	<div id="topic_header">
+			<div id="topic_header_content">
+				<h1>Setup</h1>
+				
+				<div id="topic_breadcrumb">
+					<a href="API.html">API</a> &rsaquo;&rsaquo; </div>
+				</div>
+			<div id="topic_header_nav">
+				<a href="API.html"><img src="img/arrow_up.png" alt="Parent"/></a>
+				
+				<a href="API.html"><img src="img/arrow_left.png" alt="Previous"/></a>
+				
+				<a href="Integration.html"><img src="img/arrow_right.png" alt="Next"/></a>
+				
+				</div>
+			<div class="clear"></div>
+		</div>
+	<div id="topic_content">
+		
+<p></p>
+<p>The basic setup of the Otter API is very straight-forward. &nbsp;Create the Otter System object, then update and finally draw it.</p>
+<p><br/></p>
+<ol style="text-indent: 0px; margin-left: 24px; list-style-position: outside;">
+<li><span class="rvts11">Link in the Library</span></li>
+</ol>
+<p><span class="rvts11"><br/></span></p>
+<p><span class="rvts15">Libraries:</span></p>
+<p><span class="rvts15"><br/></span></p>
+<p>Platform-specific precompiled binaries are located in <span class="rvts20">/API/lib</span>, and are detailed in the <a class="rvts12" href="SupportedPlatforms.html">Supported Platforms</a> page. &nbsp;Link against the appropriate library of your choice (debug or release), for your platform.</p>
+<p><br/></p>
+<p><span class="rvts15">Includes:</span></p>
+<p><span class="rvts15"><br/></span></p>
+<p>To keep things simple, all you need to include is <span class="rvts20">Otter.h</span>, located in <span class="rvts20">/API/inc</span></p>
+<p><span class="rvts11"><br/></span></p>
+<ol style="text-indent: 0px; margin-left: 24px; list-style-position: outside;">
+<li><span class="rvts11">Create the Otter System</span></li>
+</ol>
+<p><span class="rvts11"></span><br/><span class="rvts11"><br/></span></p>
+<div class="rvps12"><table width="500" border="1" cellpadding="10" cellspacing="2" style="border-width: 0px; background-color: #ccffcc;">
+<tr valign="top">
+<td style="border-width : 1px; border-color: #000000; border-style: solid; width: 42%;"><p><span class="rvts30">gSystem = </span><span class="rvts31">new</span><span class="rvts30"> Otter::System(2 * 1024 * 1024);</span></p>
+<p><span class="rvts30">gRenderer = </span><span class="rvts31">new</span><span class="rvts30"> D3DRenderer();</span></p>
+<p><span class="rvts30">gFileSys = </span><span class="rvts31">new</span><span class="rvts30"> SampleFileSystem();</span></p>
+<p><span class="rvts30">gSystemHandler = </span><span class="rvts31">new</span><span class="rvts30"> SampleSystemHandler();</span></p>
+<p><span class="rvts30"><br/></span></p>
+<p><span class="rvts30">gSystem-&gt;SetRenderer(gRenderer);</span></p>
+<p><span class="rvts30">gSystem-&gt;SetFileSystem(gFileSys);</span></p>
+<p><span class="rvts30">gSystem-&gt;SetSystemHandler(gSystemHandler);</span></p>
+<p><br/></p>
+</td>
+</tr>
+</table>
+</div>
+<p><br/></p>
+<p>The one parameter to the System constructor indicates the amount of internal memory to reserve for the Otter System. &nbsp;After the system has been created, you must provide a user-implemented Renderer and FileSystem. &nbsp;Without these components, the Otter API will not be able to process files or render anything. &nbsp;See the <a class="rvts12" href="Renderer.html">Renderer,</a> <a class="rvts12" href="FileIO.html">FileSystem,</a> and <span class="rvts12">SystemHandler</span> tutorials for further information.</p>
+<p><br/></p>
+<p>Sample implementations are provided along with the SampleApp. &nbsp;They are located at:</p>
+<p><span class="rvts20"><br/></span></p>
+<p><span class="rvts20">/SampleApp/src/SampleFileSystem.h(cpp)</span></p>
+<p><span class="rvts20">/SampleApp/src/SampleRenderer.h(cpp)</span></p>
+<p><span class="rvts20">/SampleApp/src/SampleSystemHandler.h(cpp)</span></p>
+<p><span class="rvts20">/SampleApp/src/OGLRenderer.h(cpp)</span></p>
+<p><span class="rvts20">/SampleApp/src/D3DRenderer.h(cpp)</span></p>
+<p><br/></p>
+<ol style="text-indent: 0px; margin-left: 24px; list-style-position: outside;">
+<li><span class="rvts11">Update</span></li>
+</ol>
+<p><span class="rvts11"><br/></span></p>
+<p><span class="rvts11"><br/></span></p>
+<div class="rvps12"><table width="500" border="1" cellpadding="10" cellspacing="2" style="border-width: 0px; background-color: #ccffcc;">
+<tr valign="top">
+<td style="border-width : 1px; border-color: #000000; border-style: solid; width: 42%;"><p><span class="rvts30">gSystem-&gt;Update(1.0f);</span></p>
+<p><br/></p>
+</td>
+</tr>
+</table>
+</div>
+<p><span class="rvts11"><br/></span></p>
+<p>When calling this function, specify how many frames must progressed by the Otter System. &nbsp;A value of "1.0f" indicates that a one full frame of animation will be processed. &nbsp;Otter does not manage an internal framerate, so it is up to you to determine at which framerate your application runs, and build your animations accordingly.</p>
+<p><span class="rvts11"><br/></span></p>
+<ol style="text-indent: 0px; margin-left: 24px; list-style-position: outside;">
+<li><span class="rvts11">Render</span></li>
+</ol>
+<p><span class="rvts11"></span><br/><span class="rvts11"><br/></span></p>
+<div class="rvps12"><table width="500" border="1" cellpadding="10" cellspacing="2" style="border-width: 0px; background-color: #ccffcc;">
+<tr valign="top">
+<td style="border-width : 1px; border-color: #000000; border-style: solid; width: 42%;"><p><span class="rvts30">gSystem-&gt;Draw();</span></p>
+<p><br/></p>
+</td>
+</tr>
+</table>
+</div>
+<p class="rvps12"><span class="rvts11"><br/></span></p>
+<p>Calling <span class="rvts20">Draw</span> calls, in turn, the user-provided rendering implementation which renders the UI on screen.</p>
+<p></p>
+<p class="rvps2"><span class="rvts13">Created with the Personal Edition of HelpNDoc: </span><a class="rvts14" href="http://www.helpndoc.com/feature-tour/iphone-website-generation">Easily create iPhone documentation</a></p>
+</div>
+	
+	<div id="topic_footer">
+
+			<div id="topic_footer_content">
+				Copyright &copy; 2011, Lloyd Tullues</div>
+		</div>
+	</body>
+	
+</html>
+

@@ -1,0 +1,146 @@
+﻿<html>
+	
+<head>
+	<title>Samples</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="generator" content="HelpNDoc Personal Edition 3.9.0.595">
+	<link type="text/css" rel="stylesheet" media="all" href="css/reset.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/base.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/hnd.css" />
+	<!--[if lte IE 8]>
+		<link type="text/css" rel="stylesheet" media="all" href="css/ielte8.css" />
+	<![endif]-->
+	<style type="text/css">
+		#topic_header
+		{
+			background-color: #EFEFEF;
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/hnd.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function()
+		{
+			if (top.frames.length == 0)
+			{
+				var sTopicUrl = top.location.href.substring(top.location.href.lastIndexOf("/") + 1, top.location.href.length);
+				top.location.href = "index.html?" + sTopicUrl;
+			}
+			else if (top && top.FrameTOC && top.FrameTOC.SelectTocItem)
+			{
+				top.FrameTOC.SelectTocItem("Samples");
+			}
+		});
+	</script>
+</head>
+
+<body>
+
+	<div id="topic_header">
+			<div id="topic_header_content">
+				<h1>Samples</h1>
+				
+				<div id="topic_breadcrumb">
+					<a href="GettingStarted.html">Getting Started</a> &rsaquo;&rsaquo; </div>
+				</div>
+			<div id="topic_header_nav">
+				<a href="GettingStarted.html"><img src="img/arrow_up.png" alt="Parent"/></a>
+				
+				<a href="Terminology.html"><img src="img/arrow_left.png" alt="Previous"/></a>
+				
+				<a href="Editor.html"><img src="img/arrow_right.png" alt="Next"/></a>
+				
+				</div>
+			<div class="clear"></div>
+		</div>
+	<div id="topic_content">
+		
+<p></p>
+<p>A sample application is provided to demonstrate some of the features and benefits of OtterUI and can be found under the /SampleApp directory. &nbsp;The application uses the same OtterUI project, with a common source code, exported to multiple platforms. &nbsp;Platform-specific code is located in the sample application's subdirectories, under the specific platform.</p>
+<p><br/></p>
+<p>Instructions to build and run the sample application are as follows:</p>
+<p><br/></p>
+<p><span class="rvts11">Windows</span></p>
+<p><span class="rvts15"><br/></span></p>
+<p>Requirements:</p>
+<p><br/></p>
+<p>- Visual Studio 2010</p>
+<p>- Latest DirectX SDK</p>
+<p><span class="rvts15"><br/></span></p>
+<p>Instructions:</p>
+<p><span class="rvts15"><br/></span></p>
+<ol style="text-indent: 0px; margin-left: 24px; list-style-position: outside;">
+<li>Locate /SampleApp/platforms/Windows/SampleApp.sln, and open in Visual Studio</li>
+<li>Set the SampleApp project's working folder to "../bin" (right-click on the SampleApp project -&gt; Properties -&gt; Debugging -&gt; Working Directory)</li>
+<li>Build and run</li>
+</ol>
+<p><br/></p>
+<p><span class="rvts11">iOS</span></p>
+<p><span class="rvts15"><br/></span></p>
+<p>Requirements:</p>
+<p><br/></p>
+<p>- Latest iOS SDK</p>
+<p>- Latest XCode</p>
+<p><br/></p>
+<p>Instructions:</p>
+<p><span class="rvts15"><br/></span></p>
+<ol style="text-indent: 0px; margin-left: 24px; list-style-position: outside;">
+<li>Install the latest version of the iOS SDK and XCode.</li>
+<li>Locate and open /SampleApp/platforms/iOS/SampleApp.xcodeproj in XCode</li>
+<li>Build and Run in Simulator</li>
+</ol>
+<p><br/></p>
+<p><span class="rvts11">Android</span></p>
+<p><span class="rvts17"><br/></span></p>
+<p>Requirements:</p>
+<p><br/></p>
+<p>- Android SDK (2.2 or higher)</p>
+<p>- Android NDK r4 or higher</p>
+<p>- Eclipse for Java Developers</p>
+<p><br/></p>
+<p>Instructions:</p>
+<p><br/></p>
+<ol style="text-indent: 0px; margin-left: 24px; list-style-position: outside;">
+<li>In Eclipse:</li>
+</ol>
+<ul style="text-indent: 0px; margin-left: 24px; list-style-position: outside;"><ul style="text-indent: 0px; margin-left: 48px; list-style-position: outside;">
+<li class="rvps3" style="margin-left: 0">File -&gt; New -&gt; Android Project</li>
+<li class="rvps3" style="margin-left: 0">Select Create Project from Existing Source</li>
+<li class="rvps3" style="margin-left: 0">Browse to /SampleApp/platforms/Android</li>
+<li class="rvps3" style="margin-left: 0">Hit "Finish"</li>
+<li class="rvps3" style="margin-left: 0">Create a new Android Virtual Device from the AVD Manager (Window -&gt; Android SDK and AVD Manager). &nbsp;</li>
+<ul style="text-indent: 0px; margin-left: 48px; list-style-position: outside;">
+<li class="rvps4" style="margin-left: 0">Target:<br/><br/><span class="rvts20">Android 2.2 - API Level 8 (or higher)</span><br/><br/></li>
+<li class="rvps4" style="margin-left: 0">SD Card Size:<br/><br/><span class="rvts20">256mb (or higher)</span><br/><br/></li>
+<li class="rvps4" style="margin-left: 0">Skin:<br/><br/><span class="rvts20">Default (HVGA)</span><br/><br/></li>
+<li class="rvps4" style="margin-left: 0">Hardware:<br/><br/><span class="rvts20">Abstracted LCD Density = 160</span></li>
+</ul></ul></ul>
+<p class="rvps4"><br/></p>
+<ol style="text-indent: 0px; margin-left: 24px; list-style-position: outside;">
+<li>In Cygwin:</li>
+</ol>
+<ul style="text-indent: 0px; margin-left: 24px; list-style-position: outside;"><ul style="text-indent: 0px; margin-left: 48px; list-style-position: outside;">
+<li class="rvps3" style="margin-left: 0">Browse to /SampleApp/platforms/Android/jni</li>
+<li class="rvps3" style="margin-left: 0">Execute:<br/><span class="rvts20"></span><br/><span class="rvts20">ndk-build</span><br/><span class="rvts20"><br/></span></li>
+<li class="rvps3" style="margin-left: 0">Execute:<br/><span class="rvts20"></span><br/><span class="rvts20">adb push ../../bin/Data/Android /sdcard/otter</span></li>
+</ul></ul>
+<p class="rvps3"><span class="rvts20"><br/></span></p>
+<ol style="text-indent: 0px; margin-left: 24px; list-style-position: outside;">
+<li>In Eclipse:</li>
+</ol>
+<ul style="text-indent: 0px; margin-left: 24px; list-style-position: outside;"><ul style="text-indent: 0px; margin-left: 48px; list-style-position: outside;">
+<li class="rvps3" style="margin-left: 0">Run -&gt; Run or Debug</li>
+</ul></ul>
+<p></p>
+<p class="rvps2"><span class="rvts13">Created with the Personal Edition of HelpNDoc: </span><a class="rvts14" href="http://www.helpndoc.com/create-epub-ebooks">Generate EPub eBooks with ease</a></p>
+</div>
+	
+	<div id="topic_footer">
+
+			<div id="topic_footer_content">
+				Copyright &copy; 2011, Lloyd Tullues</div>
+		</div>
+	</body>
+	
+</html>
+

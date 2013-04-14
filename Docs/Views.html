@@ -1,0 +1,124 @@
+﻿<html>
+	
+<head>
+	<title>Views</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="generator" content="HelpNDoc Personal Edition 3.9.0.595">
+	<link type="text/css" rel="stylesheet" media="all" href="css/reset.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/base.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/hnd.css" />
+	<!--[if lte IE 8]>
+		<link type="text/css" rel="stylesheet" media="all" href="css/ielte8.css" />
+	<![endif]-->
+	<style type="text/css">
+		#topic_header
+		{
+			background-color: #EFEFEF;
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/hnd.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function()
+		{
+			if (top.frames.length == 0)
+			{
+				var sTopicUrl = top.location.href.substring(top.location.href.lastIndexOf("/") + 1, top.location.href.length);
+				top.location.href = "index.html?" + sTopicUrl;
+			}
+			else if (top && top.FrameTOC && top.FrameTOC.SelectTocItem)
+			{
+				top.FrameTOC.SelectTocItem("Views");
+			}
+		});
+	</script>
+</head>
+
+<body>
+
+	<div id="topic_header">
+			<div id="topic_header_content">
+				<h1>Views</h1>
+				
+				<div id="topic_breadcrumb">
+					<a href="Editor.html">Editor</a> &rsaquo;&rsaquo; <a href="Tutorials.html">Tutorials</a> &rsaquo;&rsaquo; </div>
+				</div>
+			<div id="topic_header_nav">
+				<a href="Tutorials.html"><img src="img/arrow_up.png" alt="Parent"/></a>
+				
+				<a href="Scenes.html"><img src="img/arrow_left.png" alt="Previous"/></a>
+				
+				<a href="Animation.html"><img src="img/arrow_right.png" alt="Next"/></a>
+				
+				</div>
+			<div class="clear"></div>
+		</div>
+	<div id="topic_content">
+		
+<p></p>
+<p>A view is a collection of related controls and animations, and are organized within a single scene.</p>
+<p><br/></p>
+<p>To create a view, first a scene must be created and opened for edit. &nbsp;See the <a class="rvts12" href="Scenes.html">Scene</a> tutorial for further information. &nbsp;This tutorial assumes that a scene has been opened for editing.</p>
+<p><br/></p>
+<ol style="text-indent: 0px; margin-left: 24px; list-style-position: outside;">
+<li><span class="rvts11">Create a new view</span></li>
+</ol>
+<p><span class="rvts11"><br/></span></p>
+<p>In the Scene Hierarchy view, right-click and hit <span class="rvts20">Create View.</span> &nbsp;A new view will be created with a default name.</p>
+<p><br/></p>
+<p>You can also rename or delete the view by selecting and right-clicking on it in the Scene Hierarchy.</p>
+<p><span class="rvts11"><br/></span></p>
+<ol style="text-indent: 0px; margin-left: 24px; list-style-position: outside;">
+<li><span class="rvts11">Select the view for editing</span></li>
+</ol>
+<p><span class="rvts11"><br/></span></p>
+<p>Once a view has been created, to edit it simply select it in the scene hierarchy. &nbsp;Only one view can be edited at a time.</p>
+<p><span class="rvts11"><br/></span></p>
+<ol style="text-indent: 0px; margin-left: 24px; list-style-position: outside;">
+<li><span class="rvts11">Resolutions</span></li>
+</ol>
+<p><span class="rvts11"><br/></span></p>
+<p>In the top-left corner of the Scene View (see <a class="rvts12" href="Overview.html">Overview</a>), select the appropriate resolution to preview your view.</p>
+<p><span class="rvts11"><br/></span></p>
+<ol style="text-indent: 0px; margin-left: 24px; list-style-position: outside;">
+<li><span class="rvts11">Adding controls</span></li>
+</ol>
+<p><span class="rvts11"><br/></span></p>
+<p>To add a control to the view, simply drag-and-drop an item from the Controls View onto the opened Scene itself. &nbsp;The control will be created at the dropped location and onto the currently selected view.</p>
+<p><span class="rvts11"><br/></span></p>
+<ol style="text-indent: 0px; margin-left: 24px; list-style-position: outside;">
+<li><span class="rvts11">Manipulating controls</span></li>
+</ol>
+<p><span class="rvts11"><br/></span></p>
+<p>To manipulate a control (moving, resizing, etc), first select the control itself. &nbsp;Once selected, a yellow selection box will surround the control to indicate the control's bounds and center:</p>
+<p><br/></p>
+<p> &nbsp; &nbsp; &nbsp; &nbsp;<img alt="" style="padding : 1px;" src="lib/NewItem14.png"/></p>
+<p><br/></p>
+<p>The control selection box consists of the following:</p>
+<p><br/></p>
+<ul style="text-indent: 0px; margin-left: 24px; list-style-position: outside;">
+<li>Control's center (Plus shape)</li>
+<li>Control's bounds (surrounding unfilled box)</li>
+<li>Bounds resize grips (yellow filled boxes)</li>
+</ul>
+<p><br/></p>
+<p>In the above control, the center is to the top left of the control itself and offset slightly from its bounds. &nbsp;The center also indicates the current position of the control itself.</p>
+<p><br/></p>
+<p>To move the control, click and drag within the large selection box. &nbsp;This will move the entire control to the desired location.</p>
+<p><br/></p>
+<p>To resize the control, click and drag on any one of the individual resize grips. &nbsp;Note - resizing the control does not effect its center and therefore does <span class="rvts15">not</span> move the control's position!</p>
+<p><br/></p>
+<p>Control rotation is achieved by typing a rotation angle in the Properties View when the control is selected, under the <span class="rvts20">Layout</span> field.</p>
+<p></p>
+<p class="rvps2"><span class="rvts13">Created with the Personal Edition of HelpNDoc: </span><a class="rvts14" href="http://www.helpndoc.com/help-authoring-tool">Single source CHM, PDF, DOC and HTML Help creation</a></p>
+</div>
+	
+	<div id="topic_footer">
+
+			<div id="topic_footer_content">
+				Copyright &copy; 2011, Lloyd Tullues</div>
+		</div>
+	</body>
+	
+</html>
+

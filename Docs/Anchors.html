@@ -1,0 +1,134 @@
+﻿<html>
+	
+<head>
+	<title>Anchors</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="generator" content="HelpNDoc Personal Edition 3.9.0.595">
+	<link type="text/css" rel="stylesheet" media="all" href="css/reset.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/base.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/hnd.css" />
+	<!--[if lte IE 8]>
+		<link type="text/css" rel="stylesheet" media="all" href="css/ielte8.css" />
+	<![endif]-->
+	<style type="text/css">
+		#topic_header
+		{
+			background-color: #EFEFEF;
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/hnd.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function()
+		{
+			if (top.frames.length == 0)
+			{
+				var sTopicUrl = top.location.href.substring(top.location.href.lastIndexOf("/") + 1, top.location.href.length);
+				top.location.href = "index.html?" + sTopicUrl;
+			}
+			else if (top && top.FrameTOC && top.FrameTOC.SelectTocItem)
+			{
+				top.FrameTOC.SelectTocItem("Anchors");
+			}
+		});
+	</script>
+</head>
+
+<body>
+
+	<div id="topic_header">
+			<div id="topic_header_content">
+				<h1>Anchors</h1>
+				
+				<div id="topic_breadcrumb">
+					<a href="Editor.html">Editor</a> &rsaquo;&rsaquo; </div>
+				</div>
+			<div id="topic_header_nav">
+				<a href="Editor.html"><img src="img/arrow_up.png" alt="Parent"/></a>
+				
+				<a href="Hierarchy.html"><img src="img/arrow_left.png" alt="Previous"/></a>
+				
+				<a href="Tutorials.html"><img src="img/arrow_right.png" alt="Next"/></a>
+				
+				</div>
+			<div class="clear"></div>
+		</div>
+	<div id="topic_content">
+		
+<p></p>
+<p>The Anchoring mechanism in OtterUI allows the UI Designer to anticipate and support multiple UI resolutions. &nbsp;For example, an interface may be built entirely for a 1024x768 resolution, but must also render properly on 1280x720. &nbsp;Simply stretching of the interface at rendertime may cause the UI to be warped, causing visual artifacts and other anomalies. &nbsp;Anchors address this issue by appropriately manipulating controls when the resolution changes. &nbsp;An anchored control effectively anchors one (or all) of its <span class="rvts15">bounding box's edges </span>against its parent's bounding box edges. &nbsp;The anchor can either be an absolute or relative anchor:</p>
+<p><br/></p>
+<ul style="text-indent: 0px; margin-left: 24px; list-style-position: outside;"><ul style="text-indent: 0px; margin-left: 48px; list-style-position: outside;">
+<li class="rvps3" style="margin-left: 0">An Absolute Anchor forces the bounding box edge to be a <span class="rvts15">fixed distance</span> away from the parent's corresponding bounding box edge</li>
+<li class="rvps3" style="margin-left: 0">A Relative Anchor forces the bounding box edge to maintain a specific ratio against the parent's corresponding bounding box edge</li>
+</ul></ul>
+<p><br/></p>
+<p>To demonstrate how these two differ, consider a simple sprite on a 500x500 resolution UI:</p>
+<p><br/></p>
+<p><img alt="" style="padding : 1px;" src="lib/NewItem22.png"/></p>
+<p><br/></p>
+<p>If the resolution changes, say to 800x400, the sprite will remain at the exact same location as before:</p>
+<p><br/></p>
+<p><img alt="" style="padding : 1px;" src="lib/NewItem21.png"/></p>
+<p><br/></p>
+<p>But in the 500x500 resolution the object was in the middle, whereas it is now off the side. &nbsp;Suppose we want the sprite to always be a fixed width from the right side of the view. &nbsp;To do this, select the control, and in the properties window click on the "Anchors" property. &nbsp;It will bring up the following control:</p>
+<p><br/></p>
+<p><img alt="" style="padding : 1px;" src="lib/NewItem20.png"/></p>
+<p><br/></p>
+<p>The blue box represents the control, and the darker blue outline represents its bounding box. &nbsp;The gray lines represent the constraints against the control's parent. &nbsp;To create an Absolute Anchor on the right bounding box edge, click the gray lines next to the control's right edge, to turn it black:</p>
+<p><br/></p>
+<p><img alt="" style="padding : 1px;" src="lib/NewItem19.png"/></p>
+<p><br/></p>
+<p><br/></p>
+<p>This means there is now an Absolute Anchor on the right edge of the control to the right edge of the control's parent. &nbsp;As the parent control's width changes, OtterUI will ensure that the distance between the control's right edge and the parent's right edge remains constant.</p>
+<p><br/></p>
+<p>Changing the resolution from 500x500 to 800x400 yields the following result:</p>
+<p><br/></p>
+<p><img alt="" style="padding : 1px;" src="lib/NewItem18.png"/></p>
+<p><br/></p>
+<p>Relative Anchors work similarly, except that they are created by clicking twice on the gray line, changing it from gray to black to black with a '%' in the middle:</p>
+<p><br/></p>
+<p><img alt="" style="padding : 1px;" src="lib/NewItem17.png"/></p>
+<p><br/></p>
+<p>(note, repeatedly clicking on the anchor will repeatedly cycle the anchor between its three types: none, absolute, and relative, in that order)</p>
+<p><br/></p>
+<p>The Relative Anchor simply means that the OtterUI will maintain the same <span class="rvts15">ratio</span> of a particular edge to its corresponding parent edge among different resolutions. &nbsp;In the above example, changing the anchor type from Absolute to Relative and then switch resolutions from 500x500 to 800x400 yields the following result:</p>
+<p><br/></p>
+<p><img alt="" style="padding : 1px;" src="lib/NewItem16.png"/></p>
+<p><br/></p>
+<p>Notice that the distance between the sprite's right edge and the view's right edge is not the same as before? &nbsp;That is because the <span class="rvts15">ratio </span>of the distance between the sprite's right edge and view's right edge against the new resolution is the same as before. &nbsp;In other words, if in the 500x500 resolution the distance was 50px, the ratio would have been:</p>
+<p><br/></p>
+<p>50px/500px = 0.1</p>
+<p><br/></p>
+<p>In the new resolution, we need to maintain the same ratio, so the new distance between the two edges is: &nbsp;800px * 0.1 = 80</p>
+<p><br/></p>
+<p>As a result, the right edge is placed 80px away from the right edge of the view.</p>
+<p><br/></p>
+<p><span class="rvts11">Notes and Caveats:</span></p>
+<p><span class="rvts11"><br/></span></p>
+<p><span class="rvts15">Multiple Anchors:</span></p>
+<p><span class="rvts15"><br/></span></p>
+<p>Since the anchoring system works on <span class="rvts15">edges</span>, anchors can be placed on any combination of edges with any combination of anchor types (one type per edge). &nbsp;If an edge is not anchored, OtterUI assumes that the edge can be "moved" and will attempt to adhere to the size and placement of the control. &nbsp;If multiple edges are anchored, OtterUI will resize / reposition the control as necessary to maintain the anchors.</p>
+<p><br/></p>
+<p><span class="rvts15">Rotation:</span></p>
+<p><span class="rvts15"><br/></span></p>
+<p>At runtime, anchoring is performed <span class="rvts15">pre-rotation, </span>which means that rotated controls may not behave as expected. &nbsp;This is a known issue.</p>
+<p><br/></p>
+<p><span class="rvts15">Working in a resolution:</span></p>
+<p><span class="rvts15"><br/></span></p>
+<p>When a control is modified (ex, moved, rotated, etc) in a particular resolution, OtterUI assumes that that was the designer's intention and that the control must appear exactly like that in the particular resolution. &nbsp;What this means in practical terms is that you must remember to switch back to your working resolution whenever you test your work in other resolutions. &nbsp;If, for example, you switch to a test resolution, move a control up 50px, create a keyframe, and switch back to the working resolution the control may be moved in ways you were not expecting. &nbsp;That is because OtterUI was told that the control must appear in a particular way in the resolution that you made changes within. &nbsp;Switching back to the rest resolution will place the control back where it was expected.</p>
+<p><span class="rvts15"><br/></span></p>
+<p><span class="rvts15"><br/></span></p>
+<p></p>
+<p class="rvps2"><span class="rvts13">Created with the Personal Edition of HelpNDoc: </span><a class="rvts14" href="http://www.helpndoc.com">Easy EPub and documentation editor</a></p>
+</div>
+	
+	<div id="topic_footer">
+
+			<div id="topic_footer_content">
+				Copyright &copy; 2011, Lloyd Tullues</div>
+		</div>
+	</body>
+	
+</html>
+

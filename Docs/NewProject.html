@@ -1,0 +1,131 @@
+﻿<html>
+	
+<head>
+	<title>Projects</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="generator" content="HelpNDoc Personal Edition 3.9.0.595">
+	<link type="text/css" rel="stylesheet" media="all" href="css/reset.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/base.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/hnd.css" />
+	<!--[if lte IE 8]>
+		<link type="text/css" rel="stylesheet" media="all" href="css/ielte8.css" />
+	<![endif]-->
+	<style type="text/css">
+		#topic_header
+		{
+			background-color: #EFEFEF;
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/hnd.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function()
+		{
+			if (top.frames.length == 0)
+			{
+				var sTopicUrl = top.location.href.substring(top.location.href.lastIndexOf("/") + 1, top.location.href.length);
+				top.location.href = "index.html?" + sTopicUrl;
+			}
+			else if (top && top.FrameTOC && top.FrameTOC.SelectTocItem)
+			{
+				top.FrameTOC.SelectTocItem("NewProject");
+			}
+		});
+	</script>
+</head>
+
+<body>
+
+	<div id="topic_header">
+			<div id="topic_header_content">
+				<h1>Projects</h1>
+				
+				<div id="topic_breadcrumb">
+					<a href="Editor.html">Editor</a> &rsaquo;&rsaquo; <a href="Tutorials.html">Tutorials</a> &rsaquo;&rsaquo; </div>
+				</div>
+			<div id="topic_header_nav">
+				<a href="Tutorials.html"><img src="img/arrow_up.png" alt="Parent"/></a>
+				
+				<a href="Tutorials.html"><img src="img/arrow_left.png" alt="Previous"/></a>
+				
+				<a href="Scenes.html"><img src="img/arrow_right.png" alt="Next"/></a>
+				
+				</div>
+			<div class="clear"></div>
+		</div>
+	<div id="topic_content">
+		
+<p></p>
+<p>An OtterUI project manages a set of scene files as well as project-wide settings such as resolutions, platforms, fonts, and so on. &nbsp;In order to start building a User Interface using Otter, you must first create and set up a project.</p>
+<p><br/></p>
+<ol style="text-indent: 0px; margin-left: 24px; list-style-position: outside;">
+<li><span class="rvts11">Create the Project</span></li>
+</ol>
+<p><span class="rvts11"><br/></span></p>
+<p>To create a project, launch the Otter Editor and from the <span class="rvts20">File </span>menu click on <span class="rvts20">New </span>and specify where you want to create your new project. &nbsp;It is recommended to create the new project in its own folder, as the Otter Editor will use the location of the project when creating new scenes and other data.</p>
+<p><br/></p>
+<p>Once the project has been created, it will be opened automatically in the Otter Editor.</p>
+<p><br/></p>
+<ol style="text-indent: 0px; margin-left: 24px; list-style-position: outside;">
+<li><span class="rvts11">Add Platforms</span></li>
+</ol>
+<p><span class="rvts11"><br/></span></p>
+<p>Once the project has been created, you must add platforms for which you want to build your user interface. &nbsp;Platforms may be as specific or as generic as you want them to be. &nbsp;For the purposes of this tutorial, we will be setting up a platform for a generic big-endian platform:</p>
+<p><br/></p>
+<ol style="text-indent: 0px; margin-left: 24px; list-style-position: outside;"><ol style="text-indent: 0px; margin-left: 48px; list-style-position: outside;">
+<li class="rvps3" style="margin-left: 0">From the <span class="rvts20">Project </span>menu click on <span class="rvts20">Platforms...</span><span class="rvts20"> &nbsp; &nbsp; &nbsp; &nbsp;</span></li>
+<li class="rvps3" style="margin-left: 0">Click on the <span class="rvts20">Add </span>button found at the bottom of the left pane. &nbsp;A new platform will be created named <span class="rvts20">Platform 1</span>.</li>
+<li class="rvps3" style="margin-left: 0">Click on the <span class="rvts20">Platform 1</span> entry. &nbsp;The properties pane on the right should now contain the editable values of the platform.</li>
+<li class="rvps3" style="margin-left: 0">Rename your platform by changing the value in the Name field from <span class="rvts20">Platform 1</span> to <span class="rvts20">Big Endian</span></li>
+<li class="rvps3" style="margin-left: 0">Change the Endianness field to <span class="rvts20">Big</span></li>
+</ol></ol>
+<p class="rvps3"><br/></p>
+<p>Create as many platforms as you need. &nbsp;At export time you will have the option to export to specific platforms or all at once.</p>
+<p><br/></p>
+<p>Note: A default platform for PC is provided automatically.<br/><span class="rvts11"><br/></span></p>
+<ol style="text-indent: 0px; margin-left: 24px; list-style-position: outside;">
+<li><span class="rvts11">Add Resolutions</span></li>
+</ol>
+<p><span class="rvts11"><br/></span></p>
+<p>While building user interfaces it is very important to be able to preview your work in the target resolution. &nbsp;To do this, the Otter Editor must be aware of the resolutions you wish to work with. &nbsp;Adding new resolutions is easy:</p>
+<p><br/></p>
+<ol style="text-indent: 0px; margin-left: 24px; list-style-position: outside;"><ol style="text-indent: 0px; margin-left: 48px; list-style-position: outside;">
+<li class="rvps3" style="margin-left: 0">From the <span class="rvts20">Project</span> menu click on <span class="rvts20">Resolutions...</span></li>
+<li>Click on the <span class="rvts20">Add </span>button found at the bottom of the left pane. &nbsp;A new resolution will be created.</li>
+<li>Click on the new resolution, and in the properties pane on the right enter the required values for Width and Height. &nbsp;The resolution name will be updated to reflect the resolution's new values.</li>
+</ol></ol>
+<p><span class="rvts11"><br/></span></p>
+<p>Note: A default resolution at 1024x768 is provided automatically.</p>
+<p><span class="rvts11"><br/></span></p>
+<ol style="text-indent: 0px; margin-left: 24px; list-style-position: outside;">
+<li><span class="rvts11">Add Fonts</span></li>
+</ol>
+<p><span class="rvts11"><br/></span></p>
+<p>In order to render text labels, you will need some fonts. &nbsp;No font is provided automatically, so it is recommended to add at least one font as soon as possible.</p>
+<p><br/></p>
+<ol style="text-indent: 0px; margin-left: 24px; list-style-position: outside;"><ol style="text-indent: 0px; margin-left: 48px; list-style-position: outside;">
+<li class="rvps3" style="margin-left: 0">From the <span class="rvts20">Project</span> menu click on <span class="rvts20">Fonts...</span></li>
+<li>Click on the <span class="rvts20">Add </span>button found at the bottom of the left pane. &nbsp;A new font will be created.</li>
+<li>Click on the new font, and in the properties pane to the right click on the Filename field and then on the browse button to right. &nbsp;Browse to the desired TTF font file.</li>
+<li>In the FontSize field specify the desired base font size, ex 36</li>
+<li>In the Name field, specify a descriptive name for your font</li>
+</ol></ol>
+<p><span class="rvts11"><br/></span></p>
+<ol style="text-indent: 0px; margin-left: 24px; list-style-position: outside;">
+<li><span class="rvts11">Done!</span></li>
+</ol>
+<p><span class="rvts11"><br/></span></p>
+<p>Congratulations! &nbsp;Your project is now set up and ready to use.</p>
+<p></p>
+<p class="rvps2"><span class="rvts13">Created with the Personal Edition of HelpNDoc: </span><a class="rvts14" href="http://www.helpndoc.com/create-epub-ebooks">Produce electronic books easily</a></p>
+</div>
+	
+	<div id="topic_footer">
+
+			<div id="topic_footer_content">
+				Copyright &copy; 2011, Lloyd Tullues</div>
+		</div>
+	</body>
+	
+</html>
+

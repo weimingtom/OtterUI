@@ -1,0 +1,123 @@
+﻿<html>
+	
+<head>
+	<title>Fonts</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="generator" content="HelpNDoc Personal Edition 3.9.0.595">
+	<link type="text/css" rel="stylesheet" media="all" href="css/reset.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/base.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/hnd.css" />
+	<!--[if lte IE 8]>
+		<link type="text/css" rel="stylesheet" media="all" href="css/ielte8.css" />
+	<![endif]-->
+	<style type="text/css">
+		#topic_header
+		{
+			background-color: #EFEFEF;
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/hnd.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function()
+		{
+			if (top.frames.length == 0)
+			{
+				var sTopicUrl = top.location.href.substring(top.location.href.lastIndexOf("/") + 1, top.location.href.length);
+				top.location.href = "index.html?" + sTopicUrl;
+			}
+			else if (top && top.FrameTOC && top.FrameTOC.SelectTocItem)
+			{
+				top.FrameTOC.SelectTocItem("Fonts");
+			}
+		});
+	</script>
+</head>
+
+<body>
+
+	<div id="topic_header">
+			<div id="topic_header_content">
+				<h1>Fonts</h1>
+				
+				<div id="topic_breadcrumb">
+					<a href="Editor.html">Editor</a> &rsaquo;&rsaquo; <a href="Tutorials.html">Tutorials</a> &rsaquo;&rsaquo; </div>
+				</div>
+			<div id="topic_header_nav">
+				<a href="Tutorials.html"><img src="img/arrow_up.png" alt="Parent"/></a>
+				
+				<a href="Masking.html"><img src="img/arrow_left.png" alt="Previous"/></a>
+				
+				<a href="Actions.html"><img src="img/arrow_right.png" alt="Next"/></a>
+				
+				</div>
+			<div class="clear"></div>
+		</div>
+	<div id="topic_content">
+		
+<p></p>
+<p>One of the most important aspects to a solid User Interface is the Font. &nbsp;Otter UI allows you to create fonts from a source TTF and point size, and also create and add your own custom glyphs.</p>
+<p><br/></p>
+<p>This tutorial will cover the basics of adding a new font as well as adding Unicode characters and custom glyphs.</p>
+<p><br/></p>
+<p><span class="rvts11">Adding a new Font</span></p>
+<p><br/></p>
+<ol style="text-indent: 0px; margin-left: 24px; list-style-position: outside;"><ol style="text-indent: 0px; margin-left: 48px; list-style-position: outside;">
+<li class="rvps3" style="margin-left: 0">From the <span class="rvts20">Project</span> menu click <span class="rvts20">Fonts..</span></li>
+<li class="rvps3" style="margin-left: 0">Click on Add. &nbsp;A new font will be created and added to the list of fonts.</li>
+<li class="rvps3" style="margin-left: 0">Select the new font</li>
+<li class="rvps3" style="margin-left: 0">Select the <span class="rvts20">Name</span> field, and provide a descriptive name for your new font</li>
+<li class="rvps3" style="margin-left: 0">Click on the <span class="rvts20">Filename</span> field in the property grid</li>
+<li class="rvps3" style="margin-left: 0">Click on the browse button, and select the desired TTF file</li>
+</ol></ol>
+<p class="rvps3"><br/></p>
+<p>Your font is now ready to be used.</p>
+<p><br/></p>
+<p><span class="rvts11">Adding Unicode characters</span></p>
+<p><span class="rvts11"><br/></span></p>
+<p>In order to support Unicode characters, your font must have the desired characters added ahead of time. &nbsp;This reduces the size of the exporting font texture by using only glyphs that you specify.</p>
+<p><br/></p>
+<ol style="text-indent: 0px; margin-left: 24px; list-style-position: outside;"><ol style="text-indent: 0px; margin-left: 48px; list-style-position: outside;">
+<li>From the <span class="rvts20">Project</span> menu click <span class="rvts20">Fonts..</span></li>
+<li>Select your desired font</li>
+<li>Click on the <span class="rvts20">Glyphs</span> collection field</li>
+<li>Click on the browse button to open the Glyph Editor:</li>
+</ol></ol>
+<p><br/></p>
+<p><img alt="" style="padding : 1px;" src="lib/NewItem4.png"/></p>
+<p><br/></p>
+<p><br/></p>
+<ol style="text-indent: 0px; margin-left: 24px; list-style-position: outside;"><ol style="text-indent: 0px; margin-left: 48px; list-style-position: outside;">
+<li>Click on Add Unicode Characters...</li>
+<li>Enter the desired unicode characters in the textbox. &nbsp;Existing and duplicate characters are OK to enter in this box, as they will be trimmed and sorted accordingly.</li>
+<li>Click OK to close the editor</li>
+</ol></ol>
+<p><br/></p>
+<p>The font can now use and render the desired characters.</p>
+<p><br/></p>
+<p><span class="rvts11">Adding custom glyphs</span></p>
+<p><span class="rvts11"><br/></span></p>
+<p>Adding custom glyphs function much in the same way as adding unicode characters. &nbsp;However, on the Glyph Editor screen click on <span class="rvts20">Add Images </span>instead. &nbsp;Once added, the custom images may look something like the following:</p>
+<p><br/></p>
+<p><img alt="" style="padding : 1px;" src="lib/NewItem3.png"/></p>
+<p><br/></p>
+<p>To use the new glyphs in a text string (ex, Label Control), use the format as indicated in the Character Code field. &nbsp;For example:</p>
+<p><br/></p>
+<p>"This is a plus button: {0000}"</p>
+<p><br/></p>
+<p>The Otter UI engine will parse the {0000} and print out the desired character in its place.</p>
+<p><br/></p>
+<p>To change the character code of a custom glyph, double-click on its existing character code to start editing the value. &nbsp;All Alpha-numeric characters are accepted, except for { and }, as they are reserved for the parse tokens. &nbsp;The Custom Glyph character codes are also limited to at most four characters. &nbsp;Any extraneous characters will be trimmed.</p>
+<p></p>
+<p class="rvps2"><span class="rvts13">Created with the Personal Edition of HelpNDoc: </span><a class="rvts14" href="http://www.helpndoc.com/feature-tour">Easily create EPub books</a></p>
+</div>
+	
+	<div id="topic_footer">
+
+			<div id="topic_footer_content">
+				Copyright &copy; 2011, Lloyd Tullues</div>
+		</div>
+	</body>
+	
+</html>
+

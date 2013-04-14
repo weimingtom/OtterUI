@@ -1,0 +1,94 @@
+﻿<html>
+	
+<head>
+	<title>Terminology</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="generator" content="HelpNDoc Personal Edition 3.9.0.595">
+	<link type="text/css" rel="stylesheet" media="all" href="css/reset.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/base.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/hnd.css" />
+	<!--[if lte IE 8]>
+		<link type="text/css" rel="stylesheet" media="all" href="css/ielte8.css" />
+	<![endif]-->
+	<style type="text/css">
+		#topic_header
+		{
+			background-color: #EFEFEF;
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/hnd.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function()
+		{
+			if (top.frames.length == 0)
+			{
+				var sTopicUrl = top.location.href.substring(top.location.href.lastIndexOf("/") + 1, top.location.href.length);
+				top.location.href = "index.html?" + sTopicUrl;
+			}
+			else if (top && top.FrameTOC && top.FrameTOC.SelectTocItem)
+			{
+				top.FrameTOC.SelectTocItem("Terminology");
+			}
+		});
+	</script>
+</head>
+
+<body>
+
+	<div id="topic_header">
+			<div id="topic_header_content">
+				<h1>Terminology</h1>
+				
+				<div id="topic_breadcrumb">
+					<a href="GettingStarted.html">Getting Started</a> &rsaquo;&rsaquo; </div>
+				</div>
+			<div id="topic_header_nav">
+				<a href="GettingStarted.html"><img src="img/arrow_up.png" alt="Parent"/></a>
+				
+				<a href="SupportedPlatforms.html"><img src="img/arrow_left.png" alt="Previous"/></a>
+				
+				<a href="Samples.html"><img src="img/arrow_right.png" alt="Next"/></a>
+				
+				</div>
+			<div class="clear"></div>
+		</div>
+	<div id="topic_content">
+		
+<p></p>
+<p><span class="rvts17">Control:</span></p>
+<p><span class="rvts15"><br/></span></p>
+<p>A Control is any object that can be seen, animated, and/or interacted with in some way. &nbsp;Controls are the basic building blocks of the User Interface. &nbsp;Example include a sprite image, button, label, etc.</p>
+<p><br/></p>
+<p><span class="rvts17">View:</span></p>
+<p><span class="rvts15"><br/></span></p>
+<p>A View is a collection of controls and animations that represents a logical "screen" in a User Interface. &nbsp;An example of a view is the main menu or splash screen in your application. &nbsp;Views can also take the form of message boxes and onscreen HUDs (Heads-Up Displays). &nbsp;Multiple views can become active at the same time, and may overlay one another.</p>
+<p><span class="rvts15"><br/></span></p>
+<p><span class="rvts17">Scene:</span></p>
+<p><span class="rvts15"><br/></span></p>
+<p>A Scene is a collection of Views, and can be loaded or unloaded at runtime as needed. &nbsp;This is particularly useful if your user interface is large and you need to unload multiple views to maintain a small memory footprint.</p>
+<p><br/></p>
+<p><span class="rvts17">Animation:</span></p>
+<p><span class="rvts15"><br/></span></p>
+<p>An Animation dictates how a control will be transformed over a period of time. &nbsp;Animations comprise of a set of <span class="rvts15">keyframes</span>, and interpolates between each keyframe to produce the desired transformation of the control. &nbsp;Animations have a preset running length and will always continue to run until the last frame, regardless of the actual number of keyframes. &nbsp;For example, if an animation has a length of 100 frames, but contain only two keyframes at frame 0 and frame 50, the animation will not "finish" until 100 frames have been processed and rendered.</p>
+<p><br/></p>
+<p><span class="rvts17">Keyframe:</span></p>
+<p><br/></p>
+<p>A keyframe represents a single "snapshot" of a control's layout within an animation. &nbsp;Keyframes contain general information such as rotation and translation, but can also store control-specific information like text scale or sprite color. &nbsp;During animation, keyframes interpolate with one another to produce smooth animations.</p>
+<p><span class="rvts15"><br/></span></p>
+<p><span class="rvts17">Actions:</span></p>
+<p><span class="rvts17"><br/></span></p>
+<p>Actions are performed by animations on specific frames, and is the most basic way an animation may communicate with the application. &nbsp;Examples of actions may include sound playback or sending a string message to the application. &nbsp;Each animation frame can execute an unlimited amount of actions, as specified through the OtterUI Editor.</p>
+<p></p>
+<p class="rvps2"><span class="rvts13">Created with the Personal Edition of HelpNDoc: </span><a class="rvts14" href="http://www.helpndoc.com/feature-tour">Easily create Web Help sites</a></p>
+</div>
+	
+	<div id="topic_footer">
+
+			<div id="topic_footer_content">
+				Copyright &copy; 2011, Lloyd Tullues</div>
+		</div>
+	</body>
+	
+</html>
+

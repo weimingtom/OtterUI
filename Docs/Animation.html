@@ -1,0 +1,146 @@
+﻿<html>
+	
+<head>
+	<title>Animation</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="generator" content="HelpNDoc Personal Edition 3.9.0.595">
+	<link type="text/css" rel="stylesheet" media="all" href="css/reset.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/base.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/hnd.css" />
+	<!--[if lte IE 8]>
+		<link type="text/css" rel="stylesheet" media="all" href="css/ielte8.css" />
+	<![endif]-->
+	<style type="text/css">
+		#topic_header
+		{
+			background-color: #EFEFEF;
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/hnd.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function()
+		{
+			if (top.frames.length == 0)
+			{
+				var sTopicUrl = top.location.href.substring(top.location.href.lastIndexOf("/") + 1, top.location.href.length);
+				top.location.href = "index.html?" + sTopicUrl;
+			}
+			else if (top && top.FrameTOC && top.FrameTOC.SelectTocItem)
+			{
+				top.FrameTOC.SelectTocItem("Animation");
+			}
+		});
+	</script>
+</head>
+
+<body>
+
+	<div id="topic_header">
+			<div id="topic_header_content">
+				<h1>Animation</h1>
+				
+				<div id="topic_breadcrumb">
+					<a href="Editor.html">Editor</a> &rsaquo;&rsaquo; <a href="Tutorials.html">Tutorials</a> &rsaquo;&rsaquo; </div>
+				</div>
+			<div id="topic_header_nav">
+				<a href="Tutorials.html"><img src="img/arrow_up.png" alt="Parent"/></a>
+				
+				<a href="Views.html"><img src="img/arrow_left.png" alt="Previous"/></a>
+				
+				<a href="Exporting.html"><img src="img/arrow_right.png" alt="Next"/></a>
+				
+				</div>
+			<div class="clear"></div>
+		</div>
+	<div id="topic_content">
+		
+<p></p>
+<p>Each view maintains its own set of animations. &nbsp;Two default animations are created and required by all views:</p>
+<p><span class="rvts20"><br/></span></p>
+<p><span class="rvts15">OnActivate</span></p>
+<p><span class="rvts29"><br/></span></p>
+<p>This animation is automatically played whenever a view becomes active. &nbsp;At the very minimum, the OnActivate animation creates a single keyframe for each and every control. &nbsp;In this way, when a View is activated, all controls are animated and places into a known starting state.</p>
+<p><br/></p>
+<p>You can add keyframes to the OnActivate if needed, but it is not required. &nbsp;The OnActivate animation cannot be renamed or removed, and individual controls cannot be removed from the animation.</p>
+<p><span class="rvts20"><br/></span></p>
+<p><span class="rvts15">OnDeactivate</span></p>
+<p><span class="rvts29"><br/></span></p>
+<p>The OnDeactivate animation is automatically played whenever a view becomes inactive. &nbsp;It contains, by default, no animation channels or keyframes and it is not required that you animate any controls in OnDeactivate. &nbsp;It serves mostly as a convenience if your view has a generic outro animation that should get played whenever it is deactivated.</p>
+<p><br/></p>
+<p><span class="rvts11">Timeline View:</span></p>
+<p><span class="rvts11"><br/></span></p>
+<p>Once you have created controls within a view, you can start animating them. &nbsp;This is done primarily through the Timeline View.</p>
+<p><br/></p>
+<p><br/></p>
+<p> &nbsp; &nbsp; &nbsp; &nbsp;<img alt="" style="padding : 1px;" src="lib/NewItem11.png"/></p>
+<p><br/></p>
+<p>The Timeline displays a single animation at a time, and all of the animated controls within that animation. &nbsp;Each control is animated with a set of animation keyframes. &nbsp;In the above screenshot, the animated controls are listed to the left and their keyframes are indicated in the rows to the right. &nbsp;Each blue box represents a keyframe.</p>
+<p><br/></p>
+<p>Each animated control is required to have a starting keyframe at frame 1 of the animation.</p>
+<p><br/></p>
+<p>It is important to note that an animation will <span class="rvts15">only</span> animate the controls within that animation - all others will be ignored. &nbsp;</p>
+<p><br/></p>
+<p>NOTE: &nbsp;The Timeline View will only be active when a view is currently being edited.</p>
+<p><br/></p>
+<p><span class="rvts11">Creating an animation:</span></p>
+<p><span class="rvts11"><br/></span></p>
+<ol style="text-indent: 0px; margin-left: 24px; list-style-position: outside;">
+<li>Click on the <img alt="" style="padding : 1px;" src="lib/NewItem10.png"/> button in the Timeline View. &nbsp;This will bring up the Animation Manager.</li>
+<li>Click <span class="rvts20">Add</span></li>
+<li>Select the new animation and change the Name field to something descriptive</li>
+<li>Change the NumFrames field to the number of frames required for this animation.</li>
+<li>Hit <span class="rvts20">OK </span>and select the new animation from the animation dropdown.</li>
+</ol>
+<p><br/></p>
+<p><span class="rvts11">Animating a control:</span></p>
+<p><span class="rvts11"><br/></span></p>
+<ol style="text-indent: 0px; margin-left: 24px; list-style-position: outside;">
+<li>Move the timeline's current frame indicator to the target frame by dragging the white box left above the right vertical line:</li>
+</ol>
+<p><br/></p>
+<p> &nbsp; &nbsp; &nbsp; &nbsp;<img alt="" style="padding : 1px;" src="lib/NewItem9.png"/></p>
+<p><br/></p>
+<ol style="text-indent: 0px; margin-left: 24px; list-style-position: outside;">
+<li>Select a control within the current view</li>
+<li>Drag the control into position and manipulate its layout properties (color, rotation, etc) to the desired state.</li>
+<li>Right-click on the control and select <span class="rvts20">Create Keyframe.</span> &nbsp;A new keyframe will be created at the currently selected frame. &nbsp;If the control was not previously animated in the animation, it will automatically create and add a starting keyframe at frame 0.</li>
+</ol>
+<p><br/></p>
+<p><span class="rvts11">Looping an animation:</span></p>
+<p><span class="rvts11"><br/></span></p>
+<p>An animation can loop a single series of frames. &nbsp;During playback, the loop will be repeated indefinitely until the loop is keyed off, ie exited. &nbsp;The animation will then play to its logical end frame and finish.</p>
+<p><br/></p>
+<p>To loop frames:</p>
+<p><br/></p>
+<ol style="text-indent: 0px; margin-left: 24px; list-style-position: outside;">
+<li>Select a series of frames in the main animation channel by click-and-drag selecting frames.</li>
+<li>With a series of animations selected, right-click and select "Loop Frames"</li>
+</ol>
+<p><br/></p>
+<p>Similarly, to clear a loop select the looped frames, right-click and select "Clear Loop"</p>
+<p><br/></p>
+<p><img alt="" style="padding : 1px;" src="lib/NewItem8.png"/></p>
+<p><br/></p>
+<p><span class="rvts11">Previewing an animation:</span></p>
+<p><span class="rvts16"><br/></span></p>
+<p>Once a control has been animated, there are two ways to preview the resulting animation: &nbsp;Playing it back in the Otter Editor or dragging the current frame indicator back and forth.</p>
+<p><br/></p>
+<p>Using animation playback:</p>
+<ul style="text-indent: 0px; margin-left: 24px; list-style-position: outside;">
+<li>To the play the animation, click on the <img alt="" style="padding : 1px;" src="lib/NewItem7.png"/>button. &nbsp;The animation will automatically be played and repeated. &nbsp;The play button automatically changes into a <img alt="" style="padding : 1px;" src="lib/NewItem6.png"/> button. &nbsp;Hit this button to pause the animation at its current frame.</li>
+<li>If the animation is in a loop, you can exit the loop by hitting the <img alt="" style="padding : 1px;" src="lib/NewItem5.png"/>button.</li>
+</ul>
+<p></p>
+<p class="rvps2"><span class="rvts13">Created with the Personal Edition of HelpNDoc: </span><a class="rvts14" href="http://www.helpndoc.com">Easy CHM and documentation editor</a></p>
+</div>
+	
+	<div id="topic_footer">
+
+			<div id="topic_footer_content">
+				Copyright &copy; 2011, Lloyd Tullues</div>
+		</div>
+	</body>
+	
+</html>
+

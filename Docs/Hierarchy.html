@@ -1,0 +1,92 @@
+﻿<html>
+	
+<head>
+	<title>Hierarchy</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="generator" content="HelpNDoc Personal Edition 3.9.0.595">
+	<link type="text/css" rel="stylesheet" media="all" href="css/reset.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/base.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/hnd.css" />
+	<!--[if lte IE 8]>
+		<link type="text/css" rel="stylesheet" media="all" href="css/ielte8.css" />
+	<![endif]-->
+	<style type="text/css">
+		#topic_header
+		{
+			background-color: #EFEFEF;
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/hnd.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function()
+		{
+			if (top.frames.length == 0)
+			{
+				var sTopicUrl = top.location.href.substring(top.location.href.lastIndexOf("/") + 1, top.location.href.length);
+				top.location.href = "index.html?" + sTopicUrl;
+			}
+			else if (top && top.FrameTOC && top.FrameTOC.SelectTocItem)
+			{
+				top.FrameTOC.SelectTocItem("Hierarchy");
+			}
+		});
+	</script>
+</head>
+
+<body>
+
+	<div id="topic_header">
+			<div id="topic_header_content">
+				<h1>Hierarchy</h1>
+				
+				<div id="topic_breadcrumb">
+					<a href="Editor.html">Editor</a> &rsaquo;&rsaquo; </div>
+				</div>
+			<div id="topic_header_nav">
+				<a href="Editor.html"><img src="img/arrow_up.png" alt="Parent"/></a>
+				
+				<a href="Overview.html"><img src="img/arrow_left.png" alt="Previous"/></a>
+				
+				<a href="Anchors.html"><img src="img/arrow_right.png" alt="Next"/></a>
+				
+				</div>
+			<div class="clear"></div>
+		</div>
+	<div id="topic_content">
+		
+<p></p>
+<p>The OtterUI Hierarchy is roughly as follows:</p>
+<p><br/></p>
+<p><img alt="" style="padding : 1px;" src="lib/NewItem15.png"/></p>
+<p><br/></p>
+<p><br/></p>
+<p>The project contains scenes, scenes contain views, and views contain controls and animations. &nbsp;When <a class="rvts12" href="NewProject.html">creating a new project</a>, how you choose to organize your scenes and views are largely left up to you. &nbsp;Examples of project organization include:</p>
+<p><br/></p>
+<ul style="text-indent: 0px; margin-left: 24px; list-style-position: outside;"><ul style="text-indent: 0px; margin-left: 48px; list-style-position: outside;">
+<li class="rvps3" style="margin-left: 0">Creating one scene per UI Designer to contain the set of views that <span class="rvts15">only</span> that designer/artist may work on</li>
+<li class="rvps3" style="margin-left: 0">Creating one scene per logical game state, ex:</li>
+<ul style="text-indent: 0px; margin-left: 48px; list-style-position: outside;">
+<li class="rvps4" style="margin-left: 0">Frontend (options, save/load data, etc)</li>
+<li class="rvps4" style="margin-left: 0">Multiplayer (lobby, matchmaking, statistics, etc)</li>
+<li class="rvps4" style="margin-left: 0">In-game (HUD, statistics, etc)</li>
+</ul>
+<li class="rvps3" style="margin-left: 0">Combination of both</li>
+</ul></ul>
+<p class="rvps3"><br/></p>
+<p>However you decide to organize your project is largely left to you, but it is recommended to <span class="rvts15">not</span> organize all views under a single scene. &nbsp;Multiple scenes can be loaded and interacted with at runtime, so it is much better and certainly recommended to organize your views into logical (and separate) scenes.</p>
+<p><br/></p>
+<p>The Scene's only purpose is to manage the views it contains. &nbsp;It is responsible for ensuring that the OnActivate and OnDeactivate animations are called at the appropriate times, and also propagates input and events to the internal views. &nbsp;The View is where the real heavy-lifting occurs; it is responsible for maintaining and animating all of the controls that it owns.</p>
+<p></p>
+<p class="rvps2"><span class="rvts13">Created with the Personal Edition of HelpNDoc: </span><a class="rvts14" href="http://www.helpndoc.com/help-authoring-tool">Single source CHM, PDF, DOC and HTML Help creation</a></p>
+</div>
+	
+	<div id="topic_footer">
+
+			<div id="topic_footer_content">
+				Copyright &copy; 2011, Lloyd Tullues</div>
+		</div>
+	</body>
+	
+</html>
+

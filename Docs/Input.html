@@ -1,0 +1,122 @@
+﻿<html>
+	
+<head>
+	<title>Touch Input</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="generator" content="HelpNDoc Personal Edition 3.9.0.595">
+	<link type="text/css" rel="stylesheet" media="all" href="css/reset.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/base.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/hnd.css" />
+	<!--[if lte IE 8]>
+		<link type="text/css" rel="stylesheet" media="all" href="css/ielte8.css" />
+	<![endif]-->
+	<style type="text/css">
+		#topic_header
+		{
+			background-color: #EFEFEF;
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/hnd.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function()
+		{
+			if (top.frames.length == 0)
+			{
+				var sTopicUrl = top.location.href.substring(top.location.href.lastIndexOf("/") + 1, top.location.href.length);
+				top.location.href = "index.html?" + sTopicUrl;
+			}
+			else if (top && top.FrameTOC && top.FrameTOC.SelectTocItem)
+			{
+				top.FrameTOC.SelectTocItem("Input");
+			}
+		});
+	</script>
+</head>
+
+<body>
+
+	<div id="topic_header">
+			<div id="topic_header_content">
+				<h1>Touch Input</h1>
+				
+				<div id="topic_breadcrumb">
+					<a href="API.html">API</a> &rsaquo;&rsaquo; <a href="Integration.html">Tutorials</a> &rsaquo;&rsaquo; </div>
+				</div>
+			<div id="topic_header_nav">
+				<a href="Integration.html"><img src="img/arrow_up.png" alt="Parent"/></a>
+				
+				<a href="Renderer22.html"><img src="img/arrow_left.png" alt="Previous"/></a>
+				
+				<a href="Reference.html"><img src="img/arrow_right.png" alt="Next"/></a>
+				
+				</div>
+			<div class="clear"></div>
+		</div>
+	<div id="topic_content">
+		
+<p></p>
+<p>Some of the controls in Otter UI require mouse or touch events to allow the user to interact with them. &nbsp;If these controls are used, your application must capture and send these events to the Otter API, which will then in turn process the events appropriately.</p>
+<p><br/></p>
+<p>To send touch events simply call the following methods on the Otter System object:</p>
+<p><br/></p>
+<div class="rvps12"><table width="800" border="1" cellpadding="10" cellspacing="2" style="border-width: 0px; background-color: #ccffcc;">
+<tr valign="top">
+<td style="border-width : 1px; border-color: #000000; border-style: solid; width: 42%;"><p><span class="rvts31">namespace</span><span class="rvts30"> Otter</span></p>
+<p><span class="rvts30">{</span></p>
+<p><span class="rvts30"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">/* Main object that manages and maintains all things game-gui related.</span></p>
+<p><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34"> */</span></p>
+<p><span class="rvts30"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts31">class</span><span class="rvts30"> System</span></p>
+<p><span class="rvts30"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts30">{</span></p>
+<p><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">// ...</span></p>
+<p><span class="rvts31"><br/></span></p>
+<p><span class="rvts31"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts31">public:</span></p>
+<p><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">/* Points (touches/mouse/etc) were pressed down</span></p>
+<p><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34"> */</span></p>
+<p><span class="rvts31"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts31"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts31">void</span><span class="rvts30"> OnPointsDown(sint32* pointPairs, sint32 numPairs);</span></p>
+<p><span class="rvts30"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts30"> &nbsp; &nbsp; &nbsp; &nbsp;</span></p>
+<p><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">/* Points (touches/mouse/etc) were released</span></p>
+<p><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34"> */</span></p>
+<p><span class="rvts31"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts31"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts31">void</span><span class="rvts30"> OnPointsUp(sint32* pointPairs, sint32 numPairs);</span></p>
+<p><span class="rvts30"><br/></span></p>
+<p><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">/* Points (touches/mouse/etc) were moved.</span></p>
+<p><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34"> */</span></p>
+<p><span class="rvts31"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts31"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts31">void</span><span class="rvts30"> OnPointsMove(sint32* pointPairs, sint32 numPairs);</span></p>
+<p><span class="rvts34"><br/></span></p>
+<p><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">// ... </span></p>
+<p><span class="rvts30"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts30">};</span></p>
+<p><span class="rvts30">}</span></p>
+<p><br/></p>
+</td>
+</tr>
+</table>
+</div>
+<p class="rvps12"><br/></p>
+<p class="rvps13">Each method accepts a set of 2-tuples as signed integers and the number of 2-tuples sent. &nbsp;Each 2-tuple is interpreted as an X/Y coordinate pair.</p>
+<p class="rvps13"><br/></p>
+<p class="rvps13">For example, if <span class="rvts20">numPairs</span> == 2, then the expected array length of <span class="rvts20">pointPairs</span> is 4. &nbsp;The <span class="rvts20">pointPairs</span> data is then interpreted as: <span class="rvts20">{X1, Y1, X2, Y2}</span></p>
+<p class="rvps13"><span class="rvts20"><br/></span></p>
+<p class="rvps13"><span class="rvts15">OnPointsDown</span></p>
+<p class="rvps13"><span class="rvts15"><br/></span></p>
+<p class="rvps13">Notifies that <span class="rvts20">numPairs</span> of touch points were just pressed down, and are stored in <span class="rvts20">pointPairs</span> as a set of 2-tuples. &nbsp;Each 2-tuple represents an absolute location on screen.</p>
+<p class="rvps13"><br/></p>
+<p class="rvps13"><span class="rvts15">OnPointsUp</span></p>
+<p class="rvps13"><span class="rvts15"><br/></span></p>
+<p class="rvps13">Notifies that <span class="rvts20">numPairs</span> of touch points were just released, and are stored in <span class="rvts20">pointPairs</span> as a set of 2-tuples. &nbsp;Each 2-tuple represents an absolute location on screen.</p>
+<p class="rvps13"><br/></p>
+<p class="rvps13"><span class="rvts15">OnPointsMoved</span></p>
+<p class="rvps13"><span class="rvts15"><br/></span></p>
+<p class="rvps13">Notifies that <span class="rvts20">numPairs</span> of touch points were just moved, and are stored in <span class="rvts20">pointPairs</span> as a set of 2-tuples. &nbsp;Each 2-tuple represents an absolute location on screen.</p>
+<p></p>
+<p class="rvps2"><span class="rvts13">Created with the Personal Edition of HelpNDoc: </span><a class="rvts14" href="http://www.helpndoc.com/feature-tour">Full-featured Help generator</a></p>
+</div>
+	
+	<div id="topic_footer">
+
+			<div id="topic_footer_content">
+				Copyright &copy; 2011, Lloyd Tullues</div>
+		</div>
+	</body>
+	
+</html>
+

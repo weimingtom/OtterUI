@@ -1,0 +1,102 @@
+﻿<html>
+	
+<head>
+	<title>Messages</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="generator" content="HelpNDoc Personal Edition 3.9.0.595">
+	<link type="text/css" rel="stylesheet" media="all" href="css/reset.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/base.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/hnd.css" />
+	<!--[if lte IE 8]>
+		<link type="text/css" rel="stylesheet" media="all" href="css/ielte8.css" />
+	<![endif]-->
+	<style type="text/css">
+		#topic_header
+		{
+			background-color: #EFEFEF;
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/hnd.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function()
+		{
+			if (top.frames.length == 0)
+			{
+				var sTopicUrl = top.location.href.substring(top.location.href.lastIndexOf("/") + 1, top.location.href.length);
+				top.location.href = "index.html?" + sTopicUrl;
+			}
+			else if (top && top.FrameTOC && top.FrameTOC.SelectTocItem)
+			{
+				top.FrameTOC.SelectTocItem("Messages");
+			}
+		});
+	</script>
+</head>
+
+<body>
+
+	<div id="topic_header">
+			<div id="topic_header_content">
+				<h1>Messages</h1>
+				
+				<div id="topic_breadcrumb">
+					<a href="Editor.html">Editor</a> &rsaquo;&rsaquo; <a href="Tutorials.html">Tutorials</a> &rsaquo;&rsaquo; <a href="Actions.html">Actions</a> &rsaquo;&rsaquo; </div>
+				</div>
+			<div id="topic_header_nav">
+				<a href="Actions.html"><img src="img/arrow_up.png" alt="Parent"/></a>
+				
+				<a href="Actions.html"><img src="img/arrow_left.png" alt="Previous"/></a>
+				
+				<a href="Sounds.html"><img src="img/arrow_right.png" alt="Next"/></a>
+				
+				</div>
+			<div class="clear"></div>
+		</div>
+	<div id="topic_content">
+		
+<p></p>
+<p>Message Actions provide a very simple mechanism of communicating to the application. &nbsp;An example of a message might be to show a popup message on a specific frame of animation, or poll a background process' status.</p>
+<p><br/></p>
+<p>To take advantage of Message Actions you must create one or messages in the OtterUI Editor, add a Message Action to a frame of animation, and then finally process them in the application.</p>
+<p><br/></p>
+<p><span class="rvts11">Create Messages in the OtterUI Editor</span></p>
+<p><span class="rvts11"><br/></span></p>
+<ol style="text-indent: 0px; margin-left: 24px; list-style-position: outside;"><ol style="text-indent: 0px; margin-left: 48px; list-style-position: outside;">
+<li class="rvps3" style="margin-left: 0">From the <span class="rvts20">Scene</span> menu click <span class="rvts20">Messages...</span></li>
+<li class="rvps3" style="margin-left: 0">Click <span class="rvts20">Add</span>. &nbsp;A new message will be created and added to the list of messages</li>
+<li class="rvps3" style="margin-left: 0">Double-click on the message text (in the "<span class="rvts20">Message</span>" column) and change the message text to something meaningful to your application. &nbsp;<br/><br/><span class="rvts16">Please Note:</span> &nbsp;The message text will be reformatted to capitalize the message as well as to convert whitespace to underscores.<br/><br/></li>
+<li class="rvps3" style="margin-left: 0">(Optional) Enter a description for the message by double-clicking in the <span class="rvts20">Description</span> column. &nbsp;Enter a meaningful description of the message. &nbsp;This description will not be exported, but rather as a way to describe the purpose of the message and how it should be used by other users.</li>
+<li class="rvps3" style="margin-left: 0">Repeat steps 2 through 4 as needed</li>
+<li class="rvps3" style="margin-left: 0">Hit <span class="rvts20">OK</span></li>
+</ol></ol>
+<p class="rvps3"><br/></p>
+<p class="rvps3"><img alt="" style="padding : 1px;" src="lib/NewItem25.png"/></p>
+<p><span class="rvts11"><br/></span></p>
+<p><span class="rvts11">Create a Message Action</span></p>
+<p><span class="rvts11"><br/></span></p>
+<ol style="text-indent: 0px; margin-left: 24px; list-style-position: outside;"><ol style="text-indent: 0px; margin-left: 48px; list-style-position: outside;">
+<li class="rvps3" style="margin-left: 0">Right click on the main channel of an animation and select <span class="rvts20">Actions...</span><br/><span class="rvts20"></span><br/><img alt="" style="padding : 1px;" src="lib/NewItem24.png"/><br/><span class="rvts20"><br/></span></li>
+<li class="rvps3" style="margin-left: 0">In the <span class="rvts20">Actions Editor</span> select <span class="rvts20">Send Message</span> from the <span class="rvts20">Add Actions</span> dropdown</li>
+<li class="rvps3" style="margin-left: 0">Select the newly created message and in the properties window select <span class="rvts20">Message </span>and expand the dropdown box in its value field.</li>
+<li class="rvps3" style="margin-left: 0">Select the appropriate message</li>
+</ol></ol>
+<p class="rvps3"><br/></p>
+<p><span class="rvts11">Process the Message</span></p>
+<p><span class="rvts11"><br/></span></p>
+<p>Messages are propagated to the application by way of events. &nbsp;Attach an event handler to your View's mOnMessage event and process the arguments accordingly. &nbsp;The Message Action will only be executed if the animation with the Message Action is played. &nbsp;The Message Action will also be executed repeatedly if it is on a frame within a loop section.</p>
+<p><br/></p>
+<p>See <a class="rvts12" href="EventHandling.html">Event Handling</a> for further information.</p>
+<p></p>
+<p class="rvps2"><span class="rvts13">Created with the Personal Edition of HelpNDoc: </span><a class="rvts14" href="http://www.helpndoc.com/feature-tour">Easily create EBooks</a></p>
+</div>
+	
+	<div id="topic_footer">
+
+			<div id="topic_footer_content">
+				Copyright &copy; 2011, Lloyd Tullues</div>
+		</div>
+	</body>
+	
+</html>
+

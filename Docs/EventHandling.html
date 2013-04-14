@@ -1,0 +1,172 @@
+﻿<html>
+	
+<head>
+	<title>Event Handling</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="generator" content="HelpNDoc Personal Edition 3.9.0.595">
+	<link type="text/css" rel="stylesheet" media="all" href="css/reset.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/base.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/hnd.css" />
+	<!--[if lte IE 8]>
+		<link type="text/css" rel="stylesheet" media="all" href="css/ielte8.css" />
+	<![endif]-->
+	<style type="text/css">
+		#topic_header
+		{
+			background-color: #EFEFEF;
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/hnd.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function()
+		{
+			if (top.frames.length == 0)
+			{
+				var sTopicUrl = top.location.href.substring(top.location.href.lastIndexOf("/") + 1, top.location.href.length);
+				top.location.href = "index.html?" + sTopicUrl;
+			}
+			else if (top && top.FrameTOC && top.FrameTOC.SelectTocItem)
+			{
+				top.FrameTOC.SelectTocItem("EventHandling");
+			}
+		});
+	</script>
+</head>
+
+<body>
+
+	<div id="topic_header">
+			<div id="topic_header_content">
+				<h1>Event Handling</h1>
+				
+				<div id="topic_breadcrumb">
+					<a href="API.html">API</a> &rsaquo;&rsaquo; <a href="Integration.html">Tutorials</a> &rsaquo;&rsaquo; </div>
+				</div>
+			<div id="topic_header_nav">
+				<a href="Integration.html"><img src="img/arrow_up.png" alt="Parent"/></a>
+				
+				<a href="Integration.html"><img src="img/arrow_left.png" alt="Previous"/></a>
+				
+				<a href="FileIO.html"><img src="img/arrow_right.png" alt="Next"/></a>
+				
+				</div>
+			<div class="clear"></div>
+		</div>
+	<div id="topic_content">
+		
+<p></p>
+<p>When the User Interface is active and running, the Otter API may frequently invoke events to communicate the state of the user interface. &nbsp;Examples of such events are:</p>
+<p><br/></p>
+<ul style="text-indent: 0px; margin-left: 24px; list-style-position: outside;">
+<li>View has become active</li>
+<li>View has become inactive</li>
+<li>An animation has started</li>
+<li>An animation has ended</li>
+<li>Button has been clicked</li>
+</ul>
+<p><br/></p>
+<p>Event handling is implemented by way of functor listeners, and to handle events you must create and event handler and add it to the listener set. &nbsp;For the purposes of this tutorial, we will add an event handler to the View's OnActivate listener set.</p>
+<p><br/></p>
+<p>Examples of event handling functions are as follows:</p>
+<p><br/></p>
+<p><span class="rvts11"><br/></span></p>
+<div class="rvps12"><table width="800" border="1" cellpadding="10" cellspacing="2" style="border-width: 0px; background-color: #ccffcc;">
+<tr valign="top">
+<td style="border-width : 1px; border-color: #000000; border-style: solid; width: 42%;"><p><span class="rvts31">class</span><span class="rvts30"> MySampleClass</span></p>
+<p><span class="rvts30">{</span></p>
+<p><span class="rvts30"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">/* Handles a generic event</span></p>
+<p><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34"> */</span></p>
+<p><span class="rvts30"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts31">void</span><span class="rvts30"> MyEventHandler(</span><span class="rvts31">void</span><span class="rvts30">* pSender, </span><span class="rvts31">void</span><span class="rvts30">* pContext);</span></p>
+<p><span class="rvts30"><br/></span></p>
+<p><span class="rvts30"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">/* Handles an animation event</span></p>
+<p><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34"> */</span></p>
+<p><span class="rvts30"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts31">void</span><span class="rvts30"> MyAnimationHandler(</span><span class="rvts31">void</span><span class="rvts30">* pSender, uint32 animID);</span></p>
+<p><span class="rvts30">};</span></p>
+<p><span class="rvts30"><br/></span></p>
+</td>
+</tr>
+</table>
+</div>
+<p><br/></p>
+<p>The first parameter is always a void pointer to the sender of the event. &nbsp;The type of the second parameter depends on the event's template parameter, as follows:</p>
+<p><br/></p>
+<p class="rvps3"><span class="rvts16">Event:</span></p>
+<p class="rvps3"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<br/><span class="rvts20">Event&lt;</span><span class="rvts35">X</span><span class="rvts20">&gt; mMyEvent;</span></p>
+<p class="rvps3"><span class="rvts20"><br/></span></p>
+<p class="rvps3"><span class="rvts16">Method:</span></p>
+<p class="rvps3"><span class="rvts16"><br/></span></p>
+<p class="rvps3"><span class="rvts20">void Method(void* sender, </span><span class="rvts35">X param</span><span class="rvts20">);</span></p>
+<p><br/></p>
+<ol style="text-indent: 0px; margin-left: 24px; list-style-position: outside;">
+<li><span class="rvts33">Create the Event Handler method</span></li>
+</ol>
+<p><span class="rvts32"><br/></span></p>
+<p><span class="rvts32">Add a method to any class that will be responsible for handling the event that adheres to the above-mentioned signature. &nbsp;Ex:</span></p>
+<p><span class="rvts11"><br/></span></p>
+<div class="rvps12"><table width="800" border="1" cellpadding="10" cellspacing="2" style="border-width: 0px; background-color: #ccffcc;">
+<tr valign="top">
+<td style="border-width : 1px; border-color: #000000; border-style: solid; width: 42%;"><p><span class="rvts31">class</span><span class="rvts30"> MySampleClass</span></p>
+<p><span class="rvts30">{</span></p>
+<p><span class="rvts30"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">/* Handles the view's OnActivate event</span></p>
+<p><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34"> */</span></p>
+<p><span class="rvts30"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts31">void</span><span class="rvts30"> MyOnActivateHandler(</span><span class="rvts31">void</span><span class="rvts30">* pSender, </span><span class="rvts31">void</span><span class="rvts30">* pContext);</span></p>
+<p><span class="rvts30">};</span></p>
+<p><span class="rvts30"><br/></span></p>
+<p><span class="rvts30"><br/></span></p>
+<p><span class="rvts34">/* Handles the view's OnActivate event</span></p>
+<p><span class="rvts34"> */</span></p>
+<p><span class="rvts31">void </span><span class="rvts30">MySampleClass::MyOnActivateHandler(</span><span class="rvts31">void</span><span class="rvts30">* pSender, </span><span class="rvts31">void</span><span class="rvts30">* pContext)</span></p>
+<p><span class="rvts30">{</span></p>
+<p><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">// ...</span><span class="rvts30"> </span></p>
+<p><span class="rvts30">}</span></p>
+<p><span class="rvts30"><br/></span></p>
+</td>
+</tr>
+</table>
+</div>
+<p class="rvps12"><span class="rvts33"><br/></span></p>
+<p><span class="rvts33"><br/></span></p>
+<ol style="text-indent: 0px; margin-left: 24px; list-style-position: outside;">
+<li><span class="rvts33">Add Event Handler to the OnActivate ListenerSet</span></li>
+</ol>
+<p><span class="rvts33"><br/></span></p>
+<p><span class="rvts32">Once the method has been declared and defined, add it to the event. &nbsp;You can add as many event handlers as is needed, and they will persist for as long as the parent object (ex, a parent View) exists.</span></p>
+<p><span class="rvts11"><br/></span></p>
+<div class="rvps12"><table width="800" border="1" cellpadding="10" cellspacing="2" style="border-width: 0px; background-color: #ccffcc;">
+<tr valign="top">
+<td style="border-width : 1px; border-color: #000000; border-style: solid; width: 42%;"><p><span class="rvts30">View* pView = gSystem-&gt;GetScene(0)-&gt;GetView("MyView");</span></p>
+<p><span class="rvts30">mView-&gt;mOnActivate.AddHandler(</span><span class="rvts31">this</span><span class="rvts30">, MySampleClass::MyOnActivateHandler);</span></p>
+</td>
+</tr>
+</table>
+</div>
+<p><span class="rvts33"><br/></span></p>
+<ol style="text-indent: 0px; margin-left: 24px; list-style-position: outside;">
+<li><span class="rvts33">Remove the Event Handler when done</span></li>
+</ol>
+<p><span class="rvts33"><br/></span></p>
+<p><span class="rvts32">When you no longer need to handle an event, you must explicitly remove it from the Event. &nbsp;</span></p>
+<p><span class="rvts11"><br/></span></p>
+<div class="rvps12"><table width="800" border="1" cellpadding="10" cellspacing="2" style="border-width: 0px; background-color: #ccffcc;">
+<tr valign="top">
+<td style="border-width : 1px; border-color: #000000; border-style: solid; width: 42%;"><p><span class="rvts30">View* pView = gSystem-&gt;GetScene(0)-&gt;GetView("MyView");</span></p>
+<p><span class="rvts30">mView-&gt;mOnActivate.RemoveHandler(</span><span class="rvts31">this</span><span class="rvts30">, MySampleClass::MyOnActivateHandler);</span></p>
+</td>
+</tr>
+</table>
+</div>
+<p><span class="rvts33"><br/></span></p>
+<p></p>
+<p class="rvps2"><span class="rvts13">Created with the Personal Edition of HelpNDoc: </span><a class="rvts14" href="http://www.helpndoc.com/create-epub-ebooks">Write EPub books for the iPad</a></p>
+</div>
+	
+	<div id="topic_footer">
+
+			<div id="topic_footer_content">
+				Copyright &copy; 2011, Lloyd Tullues</div>
+		</div>
+	</body>
+	
+</html>
+

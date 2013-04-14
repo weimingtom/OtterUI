@@ -1,0 +1,151 @@
+﻿<html>
+	
+<head>
+	<title>File System</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="generator" content="HelpNDoc Personal Edition 3.9.0.595">
+	<link type="text/css" rel="stylesheet" media="all" href="css/reset.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/base.css" />
+	<link type="text/css" rel="stylesheet" media="all" href="css/hnd.css" />
+	<!--[if lte IE 8]>
+		<link type="text/css" rel="stylesheet" media="all" href="css/ielte8.css" />
+	<![endif]-->
+	<style type="text/css">
+		#topic_header
+		{
+			background-color: #EFEFEF;
+		}
+	</style>
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/hnd.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function()
+		{
+			if (top.frames.length == 0)
+			{
+				var sTopicUrl = top.location.href.substring(top.location.href.lastIndexOf("/") + 1, top.location.href.length);
+				top.location.href = "index.html?" + sTopicUrl;
+			}
+			else if (top && top.FrameTOC && top.FrameTOC.SelectTocItem)
+			{
+				top.FrameTOC.SelectTocItem("FileIO");
+			}
+		});
+	</script>
+</head>
+
+<body>
+
+	<div id="topic_header">
+			<div id="topic_header_content">
+				<h1>File System</h1>
+				
+				<div id="topic_breadcrumb">
+					<a href="API.html">API</a> &rsaquo;&rsaquo; <a href="Integration.html">Tutorials</a> &rsaquo;&rsaquo; </div>
+				</div>
+			<div id="topic_header_nav">
+				<a href="Integration.html"><img src="img/arrow_up.png" alt="Parent"/></a>
+				
+				<a href="EventHandling.html"><img src="img/arrow_left.png" alt="Previous"/></a>
+				
+				<a href="Renderer.html"><img src="img/arrow_right.png" alt="Next"/></a>
+				
+				</div>
+			<div class="clear"></div>
+		</div>
+	<div id="topic_content">
+		
+<p></p>
+<p>When reading and processing files the Otter API defers to a user provided implementation of the IFileSystem interface. &nbsp;This object will be responsible for opening files and closing files, in addition to reading data, seeking within the file, and so on.</p>
+<p> </p>
+<p><span class="rvts11">Creating a FileSystem</span></p>
+<p><br/></p>
+<p>In order to implement your own file system, create a new class that inherits from Otter::IFileSystem and implements the following methods:</p>
+<p><br/></p>
+<p><span class="rvts11"><br/></span></p>
+<div class="rvps12"><table width="800" border="1" cellpadding="10" cellspacing="2" style="border-width: 0px; background-color: #ccffcc;">
+<tr valign="top">
+<td style="border-width : 1px; border-color: #000000; border-style: solid; width: 42%;"><p><span class="rvts31">class</span><span class="rvts30"> SampleRenderer : </span><span class="rvts31">public</span><span class="rvts30"> Otter::IFileSystem</span></p>
+<p><span class="rvts30">{</span></p>
+<p><span class="rvts30"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">/* @brief Opens a file</span></p>
+<p><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34"> */</span></p>
+<p><span class="rvts30"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts31">virtual</span><span class="rvts30"> </span><span class="rvts31">void</span><span class="rvts30">* Open(</span><span class="rvts31">const</span><span class="rvts30"> </span><span class="rvts31">char</span><span class="rvts30">* szFilename, AccessFlag flags) = 0;</span></p>
+<p><span class="rvts30"><br/></span></p>
+<p><span class="rvts30"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">/* @brief Closes the file</span></p>
+<p><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34"> */</span></p>
+<p><span class="rvts30"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts31">virtual</span><span class="rvts30"> </span><span class="rvts31">void</span><span class="rvts30"> Close(</span><span class="rvts31">void</span><span class="rvts30">* pHandle) = 0;</span></p>
+<p><span class="rvts30"><br/></span></p>
+<p><span class="rvts30"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">/* @brief Reads data from the file.</span></p>
+<p><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34"> */</span></p>
+<p><span class="rvts30"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts31">virtual</span><span class="rvts30"> uint32 Read(</span><span class="rvts31">void</span><span class="rvts30">* pHandle, uint8* data, uint32 count) = 0;</span></p>
+<p><span class="rvts30"><br/></span></p>
+<p><span class="rvts30"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">/* @brief Writes data to the file.</span></p>
+<p><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34"> */</span></p>
+<p><span class="rvts30"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts31">virtual</span><span class="rvts30"> uint32 Write(</span><span class="rvts31">void</span><span class="rvts30">* pHandle, uint8* data, uint32 count) = 0;</span></p>
+<p><span class="rvts30"><br/></span></p>
+<p><span class="rvts30"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">/* @brief Seeks within the file.</span></p>
+<p><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34"> */</span></p>
+<p><span class="rvts30"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts31">virtual</span><span class="rvts30"> </span><span class="rvts31">void</span><span class="rvts30"> Seek(</span><span class="rvts31">void</span><span class="rvts30">* pHandle, uint32 offset, SeekFlag seekFlag) = 0;</span></p>
+<p><span class="rvts30"><br/></span></p>
+<p><span class="rvts30"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34">/* @brief Returns the size of the file</span></p>
+<p><span class="rvts34"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts34"> */</span></p>
+<p><span class="rvts30"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span class="rvts31">virtual</span><span class="rvts30"> uint32 Size(</span><span class="rvts31">void</span><span class="rvts30">* pHandle) = 0;</span></p>
+<p><span class="rvts30">};</span></p>
+<p><span class="rvts30"><br/></span></p>
+</td>
+</tr>
+</table>
+</div>
+<p class="rvps12"><br/></p>
+<p><span class="rvts15">Open</span></p>
+<p><span class="rvts15"><br/></span></p>
+<p>Opens the file at the location specified by <span class="rvts20">szFilename</span> and access flags specified by <span class="rvts20">flags.</span></p>
+<p><br/></p>
+<p>If this function succeeds, it must return a <span class="rvts20">void*</span> handle to the file that can be used to later identify the file and perform actions on it. &nbsp;The value returned by this method will be passed to all subsequent methods as the <span class="rvts20">pHandle</span> parameter.</p>
+<p><br/></p>
+<p>If an error occurred, or if the file cannot be opened, return <span class="rvts20">NULL</span>.</p>
+<p><span class="rvts15"><br/></span></p>
+<p><span class="rvts15">Close</span></p>
+<p><span class="rvts15"><br/></span></p>
+<p>Closes the file identified by <span class="rvts20">pHandle</span>.</p>
+<p><span class="rvts15"><br/></span></p>
+<p><span class="rvts15">Read</span></p>
+<p><span class="rvts15"><br/></span></p>
+<p>Reads <span class="rvts20">count </span>bytes from the file, and stores the information in <span class="rvts20">data</span>. &nbsp;Returns the actual number of bytes read.</p>
+<p><span class="rvts15"><br/></span></p>
+<p><span class="rvts15">Write</span></p>
+<p><span class="rvts15"><br/></span></p>
+<p>Writes <span class="rvts20">count </span>bytes from &nbsp;<span class="rvts20">data </span>to the file. &nbsp;Returns the actual number of bytes written.</p>
+<p><span class="rvts15"><br/></span></p>
+<p><span class="rvts15">Seek</span></p>
+<p><span class="rvts15"><br/></span></p>
+<p>Seeks to a position within the file. &nbsp;The <span class="rvts20">offset</span> parameter's behavior is determined by the value of <span class="rvts20">seekFlag</span>.</p>
+<p><span class="rvts15"><br/></span></p>
+<p><span class="rvts15">Size</span></p>
+<p><span class="rvts15"><br/></span></p>
+<p>Returns the size of the file</p>
+<p><br/></p>
+<p><span class="rvts11">Using the new FileSystem</span></p>
+<p><br/></p>
+<p>Once the new filesystem has been implemented, instantiate it and assign it to the Otter System<br/><span class="rvts11"><br/></span></p>
+<div class="rvps12"><table width="500" border="1" cellpadding="10" cellspacing="2" style="border-width: 0px; background-color: #ccffcc;">
+<tr valign="top">
+<td style="border-width : 1px; border-color: #000000; border-style: solid; width: 42%;"><p><span class="rvts30">gFileSys = </span><span class="rvts31">new</span><span class="rvts30"> SampleFileSystem();</span></p>
+<p><span class="rvts30">gSystem-&gt;SetFileSystem(gFileSys);</span></p>
+</td>
+</tr>
+</table>
+</div>
+<p></p>
+<p class="rvps2"><span class="rvts13">Created with the Personal Edition of HelpNDoc: </span><a class="rvts14" href="http://www.helpndoc.com">Free EPub and documentation generator</a></p>
+</div>
+	
+	<div id="topic_footer">
+
+			<div id="topic_footer_content">
+				Copyright &copy; 2011, Lloyd Tullues</div>
+		</div>
+	</body>
+	
+</html>
+
