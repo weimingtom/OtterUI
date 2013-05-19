@@ -705,24 +705,24 @@
                   <KeyFrame Frame="0" EaseFunction="None" EaseAmount="0">
                     <ToggleLayout>
                       <Location>
-                        <X>715.5384</X>
-                        <Y>106.076851</Y>
+                        <X>451.854767</X>
+                        <Y>26</Y>
                       </Location>
                       <Center>
                         <X>0</X>
                         <Y>0</Y>
                       </Center>
                       <Size>
-                        <Width>40</Width>
-                        <Height>40</Height>
+                        <Width>60.21994</Width>
+                        <Height>60.22</Height>
                       </Size>
                       <Rotation>0</Rotation>
-                      <Color>White</Color>
+                      <Color>255, 255, 255</Color>
                     </ToggleLayout>
-                    <LeftAnchor AbsoluteValue="715.5384" RatioValue="0.7453525" />
-                    <RightAnchor AbsoluteValue="204.461609" RatioValue="0.787019134" />
-                    <TopAnchor AbsoluteValue="106.076851" RatioValue="0.16574508" />
-                    <BottomAnchor AbsoluteValue="493.923157" RatioValue="0.228245065" />
+                    <LeftAnchor AbsoluteValue="451.854767" RatioValue="0.470682055" />
+                    <RightAnchor AbsoluteValue="447.9253" RatioValue="0.533411145" />
+                    <TopAnchor AbsoluteValue="26" RatioValue="0.040625" />
+                    <BottomAnchor AbsoluteValue="553.78" RatioValue="0.134718746" />
                   </KeyFrame>
                 </KeyFrames>
               </GUIAnimationChannel>
@@ -731,24 +731,24 @@
                   <KeyFrame Frame="0" EaseFunction="None" EaseAmount="0">
                     <ToggleLayout>
                       <Location>
-                        <X>295.927368</X>
-                        <Y>13</Y>
+                        <X>591.854736</X>
+                        <Y>26</Y>
                       </Location>
                       <Center>
                         <X>0</X>
                         <Y>0</Y>
                       </Center>
                       <Size>
-                        <Width>30.11</Width>
-                        <Height>30.11</Height>
+                        <Width>60.21997</Width>
+                        <Height>60.22</Height>
                       </Size>
                       <Rotation>0</Rotation>
-                      <Color>White</Color>
+                      <Color>255, 255, 255</Color>
                     </ToggleLayout>
-                    <LeftAnchor AbsoluteValue="295.927368" RatioValue="0.616515338" />
-                    <RightAnchor AbsoluteValue="153.962646" RatioValue="0.679244459" />
-                    <TopAnchor AbsoluteValue="13" RatioValue="0.040625" />
-                    <BottomAnchor AbsoluteValue="276.89" RatioValue="0.134718746" />
+                    <LeftAnchor AbsoluteValue="591.854736" RatioValue="0.616515338" />
+                    <RightAnchor AbsoluteValue="307.9253" RatioValue="0.679244459" />
+                    <TopAnchor AbsoluteValue="26" RatioValue="0.040625" />
+                    <BottomAnchor AbsoluteValue="553.78" RatioValue="0.134718746" />
                   </KeyFrame>
                 </KeyFrames>
               </GUIAnimationChannel>
@@ -757,24 +757,24 @@
                   <KeyFrame Frame="0" EaseFunction="None" EaseAmount="0">
                     <ToggleLayout>
                       <Location>
-                        <X>375.927368</X>
-                        <Y>13</Y>
+                        <X>751.854736</X>
+                        <Y>26</Y>
                       </Location>
                       <Center>
                         <X>0</X>
                         <Y>0</Y>
                       </Center>
                       <Size>
-                        <Width>30.1099854</Width>
-                        <Height>30.1100025</Height>
+                        <Width>60.21997</Width>
+                        <Height>60.22</Height>
                       </Size>
                       <Rotation>0</Rotation>
-                      <Color>White</Color>
+                      <Color>255, 255, 255</Color>
                     </ToggleLayout>
-                    <LeftAnchor AbsoluteValue="375.927368" RatioValue="0.783182" />
-                    <RightAnchor AbsoluteValue="73.96265" RatioValue="0.845911145" />
-                    <TopAnchor AbsoluteValue="13" RatioValue="0.040625" />
-                    <BottomAnchor AbsoluteValue="276.89" RatioValue="0.134718746" />
+                    <LeftAnchor AbsoluteValue="751.854736" RatioValue="0.783182" />
+                    <RightAnchor AbsoluteValue="147.9253" RatioValue="0.845911145" />
+                    <TopAnchor AbsoluteValue="26" RatioValue="0.040625" />
+                    <BottomAnchor AbsoluteValue="553.78" RatioValue="0.134718746" />
                   </KeyFrame>
                 </KeyFrames>
               </GUIAnimationChannel>
@@ -783,24 +783,24 @@
                   <KeyFrame Frame="0" EaseFunction="None" EaseAmount="0">
                     <ToggleLayout>
                       <Location>
-                        <X>435.927368</X>
-                        <Y>13</Y>
+                        <X>871.854736</X>
+                        <Y>26</Y>
                       </Location>
                       <Center>
                         <X>0</X>
                         <Y>0</Y>
                       </Center>
                       <Size>
-                        <Width>30.1099854</Width>
-                        <Height>30.11</Height>
+                        <Width>60.21997</Width>
+                        <Height>60.22</Height>
                       </Size>
                       <Rotation>0</Rotation>
-                      <Color>White</Color>
+                      <Color>255, 255, 255</Color>
                     </ToggleLayout>
-                    <LeftAnchor AbsoluteValue="435.927368" RatioValue="0.908182" />
-                    <RightAnchor AbsoluteValue="13.9626465" RatioValue="0.970911145" />
-                    <TopAnchor AbsoluteValue="13" RatioValue="0.040625" />
-                    <BottomAnchor AbsoluteValue="276.89" RatioValue="0.134718746" />
+                    <LeftAnchor AbsoluteValue="871.854736" RatioValue="0.908182" />
+                    <RightAnchor AbsoluteValue="27.925293" RatioValue="0.970911145" />
+                    <TopAnchor AbsoluteValue="26" RatioValue="0.040625" />
+                    <BottomAnchor AbsoluteValue="553.78" RatioValue="0.134718746" />
                   </KeyFrame>
                 </KeyFrames>
               </GUIAnimationChannel>
@@ -1316,7 +1316,7 @@
         </AnimationList>
       </Animations>
     </GUIView>
-    <GUIView ID="0" Name="TablesView" Mask="-1" Locked="false" Hidden="false" NextControlID="9">
+    <GUIView ID="0" Name="TablesView" Mask="-1" Locked="false" Hidden="false" NextControlID="10">
       <AnchorFlags>None</AnchorFlags>
       <ControlLayout>
         <Location>

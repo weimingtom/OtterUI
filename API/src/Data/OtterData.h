@@ -76,6 +76,16 @@ namespace Otter
 		uint32 mNumControls;
 		char mBuffer[1];
 
+		SpriteData()
+		{
+			mTextureID = 0;
+			mColor = 0xFFFFFFFF;
+			mSkew = 0.0f;
+			mFlipType = 0;
+			mNumControls = 0;
+			mBuffer[0] = 0;
+		}
+
 		/* Retrieves control data by index
 		 */
 		const ControlData* GetControlData(uint32 index) const
@@ -124,6 +134,26 @@ namespace Otter
 		uint32 mTextBufferSize;
 		char mBuffer[1];
 
+		LabelData()
+		{		
+			mFourCC = FOURCC_GLBL;
+
+			mFontID = 0;
+			mColor = 0xFFFFFFFF;
+			mScaleX = 1.0f;
+			mScaleY = 1.0f;
+			mSkew = 0.0f;
+			mDropShadow = 0;
+			mHAlign = kHAlign_Left;
+			mVAlign = kVAlign_Top;
+			mLeading = 0.0f;
+			mTracking = 0;
+			mTextFit = 0;
+
+			mTextBufferSize = 0;
+			mBuffer[0] = 0;
+		}
+
 		/* Retrieves the label's internal text
 		 */
 		const char* GetText() const
@@ -160,6 +190,30 @@ namespace Otter
 
 		uint32 mTextBufferSize;
 		char mBuffer[1];
+		
+		ButtonData()
+		{
+			mFourCC = FOURCC_GBTT;
+
+			mDefaultTextureID = 0;
+			mDownTextureID = 0;
+			
+			mFontID = 0;
+			mDefaultColor = 0xFFFFFFFF;
+			mDownColor = 0xFFFFFFFF;
+
+			mScaleX = 1.0f;
+			mScaleY = 1.0f;
+
+			mHAlign = kHAlign_Left;
+			mVAlign = kVAlign_Top;
+
+			mNumOnClickActions = 0;
+
+			mTextBufferSize = 0;
+
+			mBuffer[0] = 0;
+		}
 
 		/* Retrieves the button's internal text
 		 */
@@ -204,6 +258,14 @@ namespace Otter
 
 		char mBuffer[1];
 
+		GroupData()
+		{
+			mFourCC = FOURCC_GGRP;
+
+			mNumControls = 0;
+			mBuffer[0] = 0;
+		}
+
 		/* Retrieves control data by index
 		 */
 		const ControlData* GetControlData(uint32 index) const
@@ -234,6 +296,14 @@ namespace Otter
 	{
 		uint32 mDefaultRowHeight;
 		uint32 mRowSpacing;
+
+		TableData()
+		{
+			mFourCC = FOURCC_GTBL;
+
+			mDefaultRowHeight = 0;
+			mRowSpacing = 0;
+		}
 	};
 
 	/* Toggle Layout data
@@ -250,6 +320,15 @@ namespace Otter
 		sint32 mOnTextureID;
 		sint32 mOffTextureID;
 		uint32 mColor;
+
+		ToggleData()
+		{
+			mFourCC = FOURCC_GTGL;
+
+			mOnTextureID = 0;
+			mOffTextureID = 0;
+			mColor = 0xFFFFFFFF;
+		}
 	};
 
 	/* Slider Layout data
@@ -277,6 +356,25 @@ namespace Otter
 		sint32 mValue;
 
 		uint32 mColor;
+
+		SliderData()
+		{
+			mFourCC = FOURCC_GSLD;
+			mThumbWidth = 0;
+			mThumbHeight = 0;
+
+			mStartTextureID = 0;
+			mMiddleTextureID = 0;
+			mEndTextureID = 0;
+			mThumbTextureID = 0;
+
+			mMin = 0;
+			mMax = 0;
+			mStep = 0;
+			mValue = 0;
+
+			mColor = 0xFFFFFFFF;
+		}
 	};
 
 	/* Mask Layout data
@@ -293,6 +391,15 @@ namespace Otter
 		sint32 mTextureID;
 		float mSkew;
 		uint32 mFlipType; // 0: None, 1: Horizontal, 2: Vertical
+
+		MaskData()
+		{
+			mFourCC = FOURCC_GMSK;
+
+			mTextureID = 0;
+			mSkew = 0;
+			mFlipType = 0;
+		}
 	};
 
 	/* FOURCC : GGAC

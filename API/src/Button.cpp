@@ -36,7 +36,7 @@ namespace Otter
 	/* Constructor
 	 */
 	Button::Button() : Control(NULL, NULL, OTTER_NEW(ButtonData, ()))
-	{
+	{	
 		mButtonState = Default;
 		mLabel = OTTER_NEW(Label, ());
 		mLabel->EnableTouches(false);
@@ -169,7 +169,14 @@ namespace Otter
 			return kResult_Error;
 
 		ButtonData* pButtonData = const_cast<ButtonData*>(static_cast<const ButtonData*>(GetData()));
-		pButtonData->mDefaultTextureID = pScene->GetTextureID(szTexture);
+
+		uint32 texID = pScene->GetTextureID(szTexture);
+
+		// Load new texture and unload previous one
+		pScene->LoadResource(texID);
+		pScene->UnloadResource(pButtonData->mDefaultTextureID);
+
+		pButtonData->mDefaultTextureID = texID;
 
 		return kResult_OK;
 	}
@@ -183,7 +190,14 @@ namespace Otter
 			return kResult_Error;
 
 		ButtonData* pButtonData = const_cast<ButtonData*>(static_cast<const ButtonData*>(GetData()));
-		pButtonData->mDownTextureID = pScene->GetTextureID(szTexture);
+
+		uint32 texID = pScene->GetTextureID(szTexture);
+
+		// Load new texture and unload previous one
+		pScene->LoadResource(texID);
+		pScene->UnloadResource(pButtonData->mDownTextureID);
+
+		pButtonData->mDownTextureID = texID;
 
 		return kResult_OK;
 	}

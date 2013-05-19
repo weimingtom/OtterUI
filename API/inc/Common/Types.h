@@ -105,6 +105,30 @@ namespace Otter
 		uint32	mAnchorFlags;
 
 		int		mMaskID;
+
+		ControlData()
+		{
+			mFourCC = 0;
+			mDataSize = 0;
+
+			mID = 0;
+			mName[0] = 0;
+
+			mPosition[0] = 0.0f;
+			mPosition[1] = 0.0f;
+
+			mCenter[0] = 0.0f;
+			mCenter[1] = 0.0f;
+
+			mSize[0] = 0.0f;
+			mSize[1] = 0.0f;
+
+			mRotation = 0.0f;
+
+			mAnchorFlags = 0;
+
+			mMaskID = 0;
+		}
 	};
 
 	/**
