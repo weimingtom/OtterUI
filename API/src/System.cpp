@@ -353,7 +353,7 @@ namespace Otter
 		
 	/* Points (touches/mouse/etc) were pressed down
 	 */
-	void System::OnPointsDown(Point* points, sint32 numPoints)
+	void System::OnPointsDown(const Point* points, sint32 numPoints)
 	{
 		uint32 numScenes = GetSceneCount();		
 		if(numScenes)
@@ -365,7 +365,7 @@ namespace Otter
 	
 	/* Points (touches/mouse/etc) were released
 	 */
-	void System::OnPointsUp(Point* points, sint32 numPoints)
+	void System::OnPointsUp(const Point* points, sint32 numPoints)
 	{
 		uint32 numScenes = GetSceneCount();		
 		if(numScenes)
@@ -377,7 +377,7 @@ namespace Otter
 	
 	/* Points (touches/mouse/etc) were moved.
 	 */
-	void System::OnPointsMove(Point* points, sint32 numPoints)
+	void System::OnPointsMove(const Point* points, sint32 numPoints)
 	{
 		uint32 numScenes = GetSceneCount();		
 		if(numScenes)

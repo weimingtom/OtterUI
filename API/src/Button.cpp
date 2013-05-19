@@ -283,7 +283,7 @@ namespace Otter
 	
 	/* Points (touches/mouse/etc) were moved.
 	 */
-	bool Button::OnPointsMove(Point* points, sint32 numPoints)
+	bool Button::OnPointsMove(const Point* points, sint32 numPoints)
 	{
 		if(!mTouchEnabled)
 			return false;
@@ -311,7 +311,7 @@ namespace Otter
 
 	/* Points (touches/mouse/etc) were released
 	 */
-	bool Button::OnPointsUp(Point* points, sint32 numPoints)
+	bool Button::OnPointsUp(const Point* points, sint32 numPoints)
 	{
 		if(!mTouchEnabled)
 			return false;
@@ -345,7 +345,7 @@ namespace Otter
 
 	/* Points (touches/mouse/etc) were pressed down
 	 */
-	bool Button::OnPointsDown(Point* points, sint32 numPoints)
+	bool Button::OnPointsDown(const Point* points, sint32 numPoints)
 	{
 		if(!mTouchEnabled)
 		 	return false;

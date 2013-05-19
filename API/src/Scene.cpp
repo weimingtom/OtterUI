@@ -571,7 +571,7 @@ namespace Otter
 	
 	/* Points (touches/mouse/etc) were pressed down
 	 */
-	void Scene::OnPointsDown(Point* points, sint32 numPoints)
+	void Scene::OnPointsDown(const Point* points, sint32 numPoints)
 	{
 		Array<View*> temp(mActiveViews);
 		for(uint32 i = 0; i < temp.size(); i++)
@@ -583,7 +583,7 @@ namespace Otter
 	
 	/* Points (touches/mouse/etc) were released
 	 */
-	void Scene::OnPointsUp(Point* points, sint32 numPoints)
+	void Scene::OnPointsUp(const Point* points, sint32 numPoints)
 	{
 		Array<View*> temp(mActiveViews);
 		for(uint32 i = 0; i < temp.size(); i++)
@@ -595,7 +595,7 @@ namespace Otter
 	
 	/* Points (touches/mouse/etc) were moved.
 	 */
-	void Scene::OnPointsMove(Point* points, sint32 numPoints)
+	void Scene::OnPointsMove(const Point* points, sint32 numPoints)
 	{
 		Array<View*> temp(mActiveViews);
 		for(uint32 i = 0; i < temp.size(); i++)

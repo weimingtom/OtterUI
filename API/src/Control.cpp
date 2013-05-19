@@ -257,7 +257,7 @@ namespace Otter
 	
 	/* Retrieves a control by point.
 	 */
-	Control* Control::GetControl(Point& point, Point* localPoint, bool touchablesOnly)
+	Control* Control::GetControl(const Point& point, Point* localPoint, bool touchablesOnly)
 	{
 		if(!mEnabled || touchablesOnly && !TouchesEnabled())
 			return NULL;
@@ -364,7 +364,7 @@ namespace Otter
 	/* Converts the screen point to a local
 	 * local point, relative to the control
 	 */
-	void Control::ScreenToLocal(Point& point, Point& localPoint)
+	void Control::ScreenToLocal(const Point& point, Point& localPoint)
 	{
 		Matrix4 fullTransform = Matrix4::IDENTITY;
 		Control* pControl = this;
@@ -417,21 +417,21 @@ namespace Otter
 
 	/* Points (touches/mouse/etc) were pressed down
 	 */
-	bool Control::OnPointsDown(Point* points, sint32 numPoints)
+	bool Control::OnPointsDown(const Point* points, sint32 numPoints)
 	{
 		return false;
 	}
 		
 	/* Points (touches/mouse/etc) were released
 	 */
-	bool Control::OnPointsUp(Point* points, sint32 numPoints)
+	bool Control::OnPointsUp(const Point* points, sint32 numPoints)
 	{
 		return false;
 	}
 		
 	/* Points (touches/mouse/etc) were moved.
 	 */
-	bool Control::OnPointsMove(Point* points, sint32 numPoints)
+	bool Control::OnPointsMove(const Point* points, sint32 numPoints)
 	{
 		return false;
 	}

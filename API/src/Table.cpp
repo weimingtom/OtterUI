@@ -114,7 +114,7 @@ namespace Otter
 
 	/* Points (touches/mouse/etc) were pressed down
 	 */
-	bool Table::OnPointsDown(Point* points, sint32 numPoints)
+	bool Table::OnPointsDown(const Point* points, sint32 numPoints)
 	{
 		if(!mTouchEnabled)
 			return false;
@@ -131,7 +131,7 @@ namespace Otter
 		
 	/* Points (touches/mouse/etc) were released
 	 */
-	bool Table::OnPointsUp(Point* points, sint32 numPoints)
+	bool Table::OnPointsUp(const Point* points, sint32 numPoints)
 	{
 		if(!mTouchEnabled)
 			return false;
@@ -144,7 +144,7 @@ namespace Otter
 
 	/* Points (touches/mouse/etc) were moved.
 	 */
-	bool Table::OnPointsMove(Point* points, sint32 numPoints)
+	bool Table::OnPointsMove(const Point* points, sint32 numPoints)
 	{
 		if(!mTouchEnabled)
 			return false;
@@ -316,7 +316,7 @@ namespace Otter
 		
 	/* Retrieves a control by point.
 	 */
-	Control* Row::GetControl(Point& point, Point* localPoint, bool touchablesOnly)
+	Control* Row::GetControl(const Point& point, Point* localPoint, bool touchablesOnly)
 	{
 		if(!mEnabled || touchablesOnly && !TouchesEnabled())
 			return NULL;

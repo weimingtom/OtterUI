@@ -221,7 +221,7 @@ namespace Otter
 
 	/* Points (touches/mouse/etc) were pressed down
 	 */
-	bool Slider::OnPointsDown(Point* points, sint32 numPoints)
+	bool Slider::OnPointsDown(const Point* points, sint32 numPoints)
 	{
 		if(!mTouchEnabled)
 			return false;
@@ -256,7 +256,7 @@ namespace Otter
 		
 	/* Points (touches/mouse/etc) were released
 	 */
-	bool Slider::OnPointsUp(Point* points, sint32 numPoints)
+	bool Slider::OnPointsUp(const Point* points, sint32 numPoints)
 	{
 		mDraggingThumb = false;
 
@@ -271,7 +271,7 @@ namespace Otter
 		
 	/* Points (touches/mouse/etc) were moved.
 	 */
-	bool Slider::OnPointsMove(Point* points, sint32 numPoints)
+	bool Slider::OnPointsMove(const Point* points, sint32 numPoints)
 	{
 		if(!mTouchEnabled)
 			return false;

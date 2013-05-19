@@ -681,7 +681,7 @@ namespace Otter
 	
 	/* Points (touches/mouse/etc) were pressed down
 	 */
-	bool View::OnPointsDown(Point* points, sint32 numPoints)
+	bool View::OnPointsDown(const Point* points, sint32 numPoints)
 	{
 		bool handled = false;
 		for(int i = 0; i < numPoints; i++)
@@ -705,7 +705,7 @@ namespace Otter
 	 * Only controls that were previously "touched" get the up 
 	 * notification
 	 */
-	bool View::OnPointsUp(Point* points, sint32 numPoints)
+	bool View::OnPointsUp(const Point* points, sint32 numPoints)
 	{
 		bool handled = false;
 		for(uint32 c = 0; c < mTouchedControls.size(); c++)
@@ -728,7 +728,7 @@ namespace Otter
 	 * Only controls that were previously "touched" get the move
 	 * notification
 	 */
-	bool View::OnPointsMove(Point* points, sint32 numPoints)
+	bool View::OnPointsMove(const Point* points, sint32 numPoints)
 	{
 		bool handled = false;
 		for(uint32 c = 0; c < mTouchedControls.size(); c++)

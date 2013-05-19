@@ -210,7 +210,7 @@ namespace Otter
 		 * Gets a control by screen coordinate.  Returns the top-most control
 		 * that contains the point.
 		 */
-		virtual Control* GetControl(Point& point, Point* localPoint, bool touchablesOnly = false);
+		virtual Control* GetControl(const Point& point, Point* localPoint, bool touchablesOnly = false);
 
 		/**
 		 * Retrieves a control by index
@@ -226,7 +226,7 @@ namespace Otter
 		 * Converts the screen point to a local
 		 * local point, relative to the control
 		 */
-		void ScreenToLocal(Point& point, Point& localPoint);
+		void ScreenToLocal(const Point& point, Point& localPoint);
 
 		/**
 		 * Sets the control's parent
@@ -264,19 +264,19 @@ namespace Otter
 		 * Points (touches/mouse/etc) were pressed down
 		 * Returns a reference to the control that handled the points
 		 */
-		virtual bool OnPointsDown(Point* points, sint32 numPoints);
+		virtual bool OnPointsDown(const Point* points, sint32 numPoints);
 		
 		/**
 		 * Points (touches/mouse/etc) were released
 		 * Returns a reference to the control that handled the points
 		 */
-		virtual bool OnPointsUp(Point* points, sint32 numPoints);
+		virtual bool OnPointsUp(const Point* points, sint32 numPoints);
 		
 		/**
 		 * Points (touches/mouse/etc) were moved.
 		 * Returns a reference to the control that handled the points
 		 */
-		virtual bool OnPointsMove(Point* points, sint32 numPoints);
+		virtual bool OnPointsMove(const Point* points, sint32 numPoints);
 
 		/**
 		 * Applies the interpolation of two keyframes to the control.

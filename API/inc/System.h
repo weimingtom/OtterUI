@@ -93,17 +93,17 @@ namespace Otter
 		/**
 		 * Points (touches/mouse/etc) were pressed down
 		 */
-		void OnPointsDown(Point* points, sint32 numPoints);
+		void OnPointsDown(const Point* points, sint32 numPoints);
 		
 		/**
 		 * Points (touches/mouse/etc) were released
 		 */
-		void OnPointsUp(Point* points, sint32 numPoints);
+		void OnPointsUp(const Point* points, sint32 numPoints);
 
 		/**
 		 * Points (touches/mouse/etc) were moved.
 		 */
-		void OnPointsMove(Point* points, sint32 numPoints);
+		void OnPointsMove(const Point* points, sint32 numPoints);
 
 	public:
 
