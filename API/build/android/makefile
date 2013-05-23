@@ -1,13 +1,13 @@
 # Builds the Otter Library
 PROJ = Otter
 
-LIB_DIR 			:= ./../../lib
+LIB_DIR 			:= ./../../lib/android
 TMP_DIR 			:= ./tmp
 SUFFIX				:=
 LDFLAGS				:=
 CCFLAGS				:=
 TOOLCHAIN_PREFIX	:=
-ARM_EABI_VER		:= 4.7
+ARM_EABI_VER		:= 4.6
 ANDROID_SDK_LEVEL	:= android-8
 PLATFORM			:=
 

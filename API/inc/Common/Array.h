@@ -282,5 +282,3 @@ namespace Otter
 }
 
 #endif
-
-

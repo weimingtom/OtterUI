@@ -17,7 +17,7 @@ namespace Otter
 	 */
 	Sprite::Sprite(Scene* pScene, Control* pParent, const SpriteData* pSpriteData) : Control(pScene, pParent, pSpriteData)
 	{
-		mTextureID = -1;
+		mTextureID = (uint32)-1;
 
 		tl_uv[0] = tl_uv[1] = 0.0f;
 		br_uv[0] = br_uv[1] = 1.0f;
@@ -29,7 +29,7 @@ namespace Otter
 	 */
 	Sprite::Sprite() : Control(NULL, NULL, OTTER_NEW(SpriteData, ()))
 	{
-		mTextureID = -1;
+		mTextureID = (uint32)-1;
 
 		tl_uv[0] = tl_uv[1] = 0.0f;
 		br_uv[0] = br_uv[1] = 1.0f;
@@ -45,7 +45,7 @@ namespace Otter
 	 */
 	Sprite::~Sprite(void)
 	{
-		SetTexture(-1);
+		SetTexture((uint32)-1);
 
 		if(mUserCreated)
 			OTTER_DELETE(GetData());

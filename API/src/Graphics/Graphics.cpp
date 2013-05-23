@@ -398,7 +398,7 @@ namespace Otter
 		verts[2].mTexCoord.y = 0.0f;
 		verts[2].mColor = color;
 
-		DrawPrimitives(-1, kPrim_TriangleList, 1, verts, kRender_Wireframe);
+		DrawPrimitives((uint32)-1, kPrim_TriangleList, 1, verts, kRender_Wireframe);
 	}
 
 	void Graphics::DrawBatches()
