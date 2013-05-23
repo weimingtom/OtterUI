@@ -127,5 +127,10 @@ void BasicControlsViewHandler::OnMessage(void* pSender, const Otter::MessageArgs
 {
 	char tmp[256];
 	sprintf(tmp, "Message: %s\n", args.mText);
+
+#if defined(PLATFORM_WIN32)
 	OutputDebugStringA(tmp);
+#else
+	printf("%s", tmp);
+#endif
 }
