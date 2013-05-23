@@ -1,5 +1,16 @@
 LOCAL_PATH := $(call my-dir)
 
+include $(CLEAR_VARS)
+LOCAL_MODULE := otter-prebuilt
+LOCAL_SRC_FILES := ../../../../API/lib/android/libOtter.a
+LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/../../../../API/inc
+include $(PREBUILT_STATIC_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := libpng-prebuilt
+LOCAL_SRC_FILES := libpng/libpng.a
+include $(PREBUILT_STATIC_LIBRARY)
+
 #------------------------------------------------------------------------------
 # MAIN LIB
 #------------------------------------------------------------------------------
@@ -10,8 +21,7 @@ LOCAL_MODULE := ottersample
 LOCAL_CFLAGS := -DANDROID_NDK
 LOCAL_CFLAGS += -DPLATFORM_ANDROID
 LOCAL_CFLAGS += -DDISABLE_IMPORTGL
-LOCAL_CFLAGS += -I../../../../API/inc
-LOCAL_CFLAGS += -I../../../src
+LOCAL_CFLAGS += -I../../src
 				
 LOCAL_SRC_FILES := main.cpp
 LOCAL_SRC_FILES += ../../../src/FileSystems/SampleFileSystem.cpp
@@ -29,8 +39,8 @@ LOCAL_SRC_FILES += ../../../src/Plugins/Circle.cpp
 LOCAL_SRC_FILES += ../../../src/SampleUI.cpp
 
 LOCAL_LDLIBS := -lGLESv1_CM -ldl -llog -lz -lstdc++
-LOCAL_LDLIBS += -Wl,--no-whole-archive ../../../../API/lib/android/libOtter.a
-LOCAL_LDLIBS += -Wl,--no-whole-archive libpng/libpng.a
+
+LOCAL_STATIC_LIBRARIES := otter-prebuilt libpng-prebuilt
 
 LOCAL_ARM_MODE := arm
 include $(BUILD_SHARED_LIBRARY)

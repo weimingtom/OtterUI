@@ -65,7 +65,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="d3dx9.lib d3d9.lib dxguid.lib dxerr.lib winmm.lib OtterMTD.lib"
+				AdditionalDependencies="d3dx9.lib d3d9.lib dxguid.lib dxerr.lib winmm.lib"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="../../../API/lib/win/vc9/x86"
 				GenerateDebugInformation="true"
@@ -565,6 +565,10 @@
 				>
 			</File>
 		</Filter>
+		<File
+			RelativePath="..\..\..\API\build\vc\vs2008\Otter.vcproj"
+			>
+		</File>
 		<File
 			RelativePath=".\ReadMe.txt"
 			>
