@@ -7,7 +7,7 @@ SUFFIX				:=
 LDFLAGS				:=
 CCFLAGS				:=
 TOOLCHAIN_PREFIX	:=
-ARM_EABI_VER		:= 4.6
+ARM_EABI_VER		:= 4.7
 ANDROID_SDK_LEVEL	:= android-8
 PLATFORM			:=
 
@@ -47,40 +47,38 @@ INCLUDE_DIRS		+= ../../src
 
 CCFLAGS 			+= $(foreach INC_DIR,$(INCLUDE_DIRS),-I$(INC_DIR))
 
-ifeq ($(PLATFORM),android)
-	NDK_HOST 			:= windows-x86_64
-	SDKTOOL 			:= $(ANDROID_SDK_DIR)/tools
-	TOOLCHAIN_PREFIX 		:= $(ANDROID_NDK_DIR)/toolchains/arm-linux-androideabi-$(ARM_EABI_VER)/prebuilt/$(NDK_HOST)/bin/arm-linux-androideabi-
-	
-	CCFLAGS				+= -I$(ANDROID_NDK_DIR)/sources/cxx-stl/gnu-libstdc++/$(ARM_EABI_VER)/include
-	CCFLAGS				+= -I$(ANDROID_NDK_DIR)/sources/cxx-stl/gnu-libstdc++/$(ARM_EABI_VER)/libs/armeabi/include
-	CCFLAGS				+= -I$(ANDROID_NDK_DIR)/platforms/$(ANDROID_SDK_LEVEL)/arch-arm/usr/include 
-	CCFLAGS				+= -I./../../../API/inc
-	
-	CCFLAGS				+= -fpic 
-	CCFLAGS				+= -mthumb-interwork 
-	CCFLAGS				+= -ffunction-sections 
-	CCFLAGS				+= -funwind-tables 
-	CCFLAGS				+= -fstack-protector 
-	CCFLAGS				+= -fno-short-enums 
-	CCFLAGS				+= -D__ARM_ARCH_5__ 
-	CCFLAGS				+= -D__ARM_ARCH_5T__ 
-	CCFLAGS				+= -D__ARM_ARCH_5E__ 
-	CCFLAGS				+= -D__ARM_ARCH_5TE__  
-	CCFLAGS				+= -Wno-psabi 
-	CCFLAGS				+= -march=armv5te 
-	CCFLAGS				+= -mtune=xscale 
-	CCFLAGS				+= -msoft-float 
-	CCFLAGS				+= -fno-exceptions 
-	CCFLAGS				+= -fno-rtti 
-	CCFLAGS				+= -fomit-frame-pointer 
-	CCFLAGS				+= -fstrict-aliasing 
-	CCFLAGS				+= -funswitch-loops 
-	CCFLAGS				+= -finline-limit=300
-	CCFLAGS				+= -DANDROID 
-	CCFLAGS				+= -DANDROID_NDK
-	CCFLAGS				+= -Wa,--noexecstack
-endif
+NDK_HOST 			:= windows-x86_64
+SDKTOOL 			:= $(ANDROID_SDK_DIR)/tools
+TOOLCHAIN_PREFIX 		:= $(ANDROID_NDK_DIR)/toolchains/arm-linux-androideabi-$(ARM_EABI_VER)/prebuilt/$(NDK_HOST)/bin/arm-linux-androideabi-
+
+CCFLAGS				+= -I$(ANDROID_NDK_DIR)/sources/cxx-stl/gnu-libstdc++/$(ARM_EABI_VER)/include
+CCFLAGS				+= -I$(ANDROID_NDK_DIR)/sources/cxx-stl/gnu-libstdc++/$(ARM_EABI_VER)/libs/armeabi/include
+CCFLAGS				+= -I$(ANDROID_NDK_DIR)/platforms/$(ANDROID_SDK_LEVEL)/arch-arm/usr/include 
+CCFLAGS				+= -I./../../../API/inc
+
+CCFLAGS				+= -fpic 
+CCFLAGS				+= -mthumb-interwork 
+CCFLAGS				+= -ffunction-sections 
+CCFLAGS				+= -funwind-tables 
+CCFLAGS				+= -fstack-protector 
+CCFLAGS				+= -fno-short-enums 
+CCFLAGS				+= -D__ARM_ARCH_5__ 
+CCFLAGS				+= -D__ARM_ARCH_5T__ 
+CCFLAGS				+= -D__ARM_ARCH_5E__ 
+CCFLAGS				+= -D__ARM_ARCH_5TE__  
+CCFLAGS				+= -Wno-psabi 
+CCFLAGS				+= -march=armv5te 
+CCFLAGS				+= -mtune=xscale 
+CCFLAGS				+= -msoft-float 
+CCFLAGS				+= -fno-exceptions 
+CCFLAGS				+= -fno-rtti 
+CCFLAGS				+= -fomit-frame-pointer 
+CCFLAGS				+= -fstrict-aliasing 
+CCFLAGS				+= -funswitch-loops 
+CCFLAGS				+= -finline-limit=300
+CCFLAGS				+= -DANDROID 
+CCFLAGS				+= -DANDROID_NDK
+CCFLAGS				+= -Wa,--noexecstack
 
 ifeq ($(TARGET),debug)
 	CCFLAGS 			+= -g
