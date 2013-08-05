@@ -169,12 +169,16 @@ namespace Otter.Editor
             // Perform some validation
             if (commandLineArgs.mExport)
             {
+                Otter.Interface.Graphics.Instance = new Otter.Interface.Graphics(0);
+                int renderContext = Otter.Interface.Graphics.Instance.CreateContext(0, 10, 10);
+
                 ImporterExporter exporter = new ImporterExporter();
 
                 // We need a valid project specified
                 if (!System.IO.File.Exists(commandLineArgs.mProject))
                 {
                     System.Console.WriteLine("Invalid or no project specified.");
+                    Otter.Interface.Graphics.Instance.DestroyContext(renderContext);
                     return;
                 }
 
@@ -195,6 +199,7 @@ namespace Otter.Editor
                 if (targetPlatform == null)
                 {
                     System.Console.WriteLine("Invalid or no platform specified");
+                    Otter.Interface.Graphics.Instance.DestroyContext(renderContext);
                     return;
                 }
 
@@ -217,6 +222,7 @@ namespace Otter.Editor
                 if (!System.IO.Directory.Exists(outputDir))
                 {
                     System.Console.WriteLine("Invalid output directory for platform " + targetPlatform.Name + " : " + outputDir);
+                    Otter.Interface.Graphics.Instance.DestroyContext(renderContext);
                     return;
                 }
 
@@ -230,6 +236,8 @@ namespace Otter.Editor
                     bool bSuccess = exporter.Export(item, platforms);
                     System.Console.WriteLine(bSuccess ? " success" : " FAILED");
                 }
+
+                Otter.Interface.Graphics.Instance.DestroyContext(renderContext);
             }
         }
 

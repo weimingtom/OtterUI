@@ -135,7 +135,7 @@ namespace Otter
 			Swap(v1, v2);
 		}
 
-		pGraphics->SetStencilMatrix(GetTransform());
+		pGraphics->SetStencilMatrix(GetFullTransform());
 		pGraphics->DrawRectangle(pTextureData->mTextureRect.mTextureID, 
 			0.0f, 0.0f, size.x, size.y, 
 			u1, v1, u2, v2, 

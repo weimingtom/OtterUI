@@ -329,6 +329,8 @@ namespace Otter
 				activeAnimation.mControlRemap[j] = mNextControlID;
 
 				Control* pNewControl = pControl->Clone();
+				pNewControl->SetMaskPointers();
+
 				((ControlData*)pNewControl->GetData())->mID = mNextControlID;
 
 				++mNextControlID;
