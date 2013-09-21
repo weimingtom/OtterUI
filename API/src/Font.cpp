@@ -353,6 +353,19 @@ namespace Otter
 
 		float textWidth = scaleX * GetLines(szText, *this, fontString.mLines, w / scaleX, h / scaleY, leading, tracking, textFit);
 
+		/*
+		if (textFit == Scale_Down)
+		{
+			if(textWidth > w)
+			{
+				float factor = w / textWidth;
+				scaleX *= factor;
+				scaleY *= factor;
+
+				textWidth = scaleX * GetLines(szText, *this, fontString.mLines, w / scaleX, h / scaleY, leading, tracking, textFit);
+			}
+		}*/
+
 		//check whether to apply the special scaling modes
 		if (textFit == Scale_To_Fit || textFit == Scale_Down && textWidth > w)
 		{
@@ -370,6 +383,19 @@ namespace Otter
 					CharQuad* thisQuad = &thisLine->mCharacters[quad];
 					thisQuad->mLeft = (int)((thisQuad->mLeft - lineStart) * scaleFactor);
 					thisQuad->mRight = (int)((thisQuad->mRight - lineStart) * scaleFactor);
+
+					/*
+					if (textFit == Scale_Down) 
+                    {
+						float height = GetData().mMaxTop;
+						float diff = height - height * scaleFactor;
+
+                        thisQuad->mTop = thisQuad->mTop * scaleFactor;
+                        thisQuad->mBottom = thisQuad->mBottom * scaleFactor;
+
+						thisQuad->mTop		+= diff;
+						thisQuad->mBottom	+= diff;
+                    }*/
 				}
 			}
 		}

@@ -543,7 +543,10 @@ namespace Otter
 	void Control::Draw(Graphics* pGraphics)
 	{
 		if(!mEnabled)
-			return;		
+			return;	
+
+		if(mControls.size() < 1) 
+			return;
 
 		const VectorMath::Vector2& size = GetSize();
 		if(size.x == 0.0f || size.y == 0.0f)

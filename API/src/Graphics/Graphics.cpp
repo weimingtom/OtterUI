@@ -23,6 +23,8 @@ namespace Otter
 
 		mPreTransformVerts = false;
 
+		mPropertiesUpdated = false;
+
 		mCurrentMask = -1;
 	}
 
@@ -290,6 +292,7 @@ namespace Otter
 		mBufferPosition += numVerts;
 
 		mStackUpdated = false;
+		mPropertiesUpdated = false;
 
 		if (drawToStencil)
 		{

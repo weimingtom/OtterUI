@@ -13,6 +13,9 @@ namespace Otter
 
 	/**
 	 * A very simple dynamic array class, that manages a set of objects.
+	 * 
+	 * Need to rethink pushing and popping, and just keeping track of the head
+	 * and tail of the array rather than moving objects around in it, which is crazy slow.
 	 */
 	template <class T>
 	class Array
