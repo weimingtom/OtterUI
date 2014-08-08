@@ -136,7 +136,7 @@ namespace Otter
 		 */
 		uint32 erase(uint32 index)
 		{
-			if(index >= mSize)
+			if(index >= mSize || mSize == 0)
 				return 0;
 
 			// Call its destructor
