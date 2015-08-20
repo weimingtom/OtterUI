@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Otter.Editor</RootNamespace>
     <AssemblyName>Otter</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>
     </SccProjectName>
@@ -26,7 +26,8 @@
     <FileUpgradeFlags>
     </FileUpgradeFlags>
     <OldToolsVersion>3.5</OldToolsVersion>
-    <UpgradeBackupLocation />
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <PublishUrl>C:\Users\grafalgar\Desktop\test_publish\</PublishUrl>
@@ -91,7 +92,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
-    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -348,11 +348,11 @@
       <Project>{E73BB233-D88B-44A7-A98F-D71EE158381D}</Project>
       <Name>Aga.Controls</Name>
     </ProjectReference>
-    <ProjectReference Include="..\FontBuilder\FontBuilder.vcproj">
+    <ProjectReference Include="..\FontBuilder\FontBuilder.vcxproj">
       <Project>{88AD79D4-6E7A-4ABB-8EEF-7E037EB06B6D}</Project>
       <Name>FontBuilder</Name>
     </ProjectReference>
-    <ProjectReference Include="..\OtterInterface\OtterInterface.vcproj">
+    <ProjectReference Include="..\OtterInterface\OtterInterface.vcxproj">
       <Project>{FB3AFB37-B952-4256-A98F-D7CADCB6D549}</Project>
       <Name>OtterInterface</Name>
     </ProjectReference>

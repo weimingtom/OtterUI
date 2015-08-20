@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source">
+      <UniqueIdentifier>{ccf9e80f-c1a8-4a30-9b0f-3fbd6fdfb367}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Views">
+      <UniqueIdentifier>{f85cd70b-c098-485d-8663-d6cec3ec1b7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\FileSystem">
+      <UniqueIdentifier>{04cb42c8-ee66-4f19-86ce-ce1780c99951}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Plugins">
+      <UniqueIdentifier>{003537c9-ad1d-49d8-88d8-2878178fbb27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Renderer">
+      <UniqueIdentifier>{4f9e5220-5448-400e-9d85-d86ee4025b2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\Renderer\Shaders">
+      <UniqueIdentifier>{58bbd9a5-e7bf-49e0-8fdf-55f1389841d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source\SoundSystem">
+      <UniqueIdentifier>{4dce49aa-6974-494e-beae-4f82720b5605}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="Main">
+      <UniqueIdentifier>{00223427-f9b1-4025-b262-11aa9cfcfd4a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\SampleUI.cpp">
+      <Filter>Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Views\BasicControlsViewHandler.cpp">
+      <Filter>Source\Views</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Views\IntroHandler.cpp">
+      <Filter>Source\Views</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Views\LabelsViewHandler.cpp">
+      <Filter>Source\Views</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Views\MaskViewHandler.cpp">
+      <Filter>Source\Views</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Views\TablesViewHandler.cpp">
+      <Filter>Source\Views</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Views\ViewHandler.cpp">
+      <Filter>Source\Views</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\FileSystems\SampleFileSystem.cpp">
+      <Filter>Source\FileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Plugins\Circle.cpp">
+      <Filter>Source\Plugins</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Plugins\SamplePlugin.cpp">
+      <Filter>Source\Plugins</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Renderers\D3DRenderer.cpp">
+      <Filter>Source\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Renderers\SampleRenderer.cpp">
+      <Filter>Source\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\SoundSystems\SDKwavefile.cpp">
+      <Filter>Source\SoundSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\SoundSystems\XAudioSoundSystem.cpp">
+      <Filter>Source\SoundSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="SampleApp.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\SampleUI.h">
+      <Filter>Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Views\BasicControlsViewHandler.h">
+      <Filter>Source\Views</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Views\IntroHandler.h">
+      <Filter>Source\Views</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Views\LabelsViewHandler.h">
+      <Filter>Source\Views</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Views\MaskViewHandler.h">
+      <Filter>Source\Views</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Views\TablesViewHandler.h">
+      <Filter>Source\Views</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Views\ViewHandler.h">
+      <Filter>Source\Views</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\FileSystems\SampleFileSystem.h">
+      <Filter>Source\FileSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Plugins\Circle.h">
+      <Filter>Source\Plugins</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Plugins\SamplePlugin.h">
+      <Filter>Source\Plugins</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Renderers\D3DRenderer.h">
+      <Filter>Source\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Renderers\SampleRenderer.h">
+      <Filter>Source\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Shaders\OtterShader.h">
+      <Filter>Source\Renderer\Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\SoundSystems\SDKwavefile.h">
+      <Filter>Source\SoundSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\SoundSystems\XAudioSoundSystem.h">
+      <Filter>Source\SoundSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="SampleApp.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="SampleApp.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="small.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="SampleApp.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\API\build\vc\vs2008\Otter.vcproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="..\..\src\Shaders\OtterShader.fx">
+      <Filter>Source\Renderer\Shaders</Filter>
+    </CustomBuild>
+  </ItemGroup>
+</Project>

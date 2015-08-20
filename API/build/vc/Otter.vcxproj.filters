@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{701a85c7-8d2c-4b78-8ec3-7d95b717a810}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Common">
+      <UniqueIdentifier>{146fe5db-a4b1-445e-a83b-ba80919701ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Data">
+      <UniqueIdentifier>{4c39579e-f8eb-4e32-af7f-d2677a3b110a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Graphics">
+      <UniqueIdentifier>{47a8a59d-e907-4669-9e07-ed1b660a8c84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Math">
+      <UniqueIdentifier>{a222bbd1-146d-44d3-ac72-b938d35b4584}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Memory">
+      <UniqueIdentifier>{3b639e27-d02e-4b6f-87de-02af132c72ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\utf8proc">
+      <UniqueIdentifier>{999b03b4-ff25-48e4-a6e1-4358cba44e8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Utilities">
+      <UniqueIdentifier>{828c1579-8075-42f8-b94d-8039a52b4664}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc">
+      <UniqueIdentifier>{0bf5690e-675e-4179-aa96-5dc9155b89d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\Common">
+      <UniqueIdentifier>{ac34e81c-d78e-44f3-af5d-2c2dd7b4f362}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\Math">
+      <UniqueIdentifier>{811a7978-513f-403d-9f97-32ee68927bd0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\Graphics">
+      <UniqueIdentifier>{b576c9c1-d1a9-4826-ba0b-87bdbc064028}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="inc\Interfaces">
+      <UniqueIdentifier>{9848846c-03ff-42bb-b7b8-7a9198b9c205}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\Button.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Control.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Font.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Group.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Label.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Mask.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Otter.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Scene.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Slider.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Sprite.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\System.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Table.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Toggle.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\View.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Common\Log.cpp">
+      <Filter>src\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Common\UTF8String.cpp">
+      <Filter>src\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Data\OtterData.cpp">
+      <Filter>src\Data</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Graphics\Graphics.cpp">
+      <Filter>src\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Math\Matrix4.cpp">
+      <Filter>src\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Math\Vector2.cpp">
+      <Filter>src\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Math\Vector3.cpp">
+      <Filter>src\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Math\Vector4.cpp">
+      <Filter>src\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Math\VectorMath.cpp">
+      <Filter>src\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Memory\Memory.cpp">
+      <Filter>src\Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Memory\MemoryManager.cpp">
+      <Filter>src\Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\utf8proc\utf8proc.cpp">
+      <Filter>src\utf8proc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\utf8proc\utf8proc_data.cpp">
+      <Filter>src\utf8proc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\Utilities\Utilities.cpp">
+      <Filter>src\Utilities</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\Font.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Common\Log.h">
+      <Filter>src\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Data\OtterData.h">
+      <Filter>src\Data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Memory\Memory.h">
+      <Filter>src\Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Memory\MemoryManager.h">
+      <Filter>src\Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\utf8proc\utf8proc.h">
+      <Filter>src\utf8proc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\Utilities\Utilities.h">
+      <Filter>src\Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\Button.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\Control.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\Group.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\Label.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\Mask.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\Otter.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\Scene.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\Slider.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\Sprite.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\System.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\Table.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\Toggle.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\View.h">
+      <Filter>inc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\Common\Array.h">
+      <Filter>inc\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\Common\BaseTypes.h">
+      <Filter>inc\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\Common\Event.h">
+      <Filter>inc\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\Common\Platforms.h">
+      <Filter>inc\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\Common\Types.h">
+      <Filter>inc\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\Common\UTF8String.h">
+      <Filter>inc\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\Math\Matrix4.h">
+      <Filter>inc\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\Math\Vector2.h">
+      <Filter>inc\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\Math\Vector3.h">
+      <Filter>inc\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\Math\Vector4.h">
+      <Filter>inc\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\Math\VectorMath.h">
+      <Filter>inc\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\Graphics\Graphics.h">
+      <Filter>inc\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\Interfaces\IFileSystem.h">
+      <Filter>inc\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\Interfaces\IPlugin.h">
+      <Filter>inc\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\Interfaces\IRenderer.h">
+      <Filter>inc\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\inc\Interfaces\ISoundSystem.h">
+      <Filter>inc\Interfaces</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

@@ -717,7 +717,7 @@
                         <Height>60.22</Height>
                       </Size>
                       <Rotation>0</Rotation>
-                      <Color>255, 255, 255</Color>
+                      <Color>White</Color>
                     </ToggleLayout>
                     <LeftAnchor AbsoluteValue="451.854767" RatioValue="0.470682055" />
                     <RightAnchor AbsoluteValue="447.9253" RatioValue="0.533411145" />
@@ -743,7 +743,7 @@
                         <Height>60.22</Height>
                       </Size>
                       <Rotation>0</Rotation>
-                      <Color>255, 255, 255</Color>
+                      <Color>White</Color>
                     </ToggleLayout>
                     <LeftAnchor AbsoluteValue="591.854736" RatioValue="0.616515338" />
                     <RightAnchor AbsoluteValue="307.9253" RatioValue="0.679244459" />
@@ -769,7 +769,7 @@
                         <Height>60.22</Height>
                       </Size>
                       <Rotation>0</Rotation>
-                      <Color>255, 255, 255</Color>
+                      <Color>White</Color>
                     </ToggleLayout>
                     <LeftAnchor AbsoluteValue="751.854736" RatioValue="0.783182" />
                     <RightAnchor AbsoluteValue="147.9253" RatioValue="0.845911145" />
@@ -795,7 +795,7 @@
                         <Height>60.22</Height>
                       </Size>
                       <Rotation>0</Rotation>
-                      <Color>255, 255, 255</Color>
+                      <Color>White</Color>
                     </ToggleLayout>
                     <LeftAnchor AbsoluteValue="871.854736" RatioValue="0.908182" />
                     <RightAnchor AbsoluteValue="27.925293" RatioValue="0.970911145" />
