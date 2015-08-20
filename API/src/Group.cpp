@@ -31,7 +31,12 @@ namespace Otter
 	Group::~Group(void)
 	{
 		if(mUserCreated)
+		{
+			for(uint32 i=0,n=mControls.size(); i!=n ; ++i)
+				OTTER_DELETE(mControls[i]);
+				
 			OTTER_DELETE(GetData());
+		}
 	}
 
 	/* Draws the sprite to screen
@@ -59,5 +64,15 @@ namespace Otter
 		}
 
 		return pGroup;
+	}
+
+	Control* Group::GetControl(const Point& point, Point* localPoint, bool touchablesOnly)
+	{
+		if(!mEnabled || touchablesOnly && !TouchesEnabled())
+			return 0;
+		for(sint32 i = (sint32)mControls.size() - 1; i >= 0; --i)
+			if( Control * c=mControls[i]->GetControl(point, localPoint, touchablesOnly) )
+				return c;
+		return 0;
 	}
 }

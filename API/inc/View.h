@@ -37,7 +37,8 @@ namespace Otter
 		bool	mKeyOff;			// If set, will not repeat if a loop section has been defined.
 		bool	mReverse;			// If set, plays the animation in reverse
 
-		sint32*	mControlRemap;		// Channel -> ControlID Remap
+		Array<sint32> mControlRemap;		// Channel -> ControlID Remap
+		Array<Control *> mClonedRoots;
 
 		VectorMath::Matrix4 mTransform;
 
@@ -52,9 +53,10 @@ namespace Otter
 			mKeyOff = false;
 			mReverse = false;
 			mTransform = VectorMath::Matrix4::IDENTITY; 
-			mControlRemap = NULL;
 		}
 	};
+
+	bool IsLoopingAnimation( AnimationData const & );
 
 	typedef Array<ActiveAnimation> ActiveAnimations;
 
@@ -98,6 +100,8 @@ namespace Otter
 		 */
 		Control* GetControlInAnimation(uint32 animInstanceID, const char* szControlName);
 
+		AnimationData const * GetAnimationData( char const * name ) const;
+
 		/**
 		 * Plays an animation by name, and returns an ID to that animation.
 		 * If endFrame is not 0xFFFFFFFF the animation will play until it reaches
@@ -109,12 +113,12 @@ namespace Otter
 		 * If endFrame is not 0, it must be larger than or equal to startFrame if bReverse if false, otherwise
 		 * it must be less than or equal to startFrame.
 		 */
-		uint32 PlayAnimation(const char* szName, uint32 startFrame = 0, uint32 endFrame = 0, bool bReverse = false, VectorMath::Matrix4 transform = VectorMath::Matrix4::IDENTITY, bool bMakeInstance = false);
+		uint32 PlayAnimation(const char* szName, uint32 startFrame = 0, uint32 endFrame = 0, bool bReverse = false, VectorMath::Matrix4 const & transform = VectorMath::Matrix4::IDENTITY, bool bMakeInstance = false);
 
 		/**
 		 * Plays an animation by index.
 		 */
-		uint32 PlayAnimation(uint32 index, uint32 startFrame = 0, uint32 endFrame = 0, bool bReverse = false, VectorMath::Matrix4 transform = VectorMath::Matrix4::IDENTITY, bool bMakeInstance = false);
+		uint32 PlayAnimation(uint32 index, uint32 startFrame = 0, uint32 endFrame = 0, bool bReverse = false, VectorMath::Matrix4 const & transform = VectorMath::Matrix4::IDENTITY, bool bMakeInstance = false);
 
 		/**
 		 * Stops an active animation by name
@@ -135,6 +139,8 @@ namespace Otter
 		 * Retrieves the list of active/playing animations by name
 		 */
 		Array<uint32> GetActiveAnimations(const char* szName);
+
+		bool SetActiveAnimationTransform( uint32 animID, VectorMath::Matrix4 const & transform );
 
 		/** 
 		 * Retrieves the 1-based frame index of a named main channel frame of the
@@ -168,16 +174,6 @@ namespace Otter
 		 * "frameDelta" is the number of frames that have passed since last update
 		 */
 		void Update(float frameDelta);
-
-		/**
-		 * Brings the specified control the front, ie drawn on top of everything else
-		 */
-		void BringToFront(Control* pControl);
-
-		/**
-		 * Sends a control to the back, ie drawn behind everything else
-		 */
-		void SendToBack(Control* pControl);
 
 		/**
 		 * Processes an action
@@ -310,6 +306,12 @@ namespace Otter
 		 * Event Parameter: Animation ID
 		 */
 		Event<uint32>				mOnAnimationEnded;
+
+		/**
+		 * Raised whenever the view has looped an animation
+		 * Event Parameter: Animation ID
+		 */
+		Event<uint32>				mOnAnimationLooped;
 
 		/**
 		 * Raised whenever a message has been sent from an active animation

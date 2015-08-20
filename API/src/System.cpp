@@ -1,5 +1,6 @@
 #include <string.h>
 #include <stdlib.h>
+#include <assert.h>
 
 #include "System.h"
 #include "Scene.h"
@@ -62,6 +63,7 @@ namespace Otter
 		mOnSceneLoaded.Clear();
 		mOnSceneUnloaded.Clear();
 		mOnLog.Clear();
+		mOnMessage.Clear();
 
 		OTTER_DELETE(mGraphics);
 		mGraphics = NULL;
@@ -161,9 +163,20 @@ namespace Otter
 
 		int cnt = GetSceneCount();
 		for(int i = 0; i < cnt; i++)
-			GetScene(i)->SetResolution(mScreenWidth, mScreenHeight);
+			if( Scene * s=GetScene(i) )
+				s->SetResolution(mScreenWidth, mScreenHeight);
 
 		return kResult_OK;
+	}
+
+	bool System::HasScene( char const * name ) const
+	{
+		assert(mFileSystem!=0);
+		void* pHandle = (void*)mFileSystem->Open(name, AccessFlag(kBinary | kRead));
+		if(pHandle == NULL)
+			return false;
+		mFileSystem->Close(pHandle);
+		return true;
 	}
 
 	/* Loads a scene from file
@@ -282,7 +295,9 @@ namespace Otter
 	 */
 	Result System::UnloadScene(uint32 index)
 	{
-		return UnloadScene(GetScene(index));
+		Scene * s=GetScene(index);
+		assert(s!=0);
+		return UnloadScene(s);
 	}
 
 	/* Unloads the active scene
@@ -315,6 +330,24 @@ namespace Otter
 		return mScenes.size(); 
 	}
 
+	void System::BringToFront( Scene * s )
+	{
+		assert(s!=0);
+		for( int i=0,n=GetSceneCount(); i!=n; ++i )
+		{
+			Scene * ss=mScenes[i];
+			if( s==ss )
+			{
+				for( ; i!=n-1; ++i )
+					mScenes[i]=mScenes[i+1];
+				mScenes[i]=s;
+				return;
+			}
+		}
+		assert(0);
+	}
+
+
 	/* Draws the GUI
 	 */
 	Result System::Draw()
@@ -328,7 +361,8 @@ namespace Otter
 			mGraphics->Begin();
 
 			for(uint32 i = 0; i < numScenes; i++)
-				GetScene(i)->Draw();
+				if( Scene * s=GetScene(i) )
+					s->Draw();
 
 			mGraphics->End();
 		}
@@ -345,9 +379,16 @@ namespace Otter
 		if(numScenes)
 		{
 			for(uint32 i = 0; i < numScenes; i++)
-				GetScene(i)->Update(frameDelta);
+				if( Scene * s=GetScene(i) )
+					s->Update(frameDelta);
+					
+			for(uint32 i = 0; i < numScenes; i++)
+				if( !GetScene(i) )
+				{
+					mScenes.erase(i);
+					break;
+				}
 		}
-
 		return kResult_OK;
 	}
 		
@@ -357,10 +398,10 @@ namespace Otter
 	{
 		uint32 numScenes = GetSceneCount();		
 		if(numScenes)
-		{
-			for(uint32 i = 0; i < numScenes; i++)
-				GetScene(i)->OnPointsDown(points, numPoints);
-		}
+			for(int i=numScenes; --i>=0; )
+				if( Scene * s=GetScene(i) )
+					if( s->OnPointsDown(points, numPoints) )
+						return;
 	}
 	
 	/* Points (touches/mouse/etc) were released
@@ -369,10 +410,10 @@ namespace Otter
 	{
 		uint32 numScenes = GetSceneCount();		
 		if(numScenes)
-		{
-			for(uint32 i = 0; i < numScenes; i++)
-				GetScene(i)->OnPointsUp(points, numPoints);
-		}
+			for(int i=numScenes; --i>=0; )
+				if( Scene * s=GetScene(i) )
+					if( s->OnPointsUp(points, numPoints) )
+						return;
 	}
 	
 	/* Points (touches/mouse/etc) were moved.
@@ -381,9 +422,9 @@ namespace Otter
 	{
 		uint32 numScenes = GetSceneCount();		
 		if(numScenes)
-		{
-			for(uint32 i = 0; i < numScenes; i++)
-				GetScene(i)->OnPointsMove(points, numPoints);
-		}
+			for(int i=numScenes; --i>=0; )
+				if( Scene * s=GetScene(i) )
+					if( s->OnPointsMove(points, numPoints) )
+						return;
 	}
 };

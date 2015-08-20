@@ -1,5 +1,6 @@
 #include <string.h>
 #include <assert.h>
+#include <algorithm>
 
 #include "View.h"
 #include "Sprite.h"
@@ -213,7 +214,7 @@ namespace Otter
 	Control* View::GetControlInAnimation(uint32 animInstanceID, const char* szControlName)
 	{
 		ActiveAnimation* pActiveAnim = GetActiveAnimation(animInstanceID);
-		if(!pActiveAnim || pActiveAnim->mControlRemap == NULL)
+		if(!pActiveAnim || pActiveAnim->mControlRemap.size() == 0)
 			return NULL;
 
 		const ViewData* pData = static_cast<const ViewData*>(GetData());
@@ -229,11 +230,8 @@ namespace Otter
 			return NULL;
 
 		for(uint32 i = 0; i < pAnimData->mNumAnimationChannels; i++)
-		{
-			Control* pControl = GetControl((uint32)pActiveAnim->mControlRemap[i]);
-			if(pControl && strcmp(pControl->GetName(), szControlName) == 0)
+			if( Control * pControl = GetControl((uint32)pActiveAnim->mControlRemap[i])->GetControl(szControlName) )
 				return pControl;
-		}
 
 		return NULL;
 	}
@@ -256,13 +254,13 @@ namespace Otter
 	 */
 	void View::OnDeactivate()
 	{
+		while( mActiveAnimations.size() )
+			StopAnimation(mActiveAnimations[0].mID);
 		for(uint32 i = 0; i < mControls.size(); i++)
 		{
 			Control* pControl = mControls[i];
 			pControl->OnDeactivate();
 		}
-
-		mActiveAnimations.clear();
 		mOnDeactivate(this, NULL);
 	}
 
@@ -285,7 +283,59 @@ namespace Otter
 		if(!pAnimData)
 			return;
 
+		assert(activeAnimation.mControlRemap.size()==0);
+		activeAnimation.mControlRemap.resize(pAnimData->mNumAnimationChannels);
+		if(LogIsEnabled() && !activeAnimation.mControlRemap.size())
+			Otter::LogInfo("Scene %d, View '%s' : Animation [ID: %u] -- ZERO animation channels", GetScene()->GetID(), GetName(), activeAnimation.mID);
+		Array<Control *> & roots = activeAnimation.mClonedRoots;
+		assert(roots.size()==0);
+		for( int i=0,n=pAnimData->mNumAnimationChannels; i!=n; ++i )
+		{
+			AnimationChannelData const * ch = pAnimData->GetAnimationChannel(i);
+			Control * r=0;
+			for( Control * c=GetControl((uint32)ch->mControlID); c!=this; c=c->GetParentControl() )
+				r=c;
+			assert(r!=0);
+			if( std::find(&roots[0],&roots[0]+roots.size(),r)==&roots[0]+roots.size() )
+				roots.push_back(r);
+		}
+
+		for( Control * * i=&roots[0],* * e=i+roots.size(); i!=e; ++i )
+			*i = (*i)->Clone();
+
+		for( int i=0,n=pAnimData->mNumAnimationChannels; i!=n; ++i )
+		{
+			char const * const name=GetControl(pAnimData->GetAnimationChannel(i)->mControlID)->GetName();
+			for( Control * * j=&roots[0],* * e=j+roots.size(); j!=e; ++j )
+				if( Control * c=(*j)->GetControl(name) )
+					activeAnimation.mControlRemap[i] = c->GetID();
+		}
+
+		for( Control* * i=&roots[0],* * e=i+roots.size(); i!=e; ++i )
+			(*i)->RemapMasks(this,*i);
+	}
+
+
+/*
+	void View::CreateAnimationInstance(ActiveAnimation& activeAnimation)
+	{
+		const ViewData* pData = static_cast<const ViewData*>(GetData());
+		if(!pData)
+			return;
+
+		const AnimationListData* pAnimListData = pData->GetAnimationListData();
+		if(!pAnimListData)
+			return;
+		
+		const AnimationData* pAnimData = pAnimListData->GetAnimation(activeAnimation.mAnimationIndex);
+		if(!pAnimData)
+			return;
+
+		assert(activeAnimation.mControlRemap==0);
 		activeAnimation.mControlRemap = (sint32*)OTTER_ALLOC(sizeof(sint32) * pAnimData->mNumAnimationChannels);
+#ifdef _DEBUG
+		std::fill(activeAnimation.mControlRemap,activeAnimation.mControlRemap+pAnimData->mNumAnimationChannels,-1);
+#endif
 
 		for(uint32 j = 0; j < pAnimData->mNumAnimationChannels; j++)
 		{
@@ -319,24 +369,31 @@ namespace Otter
 			// and be done with it.
 			if(ancestorChannel != -1)
 			{				
+				assert(activeAnimation.mControlRemap[ancestorChannel]!=-1);
 				Control* pClonedAncestor = this->GetControl(activeAnimation.mControlRemap[ancestorChannel]);
 				Control* pMyClone = pClonedAncestor->GetControl(pControl->GetName());
-				if(pMyClone)
+				if( pMyClone )
+					{
+					assert(pMyClone!=0);
+					assert(activeAnimation.mControlRemap[j]==-1);
 					activeAnimation.mControlRemap[j] = pMyClone->GetID();
+					}
 			}
 			else
 			{				
+				assert(mNextControlID!=-1);
+//				assert(!GetControl(mNextControlID));
 				activeAnimation.mControlRemap[j] = mNextControlID;
 
 				Control* pNewControl = pControl->Clone();
-				pNewControl->SetMaskPointers();
-
 				((ControlData*)pNewControl->GetData())->mID = mNextControlID;
 
 				++mNextControlID;
 			}
 		}
 	}
+*/
+
 
 	/** 
 	 * Destroys an animation instance
@@ -355,19 +412,15 @@ namespace Otter
 		if(!pAnimData)
 			return;
 
-		if(activeAnimation.mControlRemap != NULL)
-		{
-			for(uint32 i = 0; i < pAnimData->mNumAnimationChannels; i++)
+		Array<Control *> & roots = activeAnimation.mClonedRoots;
+		for( Control * * i=&roots[0],* * e=i+roots.size(); i!=e; ++i )
 			{
-				Control* pControl = GetControl((uint32)activeAnimation.mControlRemap[i]);
-
-				if(pControl)
-				{
-					pControl->GetParentControl()->RemoveControl(pControl);
-					OTTER_DELETE(pControl);
-				}
+			Result r=RemoveControl(*i);
+			assert(r==kResult_OK);
+			OTTER_DELETE(*i);
 			}
-		}
+		roots.clear(true);
+		activeAnimation.mControlRemap.clear(true);
 	}
 
 	/* Retrieves an active animation by ID.  Returns NULL if not found
@@ -386,10 +439,38 @@ namespace Otter
 		
 		return NULL;
 	}
+
+	AnimationData const * View::GetAnimationData( char const * name ) const
+	{
+		assert(name&&*name);
+		const ViewData* pData = static_cast<const ViewData*>(const_cast<View *>(this)->GetData());
+		if(!pData)
+			return 0;
+
+		const AnimationListData* pAnimListData = pData->GetAnimationListData();
+		if(!pAnimListData)
+			return 0;
+		
+		for(uint32 i = 0; i < pAnimListData->mNumAnimations; i++)
+		{
+			const AnimationData* pAnimData = pAnimListData->GetAnimation(i);
+			if(!pAnimData)
+				continue;			
+			if(strcmp((const char*)pAnimData->mName, name) == 0 && pAnimData->mNumFrames > 0)
+				return pAnimData;
+		}
+
+		return 0;
+	}
+
+	bool IsLoopingAnimation( AnimationData const & ad )
+	{
+		return ad.mRepeatStart!=-1 && ad.mRepeatEnd!=-1;
+	}
 	
 	/* Plays an animation by name
 	 */
-	uint32 View::PlayAnimation(const char* szName, uint32 startFrame, uint32 endFrame, bool bReverse, VectorMath::Matrix4 transform, bool bMakeInstance)
+	uint32 View::PlayAnimation(const char* szName, uint32 startFrame, uint32 endFrame, bool bReverse, VectorMath::Matrix4 const & transform, bool bMakeInstance)
 	{
 		const ViewData* pData = static_cast<const ViewData*>(GetData());
 		if(!pData)
@@ -416,7 +497,7 @@ namespace Otter
 
 	/* Plays an animation by index
 	 */
-	uint32 View::PlayAnimation(uint32 index, uint32 startFrame, uint32 endFrame, bool bReverse, VectorMath::Matrix4 transform, bool bMakeInstance)
+	uint32 View::PlayAnimation(uint32 index, uint32 startFrame, uint32 endFrame, bool bReverse, VectorMath::Matrix4 const & transform, bool bMakeInstance)
 	{
 		const ViewData* pData = static_cast<const ViewData*>(GetData());
 		if(!pData)
@@ -473,7 +554,6 @@ namespace Otter
 		if(strcmp((const char*)pAnimData->mName, "OnActivate") == 0)
 		{
 			activeAnimation.mID = ANIM_ONACTIVATE;
-			AnimateControls(pAnimData, activeAnimation);
 		}
 		else if(strcmp((const char*)pAnimData->mName, "OnDeactivate") == 0)
 		{
@@ -484,6 +564,8 @@ namespace Otter
 		{
 			CreateAnimationInstance(activeAnimation);
 		}
+
+		AnimateControls(pAnimData, activeAnimation);
 
 		mActiveAnimations.push_back(activeAnimation);	
 		mOnAnimationStarted(this, activeAnimation.mID);
@@ -609,6 +691,17 @@ namespace Otter
 		return anims;
 	}	
 
+	bool View::SetActiveAnimationTransform( uint32 animID, VectorMath::Matrix4 const & transform )
+	{
+		if( ActiveAnimation * a=GetActiveAnimation(animID) )
+		{
+			a->mTransform=transform;
+			return true;
+		}
+		else
+			return false;
+	}
+
 	/** 
 	 * Retrieves the 1-based frame index of a named main channel frame of the
 	 * specified animation
@@ -644,62 +737,27 @@ namespace Otter
 
 		return 0;
 	}
-
-	/* Brings the specified control the front, ie drawn on top of everything else	 
-	 */
-	void View::BringToFront(Control* pControl)
-	{
-		if(!pControl)
-			return;
-
-		for(uint32 i = 0; i < mControls.size(); i++)
-		{			
-			if(mControls[i]->GetID() == pControl->GetID())
-			{
-				mControls.erase(i);
-				mControls.push_back(pControl);
-				break;
-			}
-		}
-	}
-
-	/* Sends a control to the back, ie drawn behind everything else
-	 */
-	void View::SendToBack(Control* pControl)
-	{
-		if(!pControl)
-			return;
-
-		for(uint32 i = 0; i < mControls.size(); i++)
-		{			
-			if(mControls[i]->GetID() == pControl->GetID())
-			{
-				mControls.erase(i);
-				mControls.push_front(pControl);
-				break;
-			}
-		}
-	}	
 	
 	/* Points (touches/mouse/etc) were pressed down
 	 */
 	bool View::OnPointsDown(const Point* points, sint32 numPoints)
 	{
+		assert(numPoints>=0);
+		if(!mTouchEnabled)
+			return false;
+		if(!mEnabled)
+			return false;
 		bool handled = false;
-		for(int i = 0; i < numPoints; i++)
+		for(int i = 0; i!=numPoints; ++i)
 		{
 			Point localPoint;
-			Control* pControl = GetControl(points[i], &localPoint, true);
-			if(!pControl || pControl == this)
-				continue;
-			
-			if(pControl->OnPointsDown(&localPoint, 1))
-			{
-				mTouchedControls.push_back(pControl);
-				handled = true;
-			}
+			if( Control* pControl = GetControl(points[i], &localPoint, true) )
+				if( pControl!=this && pControl->OnPointsDown(&localPoint, 1) )
+				{
+					handled = true;
+					mTouchedControls.push_back(pControl);
+				}
 		}
-
 		return handled;
 	}
 	
@@ -709,20 +767,33 @@ namespace Otter
 	 */
 	bool View::OnPointsUp(const Point* points, sint32 numPoints)
 	{
+		assert(numPoints>=0);
+		if(!mTouchEnabled)
+			return false;
+		if(!mEnabled)
+			return false;
+		ControlArray tmp;
+		mTouchedControls.Swap(tmp);
 		bool handled = false;
-		for(uint32 c = 0; c < mTouchedControls.size(); c++)
+		for(int i = 0; i!=numPoints; ++i)
 		{
-			Control* pControl = mTouchedControls[c];
-			for(int i = 0; i < numPoints; i++)
-			{
-				Point localPoint;			
-				pControl->ScreenToLocal(points[i], localPoint);
-
-				handled = handled || pControl->OnPointsUp(&localPoint, 1);
-			}
+			Point localPoint;
+			if( Control* pControl = GetControl(points[i], &localPoint, true) )
+				for( int j=0,n=tmp.size(); j!=n; ++j )
+					if( pControl==tmp[j] )
+					{
+						tmp[j]=0;
+						handled = handled || pControl->OnPointsUp(&localPoint, 1);
+					}
 		}
-
-		mTouchedControls.clear();
+		for(int i = 0; i!=numPoints; ++i)
+			for( int j=0,n=tmp.size(); j!=n; ++j )
+				if( Control * c=tmp[j] )
+				{
+					Point localPoint;
+					c->ScreenToLocal(points[i], localPoint);
+					(void) c->OnPointsUpCancel(&localPoint,1);
+				}
 		return handled;
 	}
 	
@@ -732,17 +803,22 @@ namespace Otter
 	 */
 	bool View::OnPointsMove(const Point* points, sint32 numPoints)
 	{
+		assert(numPoints>=0);
+		if(!mTouchEnabled)
+			return false;
+		if(!mEnabled)
+			return false;
 		bool handled = false;
 		for(uint32 c = 0; c < mTouchedControls.size(); c++)
 		{
 			Control* pControl = mTouchedControls[c];
-			for(int i = 0; i < numPoints; i++)
+			for(int i = 0; i!=numPoints; ++i)
 			{
 				Point localPoint;			
 				pControl->ScreenToLocal(points[i], localPoint);
 				handled = handled || pControl->OnPointsMove(&localPoint, 1);
 			}
-		}
+		}														  
 
 		return handled;
 	}
@@ -768,6 +844,8 @@ namespace Otter
 				messageArgs.mText[63] = 0;
 
 				mOnMessage(pSender, messageArgs);
+				System & s=*GetScene()->GetSystem();
+				s.mOnMessage(&s,messageArgs);
 
 				break;
 			}
@@ -793,13 +871,19 @@ namespace Otter
 	 */
 	void View::Draw(Graphics* pGraphics)
 	{		
-		for(uint32 i = 0; i < mControls.size(); i++)
-		{					
-			Mask* pMask = mControls[i]->GetMaskControl();
-			if (pMask)
-				pMask->DrawMask(pGraphics);
-			
-			mControls[i]->Draw(pGraphics);
+		if(!mEnabled)
+			return;		
+		if( int const ncontrols=mControls.size() )
+		{
+			pGraphics->PushMatrix(GetTransform());
+			for(int i = 0; i !=ncontrols; i++)
+			{
+				Control* pControl = mControls[i];
+				if( Mask* pMask = pControl->GetMaskControl() )
+					pMask->DrawMask(pGraphics);
+				pControl->Draw(pGraphics);
+			}
+			pGraphics->PopMatrix();
 		}
 	}	
 		
@@ -855,7 +939,7 @@ namespace Otter
 			if(!pChannel)
 				continue;
 
-			Control* pControl = GetControl(activeAnim.mControlRemap != NULL ? activeAnim.mControlRemap[i] : pChannel->mControlID);
+			Control* pControl = GetControl(activeAnim.mControlRemap.size()==0 ? pChannel->mControlID : activeAnim.mControlRemap[i]);
 			if(!pControl)
 				continue;
 
@@ -889,7 +973,8 @@ namespace Otter
 			factor = CalculateEase(factor, startKeyFrame->mEaseType, startKeyFrame->mEaseAmount);
 
 			pControl->ApplyKeyFrame(startKeyFrame, endKeyFrame, factor);
-			pControl->SetBaseTransform(activeAnim.mTransform);
+			if( pControl->GetParentControl()==this )
+				pControl->SetBaseTransform(activeAnim.mTransform);
 		}
 	}
 
@@ -898,6 +983,8 @@ namespace Otter
 	 */
 	void View::Update(float frameDelta)
 	{			
+		if(!mEnabled)
+			return;
 		const ViewData* pData = static_cast<const ViewData*>(GetData());
 		const AnimationListData* pAnimListData = pData->GetAnimationListData();		
 		if(!pAnimListData)
@@ -924,10 +1011,13 @@ namespace Otter
 					// Only loop if the KeyOff flag has NOT been set
 					if(!activeAnim.mKeyOff)
 					{
+						bool looped=false;
 						if(activeAnim.mReverse && activeAnim.mFrameTime < (float)pAnimation->mRepeatStart)
-							activeAnim.mFrameTime = (float)(pAnimation->mRepeatEnd);
+							looped=true, activeAnim.mFrameTime=(float)(pAnimation->mRepeatEnd);
 						else if(!activeAnim.mReverse && activeAnim.mFrameTime > (float)pAnimation->mRepeatEnd)
-							activeAnim.mFrameTime = (float)(pAnimation->mRepeatStart);					
+							looped=true, activeAnim.mFrameTime=(float)(pAnimation->mRepeatStart);
+						if( looped )
+							mOnAnimationLooped(this,activeAnim.mID);
 					}
 				}	
 				

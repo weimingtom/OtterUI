@@ -66,6 +66,14 @@ namespace Otter
 			clear(true);
 		}
 
+		void Swap( Array & x )
+		{
+			using namespace std;
+			swap(mObjects,x.mObjects);
+			swap(mCapacity,x.mCapacity);
+			swap(mSize,x.mSize);
+		}
+
 		/**
 		 * Reserves a specified capacity within the array
 		 * With copy/truncate the existing elements in the array
@@ -136,7 +144,7 @@ namespace Otter
 		 */
 		uint32 erase(uint32 index)
 		{
-			if(index >= mSize || mSize == 0)
+			if(index >= mSize)
 				return 0;
 
 			// Call its destructor

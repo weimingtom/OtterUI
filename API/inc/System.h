@@ -46,7 +46,7 @@ namespace Otter
 		/**
 		 * Destructor.
 		 */
-		~System(void);
+		virtual ~System(void);
 
 	public:
 
@@ -112,6 +112,8 @@ namespace Otter
 		 */
 		Result SetResolution(uint32 width, uint32 height);
 
+		bool HasScene( char const * scene_path ) const;
+
 		/**
 		 * Loads a scene from file
 		 */
@@ -136,6 +138,10 @@ namespace Otter
 		 * Unloads all loaded scenes
 		 */
 		Result UnloadAllScenes();
+
+		void BringToFront( Scene * );
+
+	private:
 
 		/**
 		 * Returns a loaded scene by index
@@ -220,5 +226,7 @@ namespace Otter
 		 * Event Parameter: NULL-terminated C-String with the log entry
 		 */
 		Event<const char*>		mOnLog;
+
+		Event<const MessageArgs&>	mOnMessage;
 	};
 }

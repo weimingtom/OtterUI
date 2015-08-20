@@ -140,5 +140,6 @@ namespace Otter
 		bool							mPreTransformVerts;
 
 		int								mCurrentMask;
+		int								mCurrentStencilState;
 	};
 }

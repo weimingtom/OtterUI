@@ -163,19 +163,21 @@ namespace Otter
 		/**
 		 * Points (touches/mouse/etc) were pressed down
 		 */
-		void OnPointsDown(const Point* points, sint32 numPoints);
+		bool OnPointsDown(const Point* points, sint32 numPoints);
 		
 		/**
 		 * Points (touches/mouse/etc) were released
 		 */
-		void OnPointsUp(const Point* points, sint32 numPoints);
+		bool OnPointsUp(const Point* points, sint32 numPoints);
 		
 		/**
 		 * Points (touches/mouse/etc) were moved.
 		 */
-		void OnPointsMove(const Point* points, sint32 numPoints);
+		bool OnPointsMove(const Point* points, sint32 numPoints);
 
 	public:
+
+		bool BringToFront( View * );
 
 		/**
 		 * Draws the scene
@@ -188,6 +190,10 @@ namespace Otter
 		 * @param frameDelta Defines the number of frames that have passed since last update.
 		 */
 		void Update(float frameDelta);
+
+		bool IsEnabled() const;
+		void Enable();
+		void Disable();
 
 	private:
 
@@ -234,6 +240,8 @@ namespace Otter
 		void OnViewAnimationEnded(void* pSender, uint32 animID);
 
 	private:
+
+		int mEnabledCounter;
 
 		/**
 		 * Internal scene data

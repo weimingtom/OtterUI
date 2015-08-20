@@ -11,6 +11,8 @@
 #include "Graphics/Graphics.h"
 #include "Memory/Memory.h"
 
+#include <assert.h>
+
 using namespace VectorMath;
 
 namespace Otter
@@ -285,6 +287,8 @@ namespace Otter
 	 */
 	bool Button::OnPointsMove(const Point* points, sint32 numPoints)
 	{
+		assert(points!=0);
+		assert(numPoints>=0);
 		if(!mTouchEnabled)
 			return false;
 
@@ -313,6 +317,8 @@ namespace Otter
 	 */
 	bool Button::OnPointsUp(const Point* points, sint32 numPoints)
 	{
+		assert(points!=0);
+		assert(numPoints>=0);
 		if(!mTouchEnabled)
 			return false;
 
@@ -342,11 +348,30 @@ namespace Otter
 		mButtonState = Default;
 		return true;
 	}
+		
+	/**
+	* Points (touches/mouse/etc) were released but the control was unreachable (other control in the way)
+	* Returns a reference to the control that handled the points
+	*/
+	bool Button::OnPointsUpCancel(const Point* points, sint32 numPoints)
+	{
+		assert(points!=0);
+		assert(numPoints>=0);
+		if( mButtonState==Down )
+		{
+			mButtonState = Default;
+			return true;
+		}
+		else
+			return false;
+	}
 
 	/* Points (touches/mouse/etc) were pressed down
 	 */
 	bool Button::OnPointsDown(const Point* points, sint32 numPoints)
 	{
+		assert(points!=0);
+		assert(numPoints>=0);
 		if(!mTouchEnabled)
 		 	return false;
 

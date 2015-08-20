@@ -111,8 +111,8 @@ void SampleUI::Update(float delta)
 	{
 		mSystem->UnloadAllScenes();
 
-		mSystem->LoadScene(mNextScene.c_str());
-		Otter::Scene* pScene = mSystem->GetScene(0);
+		Otter::Scene* pScene = NULL;
+		mSystem->LoadScene(mNextScene.c_str(), &pScene);
 
 		if(pScene && mInitialView.length() > 0)
 			pScene->ActivateView(mInitialView.c_str());

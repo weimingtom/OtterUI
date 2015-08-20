@@ -115,16 +115,16 @@ namespace Otter
 		const MaskData* pMaskData = static_cast<const MaskData*>(mControlData);
 		const TextureData* pTextureData = GetScene()->GetTextureData(pMaskData->mTextureID);
 
-		float u1 = pTextureData->mTextureRect.uv[0];
-		float v1 = pTextureData->mTextureRect.uv[1];
-		float u2 = pTextureData->mTextureRect.uv[2];
-		float v2 = pTextureData->mTextureRect.uv[3];
+		float const x1 = pTextureData->mTextureRect.uv[0];
+		float const y1 = pTextureData->mTextureRect.uv[1];
+		float const x2 = pTextureData->mTextureRect.uv[2];
+		float const y2 = pTextureData->mTextureRect.uv[3];
 
-		u1 = u1 + (u2 - u1) * tl_uv[0];
-		v1 = v1 + (v2 - v1) * tl_uv[1];
+		float u1 = x1 + (x2 - x1) * tl_uv[0];
+		float v1 = y1 + (y2 - y1) * tl_uv[1];
 
-		u2 = u1 + (u2 - u1) * br_uv[0];
-		v2 = v1 + (v2 - v1) * br_uv[1];
+		float u2 = x1 + (x2 - x1) * br_uv[0];
+		float v2 = y1 + (y2 - y1) * br_uv[1];
 
 		if(pMaskData->mFlipType == 1)
 		{

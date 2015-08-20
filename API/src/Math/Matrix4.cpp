@@ -130,129 +130,32 @@ namespace VectorMath
 		return matrix;
 	}
 
-	/* Constructor
-	 */
-	Matrix4::Matrix4(void)
-	{
-		memcpy(this, &Matrix4::IDENTITY, sizeof(Matrix4));
-	}	
-		
-	/* Constructs the matrix with specific values.
-	 */
-	Matrix4::Matrix4 (	float fM00, float fM01, float fM02, float fM03,
-         				float fM10, float fM11, float fM12, float fM13,
-         				float fM20, float fM21, float fM22, float fM23,
-         				float fM30, float fM31, float fM32, float fM33)
-	{
-		mEntry[I(0, 0)] = fM00;
-		mEntry[I(0, 1)] = fM01;
-		mEntry[I(0, 2)] = fM02;
-		mEntry[I(0, 3)] = fM03;
-
-		mEntry[I(1, 0)] = fM10;
-		mEntry[I(1, 1)] = fM11;
-		mEntry[I(1, 2)] = fM12;
-		mEntry[I(1, 3)] = fM13;
-
-		mEntry[I(2, 0)] = fM20;
-		mEntry[I(2, 1)] = fM21;
-		mEntry[I(2, 2)] = fM22;
-		mEntry[I(2, 3)] = fM23;
-
-		mEntry[I(3, 0)] = fM30;
-		mEntry[I(3, 1)] = fM31;
-		mEntry[I(3, 2)] = fM32;
-		mEntry[I(3, 3)] = fM33;
-	}
-
-	/* Destructor
-	 */
-	Matrix4::~Matrix4(void)
-	{
-	}
-
 	/* Multiplies this matrix with another.
 	 * Operation is from right to left, ie (*this) * rkM is the
 	 * transform of (*this) followed by rkM
 	 */
+	/*
 	Matrix4 Matrix4::operator* (const Matrix4& rkM) const
 	{
-		Matrix4 kProd;
-
-		// Row 0
-		kProd.mEntry[I(0, 0)] 	=	mEntry[I(0, 0)] * rkM.mEntry[I(0, 0)] + 
-									mEntry[I(0, 1)] * rkM.mEntry[I(1, 0)] + 
-									mEntry[I(0, 2)] * rkM.mEntry[I(2, 0)] + 
-									mEntry[I(0, 3)] * rkM.mEntry[I(3, 0)];
-		kProd.mEntry[I(0, 1)] 	= 	mEntry[I(0, 0)] * rkM.mEntry[I(0, 1)] + 
-									mEntry[I(0, 1)] * rkM.mEntry[I(1, 1)] + 
-									mEntry[I(0, 2)] * rkM.mEntry[I(2, 1)] + 
-									mEntry[I(0, 3)] * rkM.mEntry[I(3, 1)];
-		kProd.mEntry[I(0, 2)] 	= 	mEntry[I(0, 0)] * rkM.mEntry[I(0, 2)] +
-									mEntry[I(0, 1)] * rkM.mEntry[I(1, 2)] +
-									mEntry[I(0, 2)] * rkM.mEntry[I(2, 2)] +
-									mEntry[I(0, 3)] * rkM.mEntry[I(3, 2)];
-		kProd.mEntry[I(0, 3)] 	= 	mEntry[I(0, 0)] * rkM.mEntry[I(0, 3)] +
-									mEntry[I(0, 1)] * rkM.mEntry[I(1, 3)] +
-									mEntry[I(0, 2)] * rkM.mEntry[I(2, 3)] +
-									mEntry[I(0, 3)] * rkM.mEntry[I(3, 3)];
-
-		// Row 1
-		kProd.mEntry[I(1, 0)] 	=	mEntry[I(1, 0)] * rkM.mEntry[I(0, 0)] + 
-									mEntry[I(1, 1)] * rkM.mEntry[I(1, 0)] + 
-									mEntry[I(1, 2)] * rkM.mEntry[I(2, 0)] + 
-									mEntry[I(1, 3)] * rkM.mEntry[I(3, 0)];
-		kProd.mEntry[I(1, 1)] 	=	mEntry[I(1, 0)] * rkM.mEntry[I(0, 1)] + 
-									mEntry[I(1, 1)] * rkM.mEntry[I(1, 1)] + 
-									mEntry[I(1, 2)] * rkM.mEntry[I(2, 1)] + 
-									mEntry[I(1, 3)] * rkM.mEntry[I(3, 1)];
-		kProd.mEntry[I(1, 2)] 	=	mEntry[I(1, 0)] * rkM.mEntry[I(0, 2)] +
-									mEntry[I(1, 1)] * rkM.mEntry[I(1, 2)] +
-									mEntry[I(1, 2)] * rkM.mEntry[I(2, 2)] +
-									mEntry[I(1, 3)] * rkM.mEntry[I(3, 2)];
-		kProd.mEntry[I(1, 3)] 	=	mEntry[I(1, 0)] * rkM.mEntry[I(0, 3)] +
-									mEntry[I(1, 1)] * rkM.mEntry[I(1, 3)] +
-									mEntry[I(1, 2)] * rkM.mEntry[I(2, 3)] +
-									mEntry[I(1, 3)] * rkM.mEntry[I(3, 3)];
-
-		// Row 2
-		kProd.mEntry[I(2, 0)] 	=	mEntry[I(2, 0)] * rkM.mEntry[I(0, 0)] + 
-									mEntry[I(2, 1)] * rkM.mEntry[I(1, 0)] + 
-									mEntry[I(2, 2)] * rkM.mEntry[I(2, 0)] + 
-									mEntry[I(2, 3)] * rkM.mEntry[I(3, 0)];
-		kProd.mEntry[I(2, 1)] 	=	mEntry[I(2, 0)] * rkM.mEntry[I(0, 1)] + 
-									mEntry[I(2, 1)] * rkM.mEntry[I(1, 1)] + 
-									mEntry[I(2, 2)] * rkM.mEntry[I(2, 1)] + 
-									mEntry[I(2, 3)] * rkM.mEntry[I(3, 1)];
-		kProd.mEntry[I(2, 2)] 	=	mEntry[I(2, 0)] * rkM.mEntry[I(0, 2)] +
-									mEntry[I(2, 1)] * rkM.mEntry[I(1, 2)] +
-									mEntry[I(2, 2)] * rkM.mEntry[I(2, 2)] +
-									mEntry[I(2, 3)] * rkM.mEntry[I(3, 2)];
-		kProd.mEntry[I(2, 3)] 	=	mEntry[I(2, 0)] * rkM.mEntry[I(0, 3)] +
-									mEntry[I(2, 1)] * rkM.mEntry[I(1, 3)] +
-									mEntry[I(2, 2)] * rkM.mEntry[I(2, 3)] +
-									mEntry[I(2, 3)] * rkM.mEntry[I(3, 3)];
-
-		// Row 3
-		kProd.mEntry[I(3, 0)] 	=	mEntry[I(3, 0)] * rkM.mEntry[I(0, 0)] + 
-									mEntry[I(3, 1)] * rkM.mEntry[I(1, 0)] + 
-									mEntry[I(3, 2)] * rkM.mEntry[I(2, 0)] + 
-									mEntry[I(3, 3)] * rkM.mEntry[I(3, 0)];
-		kProd.mEntry[I(3, 1)] 	=	mEntry[I(3, 0)] * rkM.mEntry[I(0, 1)] + 
-									mEntry[I(3, 1)] * rkM.mEntry[I(1, 1)] + 
-									mEntry[I(3, 2)] * rkM.mEntry[I(2, 1)] + 
-									mEntry[I(3, 3)] * rkM.mEntry[I(3, 1)];
-		kProd.mEntry[I(3, 2)] 	=	mEntry[I(3, 0)] * rkM.mEntry[I(0, 2)] +
-									mEntry[I(3, 1)] * rkM.mEntry[I(1, 2)] +
-									mEntry[I(3, 2)] * rkM.mEntry[I(2, 2)] +
-									mEntry[I(3, 3)] * rkM.mEntry[I(3, 2)];
-		kProd.mEntry[I(3, 3)] 	=	mEntry[I(3, 0)] * rkM.mEntry[I(0, 3)] +
-									mEntry[I(3, 1)] * rkM.mEntry[I(1, 3)] +
-									mEntry[I(3, 2)] * rkM.mEntry[I(2, 3)] +
-									mEntry[I(3, 3)] * rkM.mEntry[I(3, 3)];
-
-		return kProd;
+		return Matrix4(
+				mEntry[I(0, 0)] * rkM.mEntry[I(0, 0)] + mEntry[I(0, 1)] * rkM.mEntry[I(1, 0)] + mEntry[I(0, 2)] * rkM.mEntry[I(2, 0)] + mEntry[I(0, 3)] * rkM.mEntry[I(3, 0)],
+				mEntry[I(0, 0)] * rkM.mEntry[I(0, 1)] + mEntry[I(0, 1)] * rkM.mEntry[I(1, 1)] + mEntry[I(0, 2)] * rkM.mEntry[I(2, 1)] + mEntry[I(0, 3)] * rkM.mEntry[I(3, 1)],
+				mEntry[I(0, 0)] * rkM.mEntry[I(0, 2)] + mEntry[I(0, 1)] * rkM.mEntry[I(1, 2)] + mEntry[I(0, 2)] * rkM.mEntry[I(2, 2)] + mEntry[I(0, 3)] * rkM.mEntry[I(3, 2)],
+				mEntry[I(0, 0)] * rkM.mEntry[I(0, 3)] + mEntry[I(0, 1)] * rkM.mEntry[I(1, 3)] + mEntry[I(0, 2)] * rkM.mEntry[I(2, 3)] + mEntry[I(0, 3)] * rkM.mEntry[I(3, 3)],
+				mEntry[I(1, 0)] * rkM.mEntry[I(0, 0)] + mEntry[I(1, 1)] * rkM.mEntry[I(1, 0)] + mEntry[I(1, 2)] * rkM.mEntry[I(2, 0)] + mEntry[I(1, 3)] * rkM.mEntry[I(3, 0)],
+				mEntry[I(1, 0)] * rkM.mEntry[I(0, 1)] + mEntry[I(1, 1)] * rkM.mEntry[I(1, 1)] + mEntry[I(1, 2)] * rkM.mEntry[I(2, 1)] + mEntry[I(1, 3)] * rkM.mEntry[I(3, 1)],
+				mEntry[I(1, 0)] * rkM.mEntry[I(0, 2)] + mEntry[I(1, 1)] * rkM.mEntry[I(1, 2)] + mEntry[I(1, 2)] * rkM.mEntry[I(2, 2)] + mEntry[I(1, 3)] * rkM.mEntry[I(3, 2)],
+				mEntry[I(1, 0)] * rkM.mEntry[I(0, 3)] + mEntry[I(1, 1)] * rkM.mEntry[I(1, 3)] + mEntry[I(1, 2)] * rkM.mEntry[I(2, 3)] + mEntry[I(1, 3)] * rkM.mEntry[I(3, 3)],
+				mEntry[I(2, 0)] * rkM.mEntry[I(0, 0)] + mEntry[I(2, 1)] * rkM.mEntry[I(1, 0)] + mEntry[I(2, 2)] * rkM.mEntry[I(2, 0)] + mEntry[I(2, 3)] * rkM.mEntry[I(3, 0)],
+				mEntry[I(2, 0)] * rkM.mEntry[I(0, 1)] + mEntry[I(2, 1)] * rkM.mEntry[I(1, 1)] + mEntry[I(2, 2)] * rkM.mEntry[I(2, 1)] + mEntry[I(2, 3)] * rkM.mEntry[I(3, 1)],
+				mEntry[I(2, 0)] * rkM.mEntry[I(0, 2)] + mEntry[I(2, 1)] * rkM.mEntry[I(1, 2)] + mEntry[I(2, 2)] * rkM.mEntry[I(2, 2)] + mEntry[I(2, 3)] * rkM.mEntry[I(3, 2)],
+				mEntry[I(2, 0)] * rkM.mEntry[I(0, 3)] + mEntry[I(2, 1)] * rkM.mEntry[I(1, 3)] + mEntry[I(2, 2)] * rkM.mEntry[I(2, 3)] + mEntry[I(2, 3)] * rkM.mEntry[I(3, 3)],
+				mEntry[I(3, 0)] * rkM.mEntry[I(0, 0)] + mEntry[I(3, 1)] * rkM.mEntry[I(1, 0)] + mEntry[I(3, 2)] * rkM.mEntry[I(2, 0)] + mEntry[I(3, 3)] * rkM.mEntry[I(3, 0)],
+				mEntry[I(3, 0)] * rkM.mEntry[I(0, 1)] + mEntry[I(3, 1)] * rkM.mEntry[I(1, 1)] + mEntry[I(3, 2)] * rkM.mEntry[I(2, 1)] + mEntry[I(3, 3)] * rkM.mEntry[I(3, 1)],
+				mEntry[I(3, 0)] * rkM.mEntry[I(0, 2)] + mEntry[I(3, 1)] * rkM.mEntry[I(1, 2)] + mEntry[I(3, 2)] * rkM.mEntry[I(2, 2)] + mEntry[I(3, 3)] * rkM.mEntry[I(3, 2)],
+				mEntry[I(3, 0)] * rkM.mEntry[I(0, 3)] + mEntry[I(3, 1)] * rkM.mEntry[I(1, 3)] + mEntry[I(3, 2)] * rkM.mEntry[I(2, 3)] + mEntry[I(3, 3)] * rkM.mEntry[I(3, 3)] );
 	}
+	*/
 
 	/* Returns the inverse of the matrix.
 	 */
@@ -324,6 +227,7 @@ namespace VectorMath
 
 	/* Matrix times vector
 	 */
+/*
 	Vector4 Matrix4::operator* (const Vector4& rkV) const
 	{
 		Vector4 kProd(0.0f, 0.0f, 0.0f, 0.0f);
@@ -338,4 +242,5 @@ namespace VectorMath
 		}
 		return kProd;
 	}
+*/
 }

@@ -137,6 +137,12 @@ namespace Otter
 		 * Points (touches/mouse/etc) were moved.
 		 */
 		virtual bool OnPointsMove(const Point* points, sint32 numPoints);
+		
+		/**
+		 * Points (touches/mouse/etc) were released but the control was unreachable (other control in the way)
+		 * Returns a reference to the control that handled the points
+		 */
+		virtual bool OnPointsUpCancel(const Point* points, sint32 numPoints);
 
 	private:
 

@@ -23,9 +23,9 @@ namespace Otter
 
 		mPreTransformVerts = false;
 
-		mPropertiesUpdated = false;
-
 		mCurrentMask = -1;
+		mCurrentStencilState = IRenderer::DISABLE_STENCIL;
+		mPropertiesUpdated = false;
 	}
 
 	/* Virtual Destructor
@@ -102,6 +102,11 @@ namespace Otter
 	void Graphics::Begin()
 	{
 		mCurrentMask = -1;
+		if( mCurrentStencilState!=IRenderer::DISABLE_STENCIL )
+		{
+			mUserRenderer->SetStencilState(IRenderer::DISABLE_STENCIL);
+			mCurrentStencilState=IRenderer::DISABLE_STENCIL;
+		}
 		
 		mMatrixStack.clear();
 		mMatrixStack.push_front(Matrix4::IDENTITY);
@@ -209,19 +214,30 @@ namespace Otter
 
 			//and set the renderer to draw to the stencil buffer
 			mUserRenderer->SetStencilState(IRenderer::DRAW_TO_STENCIL);
+			mCurrentStencilState=IRenderer::DRAW_TO_STENCIL;
+			mCurrentMask=maskID;
 		}
-		else if (maskID != mCurrentMask)
+		else
 		{
-			//we shouldn't ever be switching to a mask without first rendering it to the stencil buffer (via drawToStencil being true)
-			assert(maskID == -1 && mCurrentMask != -1);
-
-			//we just stopped rendering with our previous mask; commit everything we've batched so far
-			DrawBatches();
-
-			//and disable the stencil
-			mUserRenderer->SetStencilState(IRenderer::DISABLE_STENCIL);
-
-			mCurrentMask = -1;
+			if( maskID==-1  )
+			{
+				if( mCurrentStencilState!=IRenderer::DISABLE_STENCIL )
+				{
+					DrawBatches();
+					mUserRenderer->SetStencilState(IRenderer::DISABLE_STENCIL);
+					mCurrentStencilState=IRenderer::DISABLE_STENCIL;
+				}
+			}
+			else
+			{
+				assert(maskID==mCurrentMask);
+				if( mCurrentStencilState!=IRenderer::DRAW_USING_STENCIL )
+				{
+					DrawBatches();
+					mUserRenderer->SetStencilState(IRenderer::DRAW_USING_STENCIL);
+					mCurrentStencilState=IRenderer::DRAW_USING_STENCIL;
+				}
+			}
 		}
 
 		// Determine the number of vertices we're working with
@@ -234,26 +250,10 @@ namespace Otter
 		}
 
 		// Can't write outside of the working buffer.
-		if((mBufferPosition + numVerts) > NUM_VERTS)
-			return;
-
-		if(mPreTransformVerts && (mMatrixStack.size() > 0 || drawToStencil))
+		if((mBufferPosition + numVerts) >= NUM_VERTS)
 		{
-			const VectorMath::Matrix4& tmpMtx = drawToStencil? mStencilMatrix : mMatrixStack[0];
-			Vector4 v;
-
-			for(int i = 0; i < numVerts; i++)
-			{
-				v.x = pVertices[i].mPosition.x;
-				v.y = pVertices[i].mPosition.y;
-				v.z = pVertices[i].mPosition.z;
-				v.w = 1.0f;
-
-				v = tmpMtx * v;
-				pVertices[i].mPosition.x = v.x;
-				pVertices[i].mPosition.y = v.y;
-				pVertices[i].mPosition.z = v.z;
-			}
+			assert(false);
+			return;
 		}
 
 		// Determine if we're going to create a new batch
@@ -274,37 +274,37 @@ namespace Otter
 
 		if(newBatch)
 		{
-			VectorMath::Matrix4 matrix = VectorMath::Matrix4::IDENTITY;
-			if(!mPreTransformVerts && (mMatrixStack.size() > 0 || drawToStencil))
-				matrix = drawToStencil? mStencilMatrix : mMatrixStack[0];
-
-			mBatches.push_back(DrawBatch((int)primType, 0, mBufferPosition, 0, textureID, matrix, mProperties, renderFlags));
+			mBatches.push_back(DrawBatch((int)primType, 0, mBufferPosition, 0, textureID,
+				(!mPreTransformVerts && (mMatrixStack.size() > 0 || drawToStencil))?
+					(drawToStencil? mStencilMatrix : mMatrixStack[0]) :
+					VectorMath::Matrix4::IDENTITY,
+				mProperties, renderFlags));
 		}
 
 		// Current batch is either a newly created or existing batch.
 		DrawBatch& currentBatch = mBatches[mBatches.size() - 1];
 
 		// Copy over the verts
-		memcpy(&mVertices[mBufferPosition], pVertices, numVerts * sizeof(Otter::GUIVertex));
+		if(mPreTransformVerts && (mMatrixStack.size() > 0 || drawToStencil))
+		{
+			VectorMath::Matrix4 const & tmpMtx = drawToStencil? mStencilMatrix : mMatrixStack[0];
+			for(int i = 0; i < numVerts; i++)
+			{
+				GUIVertex const & v=pVertices[i];
+				GUIVertex & tv = mVertices[mBufferPosition+i];
+				new(&tv.mPosition) Vector3(tmpMtx.TransformPoint(v.mPosition));
+				tv.mTexCoord = v.mTexCoord;
+				tv.mColor = v.mColor;
+			}
+		}
+		else
+			memcpy(&mVertices[mBufferPosition], pVertices, numVerts * sizeof(Otter::GUIVertex));
 
 		currentBatch.mPrimitiveCount += numPrims;
 		currentBatch.mVertexCount += numVerts;
 		mBufferPosition += numVerts;
 
 		mStackUpdated = false;
-		mPropertiesUpdated = false;
-
-		if (drawToStencil)
-		{
-			//if we're drawing this to the stencil, commit what we just batched straight away
-			DrawBatches();
-
-			//now set the renderer to draw further primitives using what's in the stencil buffer
-			mUserRenderer->SetStencilState(IRenderer::DRAW_USING_STENCIL);
-
-			//and set this as the current mask
-			mCurrentMask = maskID;
-		}
 	}
 
 	/* Draws a rectangle on screen
@@ -401,7 +401,7 @@ namespace Otter
 		verts[2].mTexCoord.y = 0.0f;
 		verts[2].mColor = color;
 
-		DrawPrimitives((uint32)-1, kPrim_TriangleList, 1, verts, kRender_Wireframe);
+		DrawPrimitives(-1, kPrim_TriangleList, 1, verts, kRender_Wireframe);
 	}
 
 	void Graphics::DrawBatches()

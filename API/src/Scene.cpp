@@ -18,6 +18,7 @@ namespace Otter
 	 */
 	Scene::Scene(System* pSystem, Graphics* pGraphics, ISoundSystem* pSoundSystem, const SceneData* pSceneData)
 	{
+		mEnabledCounter = 1;
 		mFonts = NULL;
 		mViews = NULL;
 		mSceneData = pSceneData;
@@ -113,9 +114,7 @@ namespace Otter
 
 		LoadViewResources((ViewData*)pView->GetData());	
 		pView->OnActivate();	
-		pView->PlayAnimation("OnActivate");
-
-		return kResult_OK;
+		return pView->PlayAnimation("OnActivate")? kResult_OK : kResult_Error;
 	}
 
 	/* Deactivates a view by name
@@ -571,45 +570,70 @@ namespace Otter
 	
 	/* Points (touches/mouse/etc) were pressed down
 	 */
-	void Scene::OnPointsDown(const Point* points, sint32 numPoints)
+	bool Scene::OnPointsDown(const Point* points, sint32 numPoints)
 	{
-		Array<View*> temp(mActiveViews);
-		for(uint32 i = 0; i < temp.size(); i++)
+		if( IsEnabled() )
 		{
-			if(temp[i]->OnPointsDown(points, numPoints))
-				return;
+			Array<View*> temp(mActiveViews);
+			for(int i=temp.size(); --i>=0; )
+				if(temp[i]->OnPointsDown(points, numPoints))
+					return true;
 		}
+		return false;
 	}
 	
 	/* Points (touches/mouse/etc) were released
 	 */
-	void Scene::OnPointsUp(const Point* points, sint32 numPoints)
+	bool Scene::OnPointsUp(const Point* points, sint32 numPoints)
 	{
-		Array<View*> temp(mActiveViews);
-		for(uint32 i = 0; i < temp.size(); i++)
+		if( IsEnabled() )
 		{
-			if(temp[i]->OnPointsUp(points, numPoints))
-				return;
+			Array<View*> temp(mActiveViews);
+			for(int i=temp.size(); --i>=0; )
+				if(temp[i]->OnPointsUp(points, numPoints))
+					return true;
 		}
+		return false;
 	}
 	
 	/* Points (touches/mouse/etc) were moved.
 	 */
-	void Scene::OnPointsMove(const Point* points, sint32 numPoints)
+	bool Scene::OnPointsMove(const Point* points, sint32 numPoints)
 	{
-		Array<View*> temp(mActiveViews);
-		for(uint32 i = 0; i < temp.size(); i++)
+		if( IsEnabled() )
 		{
-			if(temp[i]->OnPointsMove(points, numPoints))
-				return;
+			Array<View*> temp(mActiveViews);
+			for(int i=temp.size(); --i>=0; )
+				if(temp[i]->OnPointsMove(points, numPoints))
+					return true;
 		}
+		return false;
 	}
+
+bool Scene::BringToFront( View * v )
+{
+	assert(v!=0);
+	for( int i=0,n=mActiveViews.size(); i!=n; ++i )
+		{
+		View * vv=mActiveViews[i];
+		if( v==vv )
+			{
+			for( ; i!=n-1; ++i )
+				mActiveViews[i]=mActiveViews[i+1];
+			mActiveViews[i]=v;
+			return true;
+			}
+		}
+	return false;
+}
 	
 	/* Draws the scene.  Only the active views are
 	 * drawn.
 	 */
 	void Scene::Draw()
 	{
+		if( !IsEnabled() )
+			return;
 		for(uint32 i = 0; i < mActiveViews.size(); i++)
 		{
 			mActiveViews[i]->Draw(mGraphics);
@@ -621,10 +645,27 @@ namespace Otter
 	 */
 	void Scene::Update(float frameDelta)
 	{
+		if( !IsEnabled() )
+			return;
 		Array<View*> temp(mActiveViews);
-		for(uint32 i = 0; i < temp.size(); i++)
+		for(int i=temp.size(); --i>=0; )
 		{
 			temp[i]->Update(frameDelta);
 		}
+	}
+	bool Scene::IsEnabled() const
+	{
+		assert(mEnabledCounter>=0);
+		return mEnabledCounter!=0;
+	}
+	void Scene::Enable()
+	{
+		assert(mEnabledCounter>=0);
+		++mEnabledCounter;
+	}
+	void Scene::Disable()
+	{
+		--mEnabledCounter;
+		assert(mEnabledCounter>=0);
 	}
 };

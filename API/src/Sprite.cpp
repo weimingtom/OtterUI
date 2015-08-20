@@ -118,10 +118,10 @@ namespace Otter
 		Sprite* pSprite = OTTER_NEW(Sprite, ());
 		memcpy((uint8*)pSprite->GetData(), (uint8*)GetData(), sizeof(SpriteData));
 
-		pSprite->SetTexture(GetTexture());
-
 		((ControlData*)pSprite->GetData())->mID = GetParentView()->GenerateNewID();
 		mParent->AddControl(pSprite);
+
+		pSprite->SetTexture(GetTexture());
 
 		return pSprite;
 	}

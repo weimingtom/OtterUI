@@ -243,12 +243,24 @@ namespace Otter
 		 */
 		View* GetParentView();
 
+		void RemapMasks( View * parentView, Control * cloneRoot );
+
 	public:
 
 		/**
 		 * Clones the control and returns the new instance
 		 */
 		virtual Control* Clone() { return NULL; }
+
+		/**
+		 * Brings the specified control the front, ie drawn on top of everything else
+		 */
+		void BringToFront(Control* pControl);
+
+		/**
+		 * Sends a control to the back, ie drawn behind everything else
+		 */
+		void SendToBack(Control* pControl);
 		
 		/**
 		 * Called whenever this control is activated
@@ -277,6 +289,12 @@ namespace Otter
 		 * Returns a reference to the control that handled the points
 		 */
 		virtual bool OnPointsMove(const Point* points, sint32 numPoints);
+		
+		/**
+		 * Points (touches/mouse/etc) were released but the control was unreachable (other control in the way)
+		 * Returns a reference to the control that handled the points
+		 */
+		virtual bool OnPointsUpCancel(const Point* points, sint32 numPoints);
 
 		/**
 		 * Applies the interpolation of two keyframes to the control.

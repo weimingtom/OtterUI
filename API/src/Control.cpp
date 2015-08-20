@@ -5,6 +5,8 @@
 #include "Utilities/Utilities.h"
 #include "Graphics/Graphics.h"
 #include "Memory/Memory.h"
+#include <assert.h>
+#include <limits>
 
 using namespace VectorMath;
 
@@ -215,7 +217,7 @@ namespace Otter
 		Control* pControl = this;
 		while(pControl)
 		{
-			fullTransform = fullTransform * pControl->GetTransform();
+			fullTransform = pControl->GetTransform() * fullTransform;
 			pControl = pControl->GetParentControl();
 		}
 
@@ -261,16 +263,9 @@ namespace Otter
 	{
 		if(!mEnabled || touchablesOnly && !TouchesEnabled())
 			return NULL;
-		
-		for(sint32 i = (sint32)mControls.size() - 1; i >= 0; i--)
-		{
-			Control* pControl = mControls[i];
-			pControl = pControl->GetControl(point, localPoint, touchablesOnly);
-
-			if(pControl)
-				return pControl;
-		}
-
+		for(sint32 i = (sint32)mControls.size() - 1; i >= 0; --i)
+			if( Control * c=mControls[i]->GetControl(point, localPoint, touchablesOnly) )
+				return c;
 		Point lp;
 		ScreenToLocal(point, lp);		
 
@@ -366,15 +361,7 @@ namespace Otter
 	 */
 	void Control::ScreenToLocal(const Point& point, Point& localPoint)
 	{
-		Matrix4 fullTransform = Matrix4::IDENTITY;
-		Control* pControl = this;
-		while(pControl)
-		{
-			fullTransform = fullTransform * pControl->GetTransform();
-			pControl = pControl->GetParentControl();
-		}
-
-		Matrix4 inverse = fullTransform.Inverse();
+		Matrix4 inverse = GetFullTransform().Inverse();
 		Vector4 v(point.x, point.y, 0.0f, 1.0f);
 		v = inverse * v;
 
@@ -415,10 +402,60 @@ namespace Otter
 		return (View*)pParent;
 	}
 
+	void Control::RemapMasks( View * parentView, Control * cloneRoot )
+	{
+		assert(parentView!=0);
+		assert(cloneRoot!=0);
+		if( mControlData->mMaskID!=-1 )
+		{
+			mMaskControl = static_cast<Mask *>(cloneRoot->GetControl(parentView->GetControl(mControlData->mMaskID)->GetName()));
+			const_cast<ControlData *>(mControlData)->mMaskID = mMaskControl->GetID();
+		}
+		for (uint32 i = 0; i < mControls.size(); ++i)
+			mControls[i]->RemapMasks(parentView,cloneRoot);
+	}
+
+	/* Brings the specified control the front, ie drawn on top of everything else	 
+	 */
+	void Control::BringToFront(Control* pControl)
+	{
+		if(!pControl)
+			return;
+
+		for(uint32 i = 0; i < mControls.size(); i++)
+		{			
+			if(mControls[i]->GetID() == pControl->GetID())
+			{
+				mControls.erase(i);
+				mControls.push_back(pControl);
+				break;
+			}
+		}
+	}
+
+	/* Sends a control to the back, ie drawn behind everything else
+	 */
+	void Control::SendToBack(Control* pControl)
+	{
+		if(!pControl)
+			return;
+
+		for(uint32 i = 0; i < mControls.size(); i++)
+		{			
+			if(mControls[i]->GetID() == pControl->GetID())
+			{
+				mControls.erase(i);
+				mControls.push_front(pControl);
+				break;
+			}
+		}
+	}	
 	/* Points (touches/mouse/etc) were pressed down
 	 */
 	bool Control::OnPointsDown(const Point* points, sint32 numPoints)
 	{
+		assert(points!=0);
+		assert(numPoints>=0);
 		return false;
 	}
 		
@@ -426,6 +463,8 @@ namespace Otter
 	 */
 	bool Control::OnPointsUp(const Point* points, sint32 numPoints)
 	{
+		assert(points!=0);
+		assert(numPoints>=0);
 		return false;
 	}
 		
@@ -433,6 +472,19 @@ namespace Otter
 	 */
 	bool Control::OnPointsMove(const Point* points, sint32 numPoints)
 	{
+		assert(points!=0);
+		assert(numPoints>=0);
+		return false;
+	}
+		
+	/**
+	* Points (touches/mouse/etc) were released but the control was unreachable (other control in the way)
+	* Returns a reference to the control that handled the points
+	*/
+	bool Control::OnPointsUpCancel(const Point* points, sint32 numPoints)
+	{
+		assert(points!=0);
+		assert(numPoints>=0);
 		return false;
 	}
 
@@ -543,28 +595,22 @@ namespace Otter
 	void Control::Draw(Graphics* pGraphics)
 	{
 		if(!mEnabled)
-			return;	
-
-		if(mControls.size() < 1) 
-			return;
-
-		const VectorMath::Vector2& size = GetSize();
-		if(size.x == 0.0f || size.y == 0.0f)
-			return;
-		
-		pGraphics->PushMatrix(GetTransform());
-		for(uint32 i = 0; i < mControls.size(); i++)
+			return;		
+		if( int const ncontrols=mControls.size() )
 		{
-			Control* pControl = mControls[i];
-		
-			Mask* pMask = pControl->GetMaskControl();
-			if (pMask)
-				pMask->DrawMask(pGraphics);
-			
-			if(pControl)
+			const VectorMath::Vector2& size = GetSize();
+			if(size.x == 0.0f || size.y == 0.0f)
+				return;
+			pGraphics->PushMatrix(GetTransform());
+			for(int i = 0; i !=ncontrols; i++)
+			{
+				Control* pControl = mControls[i];
+				if( Mask* pMask = pControl->GetMaskControl() )
+					pMask->DrawMask(pGraphics);
 				pControl->Draw(pGraphics);
+			}
+			pGraphics->PopMatrix();
 		}
-		pGraphics->PopMatrix();
 	}
 
 	/**

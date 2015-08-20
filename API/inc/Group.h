@@ -25,6 +25,12 @@ namespace Otter
 		 */
 		virtual ~Group(void);
 
+		/**
+		 * Gets a control by screen coordinate.  Returns the top-most control
+		 * that contains the point.
+		 */
+		virtual Control* GetControl(const Point& point, Point* localPoint, bool touchablesOnly = false);
+
 	public:
 
 		/**
